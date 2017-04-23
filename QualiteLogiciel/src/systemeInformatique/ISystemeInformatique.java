@@ -8,7 +8,7 @@ import ticket.Ticket;
 public interface ISystemeInformatique {
 	public boolean checkAbonnement(CarteAbonnement carte);
 	public void enregistrerDateHeure();
-	public void leverBarriere(Barriere barriere);
+	public void ouvreBarriere();
 	public int calcuPrix();
 	public int donnePrixAPayer(int prix);
 	public boolean mauvaiseCarteAbonnement(CarteAbonnement carte);

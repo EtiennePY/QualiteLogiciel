@@ -5,6 +5,10 @@ import date.Date;
 import ticket.Ticket;
 
 public class LecteurTicketAbonnement {
+	
+	public LecteurTicketAbonnement() {
+		// TODO Auto-generated constructor stub
+	}
 	public Ticket restitutionTicket() {
 		return null;
 		
@@ -33,6 +37,10 @@ public class LecteurTicketAbonnement {
 	}
 	
 	public void demandeInsertionTicket() {
+		
+	}
+	
+	public void ouvreBarriere() {
 		
 	}
 	

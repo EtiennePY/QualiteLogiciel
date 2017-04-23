@@ -1,18 +1,18 @@
 package client;
 
-import java.util.List;
+import java.util.Set;
 
 import abonnement.Abonnement;
 import vehicule.Vehicule;
 
 public abstract class Client implements IClient{
-	protected List<Vehicule> vehicules;
+	protected Set<Vehicule> vehicules;
 
-	public List<Vehicule> getVehicules() {
+	public Set<Vehicule> getVehicules() {
 		return vehicules;
 	}
 
-	public void setVehicules(List<Vehicule> vehicules) {
+	public void setVehicules(Set<Vehicule> vehicules) {
 		this.vehicules = vehicules;
 	}
 

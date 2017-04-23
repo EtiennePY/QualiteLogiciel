@@ -1,6 +1,7 @@
 package systemeInformatique;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import abonnement.Abonnement;
 import barriere.Barriere;
@@ -10,6 +11,11 @@ import ticket.Ticket;
 public class SystemeInformatique implements ISystemeInformatique{
 	protected HashMap<Integer, Integer> immatriculations;
 	protected HashMap<Integer, Abonnement> ids;
+	
+	public SystemeInformatique() {
+		this.immatriculations = new HashMap<Integer, Integer>();
+		this.ids = new HashMap<Integer, Abonnement>();
+	}
 	@Override
 	public boolean checkAbonnement(CarteAbonnement carte) {
 		// TODO Auto-generated method stub
@@ -20,11 +26,7 @@ public class SystemeInformatique implements ISystemeInformatique{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void leverBarriere(Barriere barriere) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public int calcuPrix() {
 		// TODO Auto-generated method stub
@@ -62,6 +64,11 @@ public class SystemeInformatique implements ISystemeInformatique{
 	}
 	@Override
 	public void changeAbonnement(int id, Abonnement abonnement) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void ouvreBarriere() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,17 +1,23 @@
 package banque;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import carte.CarteBancaire;
 
 public class Banque {
-	protected List<Integer> ids;
+	protected Set<Integer> ids;
 
-	public List<Integer> getIds() {
+	public Banque() {
+		this.ids = new HashSet<Integer>();
+	}
+	
+	public Set<Integer> getIds() {
 		return ids;
 	}
 
-	public void setIds(List<Integer> ids) {
+	public void setIds(Set<Integer> ids) {
 		this.ids = ids;
 	}
 	

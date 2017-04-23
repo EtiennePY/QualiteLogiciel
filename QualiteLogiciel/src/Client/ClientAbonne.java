@@ -1,12 +1,18 @@
 package client;
 
-import carte.Carte;
+import java.util.Set;
+
 import carte.CarteAbonnement;
+import vehicule.Vehicule;
 
 public class ClientAbonne extends Client {
 	
 	protected CarteAbonnement carteAbonnement;
 	
+	public ClientAbonne(Set<Vehicule> vehicules, CarteAbonnement carteAbonnement) {
+		super.vehicules = vehicules;
+		this.carteAbonnement = carteAbonnement;
+	}
 	public void insereCarteAbonnement(CarteAbonnement carte) {
 		
 	}
