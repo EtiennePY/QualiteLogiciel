@@ -5,4 +5,4 @@
  * @author Antoine
  *
  */
-package client;
+package panneau;
