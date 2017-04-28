@@ -1,24 +1,26 @@
 package barriere;
 
 public abstract class Barriere {
-	protected static boolean ouverte;
+	protected boolean ouverte;
 
 
 
-	public static boolean isOuverte() {
+	public boolean isOuverte() {
 		return ouverte;
 	}
 
-	public static void setOuverte(boolean ouverte) {
-		Barriere.ouverte = ouverte;
+	public void setOuverte(boolean ouverte) {
+		this.ouverte = ouverte;
 	}
 	
-	public static void ouvrir() {
-		
+	public void ouvrir() {
+		this.setOuverte(true);
+		System.out.println("La barrière s'ouvre");
 	}
 	
-	public static void fermer() {
-		
+	public void fermer() {
+		this.setOuverte(false);
+		System.out.println("La barrière se ferme");
 	}
 
 }

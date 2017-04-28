@@ -1,10 +1,10 @@
 package banque;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import carte.CarteBancaire;
+import error.BanqueError;
 
 public class Banque {
 	protected Set<Integer> ids;
@@ -21,9 +21,8 @@ public class Banque {
 		this.ids = ids;
 	}
 	
-	public boolean realisePaiement(CarteBancaire carte, int prix) {
-		return false;
-		
+	public boolean realisePaiement(CarteBancaire carte, int prix) throws BanqueError {
+		return true;
 	}
 	
 	public void refusPaiement() {

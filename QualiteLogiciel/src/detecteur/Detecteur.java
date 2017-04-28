@@ -1,5 +1,8 @@
 package detecteur;
 
+import barriere.Barriere;
+import panneau.PanneauAffichage;
+
 public abstract class Detecteur implements IDetecteur{
 	protected boolean present;
 
@@ -13,20 +16,18 @@ public abstract class Detecteur implements IDetecteur{
 	}
 
 
+
 	@Override
-	public void detecteClient() {
-		
+	public void fermeBarriere(Barriere barriere) {
+		barriere.fermer();
+		System.out.println("Le detecteur provoque la fermeture de la barrière");
+
 	}
 
 	@Override
-	public void fermeBarriere() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void metAJourPanneauAffichage() {
-		// TODO Auto-generated method stub
+	public void metAJourPanneauAffichage(PanneauAffichage panneau) {
+		panneau.minus();
+		System.out.println("Le détecteur met à jour le panneau d'affichage");
 		
 	}
 

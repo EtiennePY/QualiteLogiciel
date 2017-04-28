@@ -1,7 +1,6 @@
 package systemeInformatique;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import abonnement.Abonnement;
 import barriere.Barriere;
@@ -17,9 +16,9 @@ public class SystemeInformatique implements ISystemeInformatique{
 		this.ids = new HashMap<Integer, Abonnement>();
 	}
 	@Override
-	public boolean checkAbonnement(CarteAbonnement carte) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkAbonnement(CarteAbonnement carte){
+		return immatriculations.containsValue(carte.getId());
+			
 	}
 	@Override
 	public void enregistrerDateHeure() {
@@ -39,13 +38,13 @@ public class SystemeInformatique implements ISystemeInformatique{
 	}
 	@Override
 	public boolean mauvaiseCarteAbonnement(CarteAbonnement carte) {
-		// TODO Auto-generated method stub
+		System.out.println("La carte ayant pour id "+carte.getId()+" n'est pas reconnue par le système informatique");
 		return false;
 	}
 	@Override
 	public boolean carteAbonnementValide(CarteAbonnement carte) {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("La carte ayant pour id "+carte.getId()+" est reconnue par le système informatique");
+		return true;
 	}
 	@Override
 	public boolean ticketNonValide(Ticket ticket) {
@@ -68,9 +67,10 @@ public class SystemeInformatique implements ISystemeInformatique{
 		
 	}
 	@Override
-	public void ouvreBarriere() {
-		// TODO Auto-generated method stub
-		
+	public void ouvreBarriere(Barriere barriere) {
+		barriere.ouvrir();		
+		System.out.println("Le système informatique provoque l'ouverture de la barrière");
+
 	}
 	
 }

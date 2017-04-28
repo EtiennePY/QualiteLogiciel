@@ -1,6 +1,6 @@
 package client;
 
-import java.util.Set;
+import java.util.List;
 
 import carte.CarteAbonnement;
 import vehicule.Vehicule;
@@ -9,17 +9,15 @@ public class ClientAbonne extends Client {
 	
 	protected CarteAbonnement carteAbonnement;
 	
-	public ClientAbonne(Set<Vehicule> vehicules, CarteAbonnement carteAbonnement) {
+	public ClientAbonne(List<Vehicule> vehicules, CarteAbonnement carteAbonnement) {
 		super.vehicules = vehicules;
 		this.carteAbonnement = carteAbonnement;
 	}
-	public void insereCarteAbonnement(CarteAbonnement carte) {
-		
+	
+	public void insereCarteAbonnement() {
+		System.out.println("Le client abonné a inséré sa carte d'abonnement.");
 	}
 	
-	public void demandeResiliation(CarteAbonnement carte) {
-		
-	}
 
 	public CarteAbonnement getCarteAbonnement() {
 		return carteAbonnement;

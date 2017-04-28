@@ -15,4 +15,7 @@ public abstract class Carte {
 		this.id = id;
 	}
 	
+	public boolean isWithout() {
+		return false;
+	}
 }

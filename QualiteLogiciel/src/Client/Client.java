@@ -1,45 +1,33 @@
 package client;
 
-import java.util.Set;
+import java.util.List;
 
-import abonnement.Abonnement;
 import vehicule.Vehicule;
 
 public abstract class Client implements IClient{
-	protected Set<Vehicule> vehicules;
-
-	public Set<Vehicule> getVehicules() {
+	protected List<Vehicule> vehicules;
+	
+	public List<Vehicule> getVehicules() {
 		return vehicules;
 	}
 
-	public void setVehicules(Set<Vehicule> vehicules) {
+	public void setVehicules(List<Vehicule> vehicules) {
 		this.vehicules = vehicules;
+		for (Vehicule vehicule : this.vehicules) {
+			vehicule.setImmatriculation((int)(Math.random()*10000));	
+		}	
 	}
 
 	@Override
 	public void sePlaceDevantBarriere() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Le client abonné se positionne devant la barrière.");
 	}
 
 	@Override
 	public void passe() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Le client passe");		
 	}
 
-	@Override
-	public void demandeAbonnement(Client client, Vehicule vehicule, Abonnement abonnement) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void payeAbonnement(int prix) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 	
 }
