@@ -4,7 +4,6 @@ import carte.Carte;
 import carte.CarteWithout;
 import client.ClientAbonne;
 import date.Date;
-import error.TicketError;
 import ticket.Ticket;
 import ticket.TicketWith;
 import ticket.TicketWithout;
@@ -18,15 +17,15 @@ public class LecteurTicketAbonnement extends Lecteur {
 	private Carte carteClient;
 	private Ticket ticketClient;
 	
-	@Override
+	
 	public Ticket restitutionTicket() {
 		Ticket res = this.getTicketClient();
 		this.ticketClient = TicketWithout.instance();
 		return res;
 	}
 	
-	@Override
-	public boolean verificationTicket(Ticket ticket) throws TicketError {
+	
+	public boolean verificationTicket(Ticket ticket) {
 		System.out.println("Le lecteur de ticket vérifie le ticket.");
 		// Role du SI ???
 		return true;

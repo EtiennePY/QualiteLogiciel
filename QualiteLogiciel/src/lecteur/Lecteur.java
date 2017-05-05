@@ -1,37 +1,36 @@
 package lecteur;
 
 import carte.Carte;
-import error.TicketError;
 import ticket.Ticket;
 
-public abstract class Lecteur implements ILecteur {
+public abstract class Lecteur {
 
 
-	@Override
+	
 	public Ticket restitutionTicket() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public boolean verificationTicket(Ticket ticket) throws TicketError {
+	
+	public boolean verificationTicket(Ticket ticket) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public Carte restitutionCarte() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
 	public boolean contacterBanque(int prix) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	
 	public void demandeInsertionCarte() {
 	}
 }

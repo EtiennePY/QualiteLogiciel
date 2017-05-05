@@ -3,11 +3,10 @@ package systemeInformatique;
 import abonnement.Abonnement;
 import barriere.Barriere;
 import carte.Carte;
-import error.AbonnementError;
 import ticket.Ticket;
 
 public interface ISystemeInformatique {
-	public boolean checkAbonnement(Carte carte) throws AbonnementError ;
+	public boolean checkAbonnement(Carte carte);
 	public void enregistrerDateHeure();
 	public void ouvreBarriere(Barriere barriere);
 	public int calcuPrix();
