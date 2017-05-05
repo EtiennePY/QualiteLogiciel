@@ -3,8 +3,8 @@ package detecteur;
 import barriere.Barriere;
 import panneau.PanneauAffichage;
 
-public abstract class Detecteur implements IDetecteur{
-	protected boolean present;
+public abstract class Detecteur implements IDetecteur {
+	protected boolean present; 
 
 	
 	public boolean isPresent() {

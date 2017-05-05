@@ -11,7 +11,6 @@ public interface IDetecteur {
 	public void metAJourPanneauAffichage(PanneauAffichage panneau);
 	public void compterVoiture();
 	public boolean isPresent();
-
 	public void setPresent(boolean present);
 	public void detecteImmatriculationVehicule(Vehicule vehicule, IClient client);
 }
