@@ -4,6 +4,11 @@ public class PanneauAffichage {
 	protected final int NBPLACES = 400;
 	protected int entres;
 	protected int sortis;
+	
+	public PanneauAffichage() {
+		this.entres = 0;
+		this.sortis = 0;
+	}
 	public int getSortis() {
 		return sortis;
 	}

@@ -1,15 +1,11 @@
 package lecteur;
 
 import carte.Carte;
+import error.TicketError;
 import ticket.Ticket;
 
-public class Lecteur implements ILecteur {
+public abstract class Lecteur implements ILecteur {
 
-	@Override
-	public void demandeInsertionCarte(Carte carte) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Ticket restitutionTicket() {
@@ -18,7 +14,7 @@ public class Lecteur implements ILecteur {
 	}
 
 	@Override
-	public boolean verificationTicket(Ticket ticket) {
+	public boolean verificationTicket(Ticket ticket) throws TicketError {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -30,9 +26,12 @@ public class Lecteur implements ILecteur {
 	}
 
 	@Override
-	public boolean contacterBanque(Carte carte) {
+	public boolean contacterBanque(int prix) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-  
+
+	@Override
+	public void demandeInsertionCarte() {
+	}
 }

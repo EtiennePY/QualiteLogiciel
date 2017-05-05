@@ -1,23 +1,28 @@
 package lecteur;
 
+import banque.Banque;
 import carte.Carte;
-import carte.CarteBancaire;
 import carte.CarteWithout;
+import client.ClientNonAbonne;
 
-public class LecteurBancaire {
+public class LecteurBancaire extends Lecteur {
 	public LecteurBancaire() {
 		this.carteBancaireClient = CarteWithout.instance();
+		this.banque = new Banque();
 	}
 	private Carte carteBancaireClient;
-	public void demandeInsertionCarteBancaire(CarteBancaire carte) {
+	private Banque banque;
+	public void demandeInsertionCarte(Carte carte) {
 		System.out.println("Le lecteur demande l'insertion de la carte bancaire");
 	}
 	
-	public void contacterBanque(CarteBancaire carte, int prix) {
-		System.out.println("Le lecteur contacte la banque pour la carte " + carte.toString() + ", pour un montant de "+ prix);	
+	@Override
+	public boolean contacterBanque(int prix) {
+		System.out.println("Le lecteur contacte la banque pour un montant de "+ prix);	
+		return false;
 	}
 	
-	public Carte restitutionCarteBancaire(){
+	public Carte restitutionCarteBancaire(boolean ok, ClientNonAbonne client){
 		Carte res = this.getCarteBancaireClient();
 		this.setCarteBancaireClient(CarteWithout.instance());
 		System.out.println("Le lecteur de carte bancaire restitue la carte");

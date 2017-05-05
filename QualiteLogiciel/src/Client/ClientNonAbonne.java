@@ -3,6 +3,7 @@ package client;
 import java.util.List;
 
 import carte.CarteBancaire;
+import lecteur.LecteurBancaire;
 import ticket.Ticket;
 import ticket.TicketWithout;
 import vehicule.Vehicule;
@@ -27,7 +28,7 @@ public class ClientNonAbonne extends Client {
 		return res;
 	}
 	
-	public void insereCarteBancaire(CarteBancaire carte){
+	public void insereCarteBancaire(LecteurBancaire lecteur){
 		System.out.println("Le client non-abonné a inséré sa carte.");
 	}
 	

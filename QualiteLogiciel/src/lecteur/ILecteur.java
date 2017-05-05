@@ -1,17 +1,18 @@
 package lecteur;
 
 import carte.Carte;
+import error.TicketError;
 import ticket.Ticket;
 
 public interface ILecteur {
 
-  public void demandeInsertionCarte(Carte carte);
+  public void demandeInsertionCarte();
 
   public Ticket restitutionTicket();
   
-  public boolean verificationTicket(Ticket ticket);
+  public boolean verificationTicket(Ticket ticket) throws TicketError;
   
   public Carte restitutionCarte();
   
-  public boolean contacterBanque(Carte carte);
+  public boolean contacterBanque(int prix);
 }

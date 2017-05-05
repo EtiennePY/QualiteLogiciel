@@ -2,28 +2,32 @@ package client;
 
 import java.util.List;
 
-import carte.CarteAbonnement;
+import carte.Carte;
+import carte.CarteWithout;
+import lecteur.LecteurTicketAbonnement;
 import vehicule.Vehicule;
 
 public class ClientAbonne extends Client {
 	
-	protected CarteAbonnement carteAbonnement;
+	protected Carte carteAbonnement;
 	
-	public ClientAbonne(List<Vehicule> vehicules, CarteAbonnement carteAbonnement) {
+	public ClientAbonne(List<Vehicule> vehicules, Carte carteAbonnement) {
 		super.vehicules = vehicules;
 		this.carteAbonnement = carteAbonnement;
 	}
 	
-	public void insereCarteAbonnement() {
+	public void insereCarteAbonnement(LecteurTicketAbonnement lecteur) {
 		System.out.println("Le client abonné a inséré sa carte d'abonnement.");
+		lecteur.setCarteClient(this.getCarteAbonnement());
+		this.setCarteAbonnement(CarteWithout.instance());
 	}
 	
 
-	public CarteAbonnement getCarteAbonnement() {
+	public Carte getCarteAbonnement() {
 		return carteAbonnement;
 	}
 
-	public void setCarteAbonnement(CarteAbonnement carteAbonnement) {
+	public void setCarteAbonnement(Carte carteAbonnement) {
 		this.carteAbonnement = carteAbonnement;
 	}
 }

@@ -1,15 +1,15 @@
 package lecteur;
 
 import carte.Carte;
-import carte.CarteAbonnement;
 import carte.CarteWithout;
+import client.ClientAbonne;
 import date.Date;
 import error.TicketError;
 import ticket.Ticket;
 import ticket.TicketWith;
 import ticket.TicketWithout;
 
-public class LecteurTicketAbonnement {
+public class LecteurTicketAbonnement extends Lecteur {
 	
 	public LecteurTicketAbonnement() {
 		this.ticketClient = TicketWithout.instance();
@@ -18,12 +18,14 @@ public class LecteurTicketAbonnement {
 	private Carte carteClient;
 	private Ticket ticketClient;
 	
+	@Override
 	public Ticket restitutionTicket() {
 		Ticket res = this.getTicketClient();
 		this.ticketClient = TicketWithout.instance();
 		return res;
 	}
 	
+	@Override
 	public boolean verificationTicket(Ticket ticket) throws TicketError {
 		System.out.println("Le lecteur de ticket vérifie le ticket.");
 		// Role du SI ???
@@ -35,23 +37,26 @@ public class LecteurTicketAbonnement {
 		return new TicketWith(date);
 		
 	}
-	public CarteAbonnement restitutionCarteAbonnement(boolean retour) {
+	public void restitutionCarte(boolean retour, ClientAbonne client) {
+		client.setCarteAbonnement(this.getCarteClient());
+		this.setCarteClient(CarteWithout.instance());
+		
 		if(retour) {
 			System.out.println("Un message s'affiche : \"OK\"" );
 		} else {
 			System.out.println("Un message s'affiche : \"Carte erronée\"" );
 
 		}
-		return (CarteAbonnement) this.getCarteClient();
+
 		
 	}
 	
-	public void demandeInsertionCarteAbonnement(CarteAbonnement carte) {
+	public void demandeInsertionCarteAbonnement() {
 		System.out.println("Un message s'affiche à l'écran du lecteur de carte d'abonnement : \"Insérez carte\"");
 	}
 	
-	public void checkAbonnement(CarteAbonnement carte) {
-		this.setCarteClient(carte);
+	public void checkAbonnement() {
+		this.setCarteClient(this.getCarteClient());
 		System.out.println("Le lecteur de carte d'abonnement reçoit la carte d'abonnement.");
 	}
 	

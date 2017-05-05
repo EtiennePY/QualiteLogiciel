@@ -4,7 +4,7 @@ import java.util.List;
 
 import vehicule.Vehicule;
 
-public abstract class Client implements IClient{
+public abstract class Client {
 	protected List<Vehicule> vehicules;
 	
 	public List<Vehicule> getVehicules() {
@@ -18,12 +18,12 @@ public abstract class Client implements IClient{
 		}	
 	}
 
-	@Override
+	
 	public void sePlaceDevantBarriere() {
 		System.out.println("Le client abonné se positionne devant la barrière.");
 	}
 
-	@Override
+	
 	public void passe() {
 		System.out.println("Le client passe");		
 	}

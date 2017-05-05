@@ -1,23 +1,45 @@
 package systemeInformatique;
 
 import java.util.HashMap;
-
 import abonnement.Abonnement;
 import barriere.Barriere;
-import carte.CarteAbonnement;
+import carte.Carte;
 import ticket.Ticket;
 
 public class SystemeInformatique implements ISystemeInformatique{
-	protected HashMap<Integer, Integer> immatriculations;
-	protected HashMap<Integer, Abonnement> ids;
+	//a partir de l'immatriculation trouver l'abonnement
+	protected HashMap<Integer, Abonnement> abonnements;
 	
+	//a partir de l'id trouver l'immatriculation
+	protected HashMap<Integer, Integer> ids;
+
 	public SystemeInformatique() {
-		this.immatriculations = new HashMap<Integer, Integer>();
-		this.ids = new HashMap<Integer, Abonnement>();
+		this.abonnements = new HashMap<Integer, Abonnement>();
+		this.ids = new HashMap<Integer, Integer>();
+
+	}
+	public HashMap<Integer, Abonnement> getAbonnements() {
+		return abonnements;
+	}
+	public void setAbonnements(HashMap<Integer, Abonnement> abonnements) {
+		this.abonnements = abonnements;
+	}
+	public HashMap<Integer, Integer> getIds() {
+		return ids;
+	}
+	public void setIds(HashMap<Integer, Integer> ids) {
+		this.ids = ids;
 	}
 	@Override
-	public boolean checkAbonnement(CarteAbonnement carte){
-		return immatriculations.containsValue(carte.getId());
+	public boolean checkAbonnement(Carte carte){
+		boolean result = ids.containsKey(carte.getId());
+		 if(result) {
+			 this.carteAbonnementValide(carte);
+		 }
+		 else {
+			 this.mauvaiseCarteAbonnement(carte);
+		 }
+		return result;
 			
 	}
 	@Override
@@ -37,12 +59,12 @@ public class SystemeInformatique implements ISystemeInformatique{
 		return 0;
 	}
 	@Override
-	public boolean mauvaiseCarteAbonnement(CarteAbonnement carte) {
+	public boolean mauvaiseCarteAbonnement(Carte carte) {
 		System.out.println("La carte ayant pour id "+carte.getId()+" n'est pas reconnue par le système informatique");
 		return false;
 	}
 	@Override
-	public boolean carteAbonnementValide(CarteAbonnement carte) {
+	public boolean carteAbonnementValide(Carte carte) {
 		System.out.println("La carte ayant pour id "+carte.getId()+" est reconnue par le système informatique");
 		return true;
 	}
@@ -68,8 +90,8 @@ public class SystemeInformatique implements ISystemeInformatique{
 	}
 	@Override
 	public void ouvreBarriere(Barriere barriere) {
-		barriere.ouvrir();		
 		System.out.println("Le système informatique provoque l'ouverture de la barrière");
+		barriere.ouvrir();		
 
 	}
 	

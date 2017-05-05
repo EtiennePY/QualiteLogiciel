@@ -3,7 +3,7 @@ package barriere;
 public abstract class Barriere {
 	protected boolean ouverte;
 
-
+	
 
 	public boolean isOuverte() {
 		return ouverte;
