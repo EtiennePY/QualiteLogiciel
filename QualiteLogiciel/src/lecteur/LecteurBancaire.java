@@ -5,7 +5,7 @@ import carte.Carte;
 import carte.CarteWithout;
 import client.ClientNonAbonne;
 
-public class LecteurBancaire extends Lecteur {
+public class LecteurBancaire{
 	public LecteurBancaire() {
 		this.carteBancaireClient = CarteWithout.instance();
 		this.banque = new Banque();
@@ -16,7 +16,7 @@ public class LecteurBancaire extends Lecteur {
 		System.out.println("Le lecteur demande l'insertion de la carte bancaire");
 	}
 	
-	@Override
+	
 	public boolean contacterBanque(int prix) {
 		System.out.println("Le lecteur contacte la banque pour un montant de "+ prix);	
 		return false;

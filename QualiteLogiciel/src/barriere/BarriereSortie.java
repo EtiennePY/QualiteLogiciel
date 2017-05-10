@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import client.ClientAbonne;
 
-public class BarriereSortie {
+public class BarriereSortie implements IBarriereSortie {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 

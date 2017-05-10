@@ -1,6 +1,6 @@
 package vehicule;
 
-public enum Vehicule {
+public enum Vehicule implements IVehicule {
   MOTO, VOITURE, CAMIONETTE, CAMPINGCAR, CAMION;
   protected int immatriculation;
 

@@ -3,7 +3,7 @@ package panneau;
 import java.util.logging.Logger;
 import client.ClientAbonne;
 
-public class PanneauAffichage {
+public class PanneauAffichage implements IPanneauAffichage {
   protected final int NBPLACES = 400;
   protected int entres;
   protected int sortis;

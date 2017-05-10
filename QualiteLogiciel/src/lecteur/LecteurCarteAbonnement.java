@@ -1,12 +1,14 @@
 package lecteur;
 
+import java.util.logging.Logger;
+
 import carte.Carte;
+import carte.CarteAbonnement;
 import carte.CarteWithout;
 import client.ClientAbonne;
 import systemeInformatique.SystemeInformatique;
-import java.util.logging.Logger;
 
-public class LecteurCarteAbonnement extends Lecteur {
+public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 
   public LecteurCarteAbonnement() {
     this.carteClient = CarteWithout.instance();
@@ -17,9 +19,7 @@ public class LecteurCarteAbonnement extends Lecteur {
 
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 
-  public void restitutionCarte(boolean retour, ClientAbonne client) {
-    client.setCarteAbonnement(this.getCarteClient());
-    this.setCarteClient(CarteWithout.instance());  
+  public void restitutionCarte(boolean retour) { 
     if(retour) {
       LOG.info("Un message s'affiche : \"OK\" sur l'écran du lecteur et la carte sort" );
     } else {
@@ -27,7 +27,8 @@ public class LecteurCarteAbonnement extends Lecteur {
     }
   }
   
-  public void demandeInsertionCarte(boolean detecte) {
+  
+public void demandeInsertionCarte(boolean detecte) {
     if (detecte) {
       LOG.info("L'écran du lecteur de carte d'abonnement affiche \"Insérez votre carte d'abonnement\"");
     }

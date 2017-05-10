@@ -1,15 +1,16 @@
 package detecteur;
 
-import barriere.BarriereSortie;
+import java.util.logging.Logger;
+
+import barriere.IBarriereSortie;
 import client.Client;
 import client.ClientAbonne;
-import java.util.logging.Logger;
-import lecteur.LecteurCarteAbonnement;
-import panneau.PanneauAffichage;
+import lecteur.ILecteurCarteAbonnement;
+import panneau.IPanneauAffichage;
 import systemeInformatique.SystemeInformatique;
-import vehicule.Vehicule;
+import vehicule.IVehicule;
 
-public class DetecteurSortie {
+public class DetecteurSortie implements IDetecteurSortie {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 
@@ -27,21 +28,17 @@ public class DetecteurSortie {
     this.present = present;
   }
 
-  public void compterVoiture() {
-    // TODO Auto-generated method stub
-  }
-
-  public void fermeBarriere(final BarriereSortie barriere) {
+  public void fermeBarriere(final IBarriereSortie barriere) {
     LOG.info("Le detecteur provoque la fermeture de la barrière");
     barriere.fermer();
   }
 
-  public void metAJourPanneauAffichage(final PanneauAffichage panneau) {
+  public void metAJourPanneauAffichage(final IPanneauAffichage panneau) {
     LOG.info("Le détecteur met à jour le panneau d'affichage");
     panneau.minus();
   }
 
-  public boolean detecteImmatriculationVehicule(final Vehicule vehicule,final SystemeInformatique sys,final LecteurCarteAbonnement lecteur) {
+  public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final SystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
     if (sys.getIds().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");

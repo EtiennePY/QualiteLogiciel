@@ -5,11 +5,12 @@ import ticket.Ticket;
 import ticket.TicketWith;
 import ticket.TicketWithout;
 
-public class LecteurTicket extends Lecteur {
+public class LecteurTicket {
 	public LecteurTicket() {
 		this.ticketClient = TicketWithout.instance();
 	}
 	private Ticket ticketClient;
+	
 	
 	
 	public Ticket restitutionTicket() {
@@ -17,6 +18,7 @@ public class LecteurTicket extends Lecteur {
 		this.ticketClient = TicketWithout.instance();
 		return res;
 	}
+	
 	
 	
 	public boolean verificationTicket(Ticket ticket) {

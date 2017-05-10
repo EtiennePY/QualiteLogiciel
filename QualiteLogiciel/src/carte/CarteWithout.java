@@ -9,6 +9,7 @@ public class CarteWithout extends Carte {
 	public static CarteWithout instance() {
 		return CarteWithout.CARTEWITHOUT;
 	}
+	
 	@Override
 	public boolean isWithout(){
 		return true;

@@ -6,13 +6,13 @@ import carte.CarteBancaire;
 import lecteur.LecteurBancaire;
 import ticket.Ticket;
 import ticket.TicketWithout;
-import vehicule.Vehicule;
+import vehicule.IVehicule;
 
 
 public class ClientNonAbonne extends Client {
 	protected CarteBancaire carteBancaire;
 	protected Ticket ticket;
-	public ClientNonAbonne(List<Vehicule> vehicules, CarteBancaire carteBancaire) {
+	public ClientNonAbonne(List<IVehicule> vehicules, CarteBancaire carteBancaire) {
 		super.vehicules = vehicules;
 		this.carteBancaire = carteBancaire;
 		this.ticket = TicketWithout.instance();

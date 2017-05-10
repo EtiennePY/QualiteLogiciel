@@ -6,12 +6,17 @@ import java.util.List;
 
 import abonnement.Abonnement;
 import barriere.BarriereSortie;
+import barriere.IBarriereSortie;
 import carte.CarteAbonnement;
 import client.ClientAbonne;
 import detecteur.DetecteurSortie;
+import detecteur.IDetecteurSortie;
+import lecteur.ILecteurCarteAbonnement;
 import lecteur.LecteurCarteAbonnement;
+import panneau.IPanneauAffichage;
 import panneau.PanneauAffichage;
 import systemeInformatique.SystemeInformatique;
+import vehicule.IVehicule;
 import vehicule.Vehicule;
 public class MainAbonne {
 	public static void main(String[] args) {
@@ -24,8 +29,8 @@ public class MainAbonne {
 		CarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
 		
 		//On definit les véhicules qu'il possède
-		List<Vehicule> vehicules = new ArrayList<Vehicule>();
-		Vehicule voiturette = Vehicule.VOITURE;
+		List<IVehicule> vehicules = new ArrayList<IVehicule>();
+		IVehicule voiturette = Vehicule.VOITURE;
 		voiturette.setImmatriculation(immatriculationClient);
 		vehicules.add(voiturette);
 		
@@ -34,11 +39,11 @@ public class MainAbonne {
 		
 		
 		//On cree le detecteur
-		DetecteurSortie detecteur = new DetecteurSortie();
+		IDetecteurSortie detecteur = new DetecteurSortie();
 		
 		
 		//On cree le lecteur de carte d'abonnement
-		LecteurCarteAbonnement lecteurAbo = new LecteurCarteAbonnement();
+		ILecteurCarteAbonnement lecteurAbo = new LecteurCarteAbonnement();
 
 
 		//On cree le systeme informatique
@@ -53,8 +58,8 @@ public class MainAbonne {
 		abonnements.put(immatriculationClient, abonnement);
 		
 		//On cree le panneau d'affichage
-		PanneauAffichage panneau = new PanneauAffichage();
-		BarriereSortie barriere = new BarriereSortie();
+		IPanneauAffichage panneau = new PanneauAffichage();
+		IBarriereSortie barriere = new BarriereSortie();
 
 		//Debut de la séquence
 		

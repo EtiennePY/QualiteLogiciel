@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import abonnement.Abonnement;
 import barriere.BarriereSortie;
+import barriere.IBarriereSortie;
 import carte.Carte;
 import client.ClientAbonne;
 import lecteur.LecteurCarteAbonnement;
@@ -51,7 +52,7 @@ public class SystemeInformatique {
      else {
        this.mauvaiseCarteAbonnement(carte);
      }
-    lecteur.restitutionCarte();
+    lecteur.restitutionCarte(result);
     return result;
   }
   
@@ -97,7 +98,7 @@ public class SystemeInformatique {
   }
   
   
-  public void ouvreBarriere(BarriereSortie barriere) {
+  public void ouvreBarriere(IBarriereSortie barriere) {
     LOG.info("Le système informatique provoque l'ouverture de la barrière");
     barriere.ouvrir();    
 

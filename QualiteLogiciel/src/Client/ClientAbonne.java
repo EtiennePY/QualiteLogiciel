@@ -4,12 +4,14 @@
 
 package client;
 
-import carte.Carte;
-import carte.CarteWithout;
 import java.util.List;
 import java.util.logging.Logger;
-import lecteur.LecteurCarteAbonnement;
-import vehicule.Vehicule;
+
+import carte.Carte;
+import carte.CarteAbonnement;
+import carte.CarteWithout;
+import lecteur.ILecteurCarteAbonnement;
+import vehicule.IVehicule;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ClientAbonne.
@@ -27,7 +29,7 @@ public class ClientAbonne extends Client {
   * @param carteAbonnement the carte abonnement
   */
 
-  public ClientAbonne(final List<Vehicule> vehicules, final Carte carteAbonnement) {
+  public ClientAbonne(final List<IVehicule> vehicules, final Carte carteAbonnement) {
     super();
     super.vehicules = vehicules;
     this.carteAbonnement = carteAbonnement;
@@ -36,11 +38,11 @@ public class ClientAbonne extends Client {
   /**
    * Insere carte abonnement.
    *
-   * @param lecteur the lecteur
+   * @param lecteurAbo the lecteur
    */
-  public void insereCarteAbonnement(final LecteurCarteAbonnement lecteur) {
+  public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) {
     LOG.info("Le client abonné a inséré sa carte d'abonnement.");
-    lecteur.setCarteClient(this.getCarteAbonnement());
+    lecteurAbo.setCarteClient(this.getCarteAbonnement());
     this.setCarteAbonnement(CarteWithout.instance());
   }
   
@@ -49,9 +51,10 @@ public class ClientAbonne extends Client {
    *
    * @param lecteur the lecteur
    */
-  public void recupereCarteAbonnement(final LecteurCarteAbonnement lecteur) {
+  public void recupereCarteAbonnement(final ILecteurCarteAbonnement lecteur) {
     LOG.info("Le client abonné récupère sa carte d'abonnement.");
-    lecteur.setCarteClient(lecteur.getCarteClient());
+    CarteAbonnement carte = (CarteAbonnement) lecteur.getCarteClient();
+    this.setCarteAbonnement(carte);
     lecteur.setCarteClient(CarteWithout.instance());
   }
   
