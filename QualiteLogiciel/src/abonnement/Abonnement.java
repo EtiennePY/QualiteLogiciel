@@ -1,5 +1,19 @@
 package abonnement;
 
+/*
+ * 
+ */
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Abonnement.
+ */
 public enum Abonnement {
-	REGULIER, OCCASIONNEL, PROFESSIONNEL;
+
+  /** The regulier. */
+  REGULIER, 
+  /** The occasionnel. */
+  OCCASIONNEL, 
+  /** The professionnel. */
+  PROFESSIONNEL;
 }

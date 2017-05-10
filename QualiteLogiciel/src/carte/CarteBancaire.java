@@ -1,7 +1,7 @@
 package carte;
 
 public class CarteBancaire extends Carte {
-	public CarteBancaire(int id){
-		super.id=id;
+	public CarteBancaire(int identifiant){
+		super.identifiant=identifiant;
 	}
 }

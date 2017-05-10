@@ -1,10 +1,37 @@
 package barriere;
 
+/*
+ * 
+ */
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface IBarriereSortie.
+ */
 public interface IBarriereSortie {
 
-	public boolean isOuverte();
-	public void setOuverte(boolean ouverte);
-	public void ouvrir();
-	public void fermer();
+  /**
+   * Checks if is ouverte.
+   *
+   * @return true, if is ouverte
+   */
+  boolean isOuverte();
+  
+  /**
+   * Sets the ouverte.
+   *
+   * @param ouverte the new ouverte
+   */
+  void setOuverte(final boolean ouverte);
+  
+  /**
+   * Ouvrir.
+   */
+  void ouvrir();
+  
+  /**
+   * Fermer.
+   */
+  void fermer();
 
 }

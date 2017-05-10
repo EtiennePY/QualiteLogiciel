@@ -1,23 +1,49 @@
 package carte;
 
+/*
+ * 
+ */
+
 import abonnement.Abonnement;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CarteAbonnement.
+ */
 public class CarteAbonnement extends Carte {
 
-	protected Abonnement abonnement;
-	
-	public CarteAbonnement(int id, Abonnement abonnement){
-		super.id=id;
-		this.abonnement = abonnement;
-	}
+  /** The abonnement. */
+  protected Abonnement abonnement;
 
-	
-	public Abonnement getAbonnement() {
-		return abonnement;
-	}
+  /**
+   * Instantiates a new carte abonnement.
+   *
+   * @param identifiant the identifiant
+   * @param abonnement the abonnement
+   */
+  public CarteAbonnement(final int identifiant, final Abonnement abonnement) {
+    super();
+    super.identifiant = identifiant;
+    this.abonnement = abonnement;
+  }
 
-	
-	public void setAbonnement(Abonnement abonnement) {
-		this.abonnement = abonnement;
-	}
+
+  /**
+   * Gets the abonnement.
+   *
+   * @return the abonnement
+   */
+  public Abonnement getAbonnement() {
+    return abonnement;
+  }
+
+
+  /**
+   * Sets the abonnement.
+   *
+   * @param abonnement the new abonnement
+   */
+  public void setAbonnement(final Abonnement abonnement) {
+    this.abonnement = abonnement;
+  }
 }

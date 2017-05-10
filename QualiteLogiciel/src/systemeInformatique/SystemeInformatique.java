@@ -20,11 +20,11 @@ public class SystemeInformatique {
 
   
   //a partir de l'id trouver l'immatriculation
-  protected HashMap<Integer, Integer> ids;
+  protected HashMap<Integer, Integer> identifiants;
 
   public SystemeInformatique() {
     this.abonnements = new HashMap<Integer, Abonnement>();
-    this.ids = new HashMap<Integer, Integer>();
+    this.identifiants = new HashMap<Integer, Integer>();
 
   }
   public HashMap<Integer, Abonnement> getAbonnements() {
@@ -36,16 +36,16 @@ public class SystemeInformatique {
   }
   
   public HashMap<Integer, Integer> getIds() {
-    return ids;
+    return identifiants;
   }
   
   public void setIds(HashMap<Integer, Integer> ids) {
-    this.ids = ids;
+    this.identifiants = identifiants;
   }
   
   
   public boolean checkAbonnement(Carte carte, LecteurCarteAbonnement lecteur){
-    boolean result = ids.containsKey(carte.getId());
+    boolean result = identifiants.containsKey(carte.getIdentifiant());
      if(result) {
        this.carteAbonnementValide(carte);
      }
@@ -75,13 +75,13 @@ public class SystemeInformatique {
   
   
   public boolean mauvaiseCarteAbonnement(Carte carte) {
-    LOG.info("La carte ayant pour id "+carte.getId()+" n'est pas reconnue par le système informatique");
+    LOG.info("La carte ayant pour id "+carte.getIdentifiant()+" n'est pas reconnue par le système informatique");
     return false;
   }
   
   
   public boolean carteAbonnementValide(Carte carte) {
-    LOG.info("La carte ayant pour id "+carte.getId()+" est reconnue par le système informatique");
+    LOG.info("La carte ayant pour id "+carte.getIdentifiant()+" est reconnue par le système informatique");
     return true;
   }
   
@@ -92,7 +92,7 @@ public class SystemeInformatique {
   }
 
   
-  public void changeAbonnement(int id, Abonnement abonnement) {
+  public void changeAbonnement(int identifiant, Abonnement abonnement) {
     // TODO Auto-generated method stub
     
   }

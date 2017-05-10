@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Etienne et Antoine
- *
+ * @author Etienne Grall
+ * @author Antoine Hervieu
  */
 package lecteur;

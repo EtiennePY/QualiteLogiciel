@@ -5,14 +5,14 @@ package carte;
  */
 public abstract class Carte {
 	
-	protected int id;
+	protected int identifiant;
 
-	public int getId() {
-		return id;
+	public int getIdentifiant() {
+		return identifiant;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int identifiant) {
+		this.identifiant = identifiant;
 	}
 	
 	public boolean isWithout() {
