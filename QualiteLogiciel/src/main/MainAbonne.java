@@ -5,21 +5,22 @@ import java.util.HashMap;
 import java.util.List;
 
 import abonnement.Abonnement;
-import barriere.BarriereSortie;
-import barriere.IBarriereSortie;
-import carte.CarteAbonnement;
-import client.ClientAbonne;
-import detecteur.DetecteurSortie;
-import detecteur.IDetecteurSortie;
-import lecteur.ILecteurCarteAbonnement;
-import lecteur.LecteurCarteAbonnement;
-import panneau.IPanneauAffichage;
-import panneau.PanneauAffichage;
-import systemeInformatique.SystemeInformatique;
-import vehicule.IVehicule;
-import vehicule.Vehicule;
+import barriere.impl.BarriereSortie;
+import barriere.inter.IBarriereSortie;
+import cartes.impl.CarteAbonnement;
+import clients.impl.ClientAbonne;
+import detecteur.impl.DetecteurSortie;
+import detecteur.inter.IDetecteurSortie;
+import erreurs.CarteInsereeErreur;
+import lecteurCarteAbonnement.impl.LecteurCarteAbonnement;
+import lecteurCarteAbonnement.inter.ILecteurCarteAbonnement;
+import panneau.impl.PanneauAffichage;
+import panneau.inter.IPanneauAffichage;
+import systemeInformatique.impl.SystemeInformatique;
+import vehicule.impl.Vehicule;
+import vehicule.inter.IVehicule;
 public class MainAbonne {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CarteInsereeErreur {
 		//On definit ici l'identifiant du client, son immatriculation, et son abonnement.
 		Integer idClient = 69;
 		Integer immatriculationClient = 696969;
