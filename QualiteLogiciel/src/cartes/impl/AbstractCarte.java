@@ -7,11 +7,11 @@ import cartes.inter.IAbstractCarte;
  * The Class Carte.
  */
 public abstract class AbstractCarte implements IAbstractCarte {
-	public AbstractCarte() {};
+	
 	/**
-	 * Checks if is without.
+	 * Checks if is with.
 	 *
-	 * @return true, if is without
+	 * @return true, if is with
 	 */
 	public boolean isWith() {
 		return true;

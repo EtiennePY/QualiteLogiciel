@@ -2,6 +2,10 @@ package cartes.impl;
 
 import cartes.inter.IAbstractCarteWith;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractCarteWith.
+ */
 public abstract class AbstractCarteWith extends AbstractCarte implements IAbstractCarteWith {
 	
 	/** The identifiant. */

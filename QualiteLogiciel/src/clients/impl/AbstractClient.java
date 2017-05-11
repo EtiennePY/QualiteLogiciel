@@ -21,11 +21,6 @@ public abstract class AbstractClient implements IAbstractClient {
   protected List<IVehicule> vehicules;
   
   /**
-   * Instantiates a new abstract client.
-   */
-  public AbstractClient() {}
-  
-  /**
    * Gets the vehicules.
    *
    * @return the vehicules
@@ -40,10 +35,7 @@ public abstract class AbstractClient implements IAbstractClient {
    * @param vehicules the new vehicules
    */
   public void setVehicules(final List<IVehicule> vehicules) {
-    this.vehicules = vehicules;
-    for (final IVehicule vehicule : this.vehicules) {
-      vehicule.setImmatriculation((int)(Math.random()*10000));  
-    }  
+    this.vehicules = vehicules; 
   }
   
   /**

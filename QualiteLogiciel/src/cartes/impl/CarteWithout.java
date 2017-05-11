@@ -3,23 +3,16 @@
  */
 package cartes.impl;
 
-import cartes.inter.ICarteWithout;
+import cartes.inter.IAbstractCarte;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class CarteWithout.
  */
-public class CarteWithout extends AbstractCarte implements ICarteWithout {
-	
-	/**
-	 * Instantiates a new carte without.
-	 */
-	public CarteWithout(){
-		super();
-	}
+public class CarteWithout extends AbstractCarte implements IAbstractCarte {
 	
 	/** The Constant CARTEWITHOUT. */
-	private final static CarteWithout CARTEWITHOUT = new CarteWithout();
+	private final static CarteWithout SINGLETON = new CarteWithout();
 	
 	/**
 	 * Instance.
@@ -27,11 +20,13 @@ public class CarteWithout extends AbstractCarte implements ICarteWithout {
 	 * @return the carte without
 	 */
 	public static CarteWithout instance() {
-		return CarteWithout.CARTEWITHOUT;
+		return CarteWithout.SINGLETON;
 	}
 	
-	/* (non-Javadoc)
-	 * @see carte.AbstractCarte#isWith()
+	/**
+	 * Checks if is with.
+	 *
+	 * @return true, if is with
 	 */
 	public boolean isWith(){
 		return false;

@@ -3,12 +3,12 @@ package detecteur.impl;
 import java.util.logging.Logger;
 
 import barriere.inter.IBarriereSortie;
-import clients.impl.AbstractClient;
 import clients.impl.ClientAbonne;
+import clients.inter.IAbstractClient;
 import detecteur.inter.IDetecteurSortie;
-import lecteurCarteAbonnement.inter.ILecteurCarteAbonnement;
+import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.inter.IPanneauAffichage;
-import systemeInformatique.impl.SystemeInformatique;
+import systemeinfo.impl.SystemeInformatique;
 import vehicule.inter.IVehicule;
 
 public class DetecteurSortie implements IDetecteurSortie {
@@ -40,7 +40,7 @@ public class DetecteurSortie implements IDetecteurSortie {
   }
 
   public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final SystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
-    if (sys.getIds().containsValue(vehicule.getImmatriculation())) {
+    if (sys.getIdentifiants().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
     } else {
@@ -50,7 +50,7 @@ public class DetecteurSortie implements IDetecteurSortie {
     return this.isPresent();
   }
 
-  public void detecteClient(final AbstractClient client) {
+  public void detecteClient(final IAbstractClient client) {
     this.setPresent(true);
     LOG.info("Le détecteur detecte le client " + client.toString());
   }

@@ -1,30 +1,30 @@
 package ticket.impl;
 
-import date.impl.Date;
+import date.impl.DateTicket;
 import ticket.inter.ITicketWith;
 
 /**
  * The Class Ticket.
  */
 public class TicketWith extends Ticket implements ITicketWith {
-	
-	protected Date date_entree;
-	protected Date date_sortie;
-	public TicketWith(Date date_entree) {
-		this.date_entree = date_entree;
 
-	}
-	public Date getDate_entree() {
-		return date_entree;
-	}
-	public void setDate_entree(Date date_entree) {
-		this.date_entree = date_entree;
-	}
+	private DateTicket dateTicket;
 	
-	@Override
+	public DateTicket getDateTicket() {
+		return dateTicket;
+	}
+
+	public void setDateTicket(DateTicket dateTicket) {
+		this.dateTicket = dateTicket;
+	}
+
+	public TicketWith(DateTicket dateTicket) {
+		this.dateTicket = dateTicket;
+	}
+
 	public boolean isTicketWith() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 }

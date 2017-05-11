@@ -1,12 +1,54 @@
 package panneau.inter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface IPanneauAffichage.
+ */
 public interface IPanneauAffichage {
-	public int getSortis();
-	public void setSortis(int sortis);
-	public int getNombrePlacesLibres();
-	public int getEntres();
-	public void setEntres(int entres);
-	public void add();
-	public void minus();
+  
+  /**
+   * Gets the sortis.
+   *
+   * @return the sortis
+   */
+  int getSortis();
+  
+  /**
+   * Sets the sortis.
+   *
+   * @param sortis the new sortis
+   */
+  void setSortis(int sortis);
+  
+  /**
+   * Gets the nombre places libres.
+   *
+   * @return the nombre places libres
+   */
+  int getNombrePlacesLibres();
+  
+  /**
+   * Gets the entres.
+   *
+   * @return the entres
+   */
+  int getEntres();
+  
+  /**
+   * Sets the entres.
+   *
+   * @param entres the new entres
+   */
+  void setEntres(int entres);
+  
+  /**
+   * Adds the.
+   */
+  void add();
+  
+  /**
+   * Minus.
+   */
+  void minus();
 
 }

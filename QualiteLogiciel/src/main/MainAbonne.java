@@ -1,8 +1,8 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import abonnement.Abonnement;
 import barriere.impl.BarriereSortie;
@@ -12,11 +12,11 @@ import clients.impl.ClientAbonne;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
 import erreurs.CarteInsereeErreur;
-import lecteurCarteAbonnement.impl.LecteurCarteAbonnement;
-import lecteurCarteAbonnement.inter.ILecteurCarteAbonnement;
+import lecteurs.abonnement.impl.LecteurCarteAbonnement;
+import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.impl.PanneauAffichage;
 import panneau.inter.IPanneauAffichage;
-import systemeInformatique.impl.SystemeInformatique;
+import systemeinfo.impl.SystemeInformatique;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 public class MainAbonne {
@@ -51,11 +51,11 @@ public class MainAbonne {
 		SystemeInformatique sys = new SystemeInformatique();
 		//On ajoute au systeme informatique l'identifiant du client et son immatriculation ainsi que son abonnement 
 		//(supposons qu'il se soit inscrit auparavant)
-		HashMap<Integer, Integer> ids = sys.getIds();
+		Map<Integer, Integer> ids = sys.getIdentifiants();
 		Integer immatriculationEnregistree = 696969;
 		Integer idEnregistree = 69;
 		ids.put(idEnregistree, immatriculationEnregistree);
-		HashMap<Integer, Abonnement> abonnements = sys.getAbonnements();
+		Map<Integer, Abonnement> abonnements = sys.getAbonnements();
 		abonnements.put(immatriculationClient, abonnement);
 		
 		//On cree le panneau d'affichage

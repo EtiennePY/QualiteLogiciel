@@ -4,7 +4,7 @@ import java.util.List;
 
 import cartes.impl.CarteBancaire;
 import clients.inter.IClientNonAbonne;
-import lecteurBancaire.impl.LecteurBancaire;
+import lecteurs.bancaire.impl.LecteurBancaire;
 import ticket.impl.Ticket;
 import ticket.impl.TicketWithout;
 import vehicule.inter.IVehicule;

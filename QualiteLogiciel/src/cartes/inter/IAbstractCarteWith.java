@@ -1,5 +1,12 @@
+/*
+ * 
+ */
 package cartes.inter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface IAbstractCarteWith.
+ */
 public interface IAbstractCarteWith {
 	
 	/**

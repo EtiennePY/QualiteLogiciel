@@ -10,19 +10,20 @@ import java.util.logging.Logger;
 import cartes.impl.AbstractCarte;
 import cartes.impl.CarteAbonnement;
 import cartes.impl.CarteWithout;
-import clients.inter.ICLientAbonne;
-import lecteurCarteAbonnement.inter.ILecteurCarteAbonnement;
+import cartes.inter.IAbstractCarte;
+import clients.inter.IClientAbonne;
+import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import vehicule.inter.IVehicule;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ClientAbonne.
  */
 
-public class ClientAbonne extends AbstractClient implements ICLientAbonne {
+public class ClientAbonne extends AbstractClient implements IClientAbonne {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
   /** The carte abonnement. */
-  protected AbstractCarte carteAbonnement;  
+  protected IAbstractCarte carteAbonnement;  
   /**
   * Instantiates a new client abonne.
   *
@@ -30,7 +31,7 @@ public class ClientAbonne extends AbstractClient implements ICLientAbonne {
   * @param carteAbonnement the carte abonnement
   */
 
-  public ClientAbonne(final List<IVehicule> vehicules, final AbstractCarte carteAbonnement) {
+  public ClientAbonne(final List<IVehicule> vehicules, final IAbstractCarte carteAbonnement) {
     super();
     super.vehicules = vehicules;
     this.carteAbonnement = carteAbonnement;
@@ -43,7 +44,8 @@ public class ClientAbonne extends AbstractClient implements ICLientAbonne {
    */
   public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) {
     LOG.info("Le client abonné a inséré sa carte d'abonnement.");
-    lecteurAbo.setCarteClient(this.getCarteAbonnement());
+    final IAbstractCarte carte = this.getCarteAbonnement();
+    lecteurAbo.setCarteClient(carte);
     this.setCarteAbonnement(CarteWithout.instance());
   }
   
@@ -54,7 +56,7 @@ public class ClientAbonne extends AbstractClient implements ICLientAbonne {
    */
   public void recupereCarteAbonnement(final ILecteurCarteAbonnement lecteur) {
     LOG.info("Le client abonné récupère sa carte d'abonnement.");
-    CarteAbonnement carte = (CarteAbonnement) lecteur.getCarteClient();
+    final CarteAbonnement carte = (CarteAbonnement) lecteur.getCarteClient();
     this.setCarteAbonnement(carte);
     lecteur.setCarteClient(CarteWithout.instance());
   }
@@ -65,7 +67,7 @@ public class ClientAbonne extends AbstractClient implements ICLientAbonne {
    *
    * @return the carte abonnement
    */
-  public AbstractCarte getCarteAbonnement() {
+  public IAbstractCarte getCarteAbonnement() {
     return carteAbonnement;
   }
 
@@ -74,7 +76,7 @@ public class ClientAbonne extends AbstractClient implements ICLientAbonne {
    *
    * @param carteAbonnement the new carte abonnement
    */
-  public void setCarteAbonnement(final AbstractCarte carteAbonnement) {
+  public void setCarteAbonnement(final IAbstractCarte carteAbonnement) {
     this.carteAbonnement = carteAbonnement;
   }
 }
