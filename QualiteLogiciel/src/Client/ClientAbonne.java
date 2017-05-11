@@ -17,7 +17,7 @@ import vehicule.IVehicule;
  * The Class ClientAbonne.
  */
 
-public class ClientAbonne extends Client {
+public class ClientAbonne extends Client implements ICLientAbonne {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
   /** The carte abonnement. */

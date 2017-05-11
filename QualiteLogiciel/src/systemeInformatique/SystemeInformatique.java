@@ -4,14 +4,13 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 
 import abonnement.Abonnement;
-import barriere.BarriereSortie;
 import barriere.IBarriereSortie;
 import carte.Carte;
 import client.ClientAbonne;
 import lecteur.LecteurCarteAbonnement;
 import ticket.Ticket;
 
-public class SystemeInformatique {
+public class SystemeInformatique implements ISystemeInformatique {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 

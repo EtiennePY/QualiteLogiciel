@@ -9,7 +9,7 @@ import ticket.TicketWithout;
 import vehicule.IVehicule;
 
 
-public class ClientNonAbonne extends Client {
+public class ClientNonAbonne extends Client implements IClientNonAbonne {
 	protected CarteBancaire carteBancaire;
 	protected Ticket ticket;
 	public ClientNonAbonne(List<IVehicule> vehicules, CarteBancaire carteBancaire) {

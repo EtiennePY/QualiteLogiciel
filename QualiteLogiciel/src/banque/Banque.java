@@ -5,7 +5,7 @@ import java.util.Set;
 
 import carte.CarteBancaire;
 
-public class Banque {
+public class Banque implements IBanque {
 	protected Set<Integer> ids;
 
 	public Banque() {

@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import vehicule.IVehicule;
-import vehicule.Vehicule;
 
-public abstract class Client {
+public abstract class Client implements IClient {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(Client.class.getName());
 

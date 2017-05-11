@@ -1,6 +1,6 @@
 package carte;
 
-public class CarteWithout extends Carte {
+public class CarteWithout extends Carte implements ICarteWithout {
 	
 	public CarteWithout(){}
 	

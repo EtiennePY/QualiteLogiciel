@@ -1,7 +1,6 @@
 package lecteur;
 
 import carte.Carte;
-import client.ClientAbonne;
 import systemeInformatique.SystemeInformatique;
 
 public interface ILecteurCarteAbonnement {

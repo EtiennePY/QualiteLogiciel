@@ -3,7 +3,7 @@ package carte;
 /**
  * The Class Carte.
  */
-public abstract class Carte {
+public abstract class Carte implements ICarte {
 	
 	protected int identifiant;
 

@@ -5,7 +5,7 @@ import date.Date;
 /**
  * The Class Ticket.
  */
-public class TicketWith extends Ticket{
+public class TicketWith extends Ticket implements ITicketWith {
 	
 	protected Date date_entree;
 	protected Date date_sortie;

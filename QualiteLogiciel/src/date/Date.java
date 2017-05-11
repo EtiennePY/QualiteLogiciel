@@ -1,6 +1,6 @@
 package date;
 
-public class Date {
+public class Date implements IDate {
 	protected int jour;
 	protected int heure;
 	

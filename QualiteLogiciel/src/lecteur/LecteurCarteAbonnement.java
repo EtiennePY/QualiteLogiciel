@@ -3,7 +3,6 @@ package lecteur;
 import java.util.logging.Logger;
 
 import carte.Carte;
-import carte.CarteAbonnement;
 import carte.CarteWithout;
 import client.ClientAbonne;
 import systemeInformatique.SystemeInformatique;

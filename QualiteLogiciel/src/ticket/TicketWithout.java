@@ -1,6 +1,6 @@
 package ticket;
 
-public class TicketWithout extends Ticket{
+public class TicketWithout extends Ticket implements ITicketWithout {
 	private final static TicketWithout TICKETWITHOUT = new TicketWithout();
 	public TicketWithout() {
 		// TODO Auto-generated constructor stub
