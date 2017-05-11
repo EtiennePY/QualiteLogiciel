@@ -3,7 +3,7 @@ package detecteur;
 import java.util.logging.Logger;
 
 import barriere.IBarriereSortie;
-import client.Client;
+import client.AbstractClient;
 import client.ClientAbonne;
 import lecteur.ILecteurCarteAbonnement;
 import panneau.IPanneauAffichage;
@@ -49,7 +49,7 @@ public class DetecteurSortie implements IDetecteurSortie {
     return this.isPresent();
   }
 
-  public void detecteClient(final Client client) {
+  public void detecteClient(final AbstractClient client) {
     this.setPresent(true);
     LOG.info("Le détecteur detecte le client " + client.toString());
   }

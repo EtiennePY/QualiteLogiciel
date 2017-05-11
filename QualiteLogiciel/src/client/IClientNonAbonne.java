@@ -1,5 +1,5 @@
 package client;
 
-public interface IClientNonAbonne extends IClient {
+public interface IClientNonAbonne extends IAbstractClient {
 
 }

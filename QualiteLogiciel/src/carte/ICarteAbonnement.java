@@ -1,5 +1,8 @@
 package carte;
 
-public interface ICarteAbonnement extends ICarte {
+import abonnement.Abonnement;
 
+public interface ICarteAbonnement extends IAbstractCarte {
+	Abonnement getAbonnement();
+	void setAbonnement(final Abonnement abonnement);
 }

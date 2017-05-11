@@ -5,7 +5,7 @@ import ticket.Ticket;
 import ticket.TicketWith;
 import ticket.TicketWithout;
 
-public class LecteurTicket {
+public class LecteurTicket implements ILecteurTicket {
 	public LecteurTicket() {
 		this.ticketClient = TicketWithout.instance();
 	}

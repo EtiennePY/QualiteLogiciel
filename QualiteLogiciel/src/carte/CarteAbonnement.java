@@ -10,7 +10,7 @@ import abonnement.Abonnement;
 /**
  * The Class CarteAbonnement.
  */
-public class CarteAbonnement extends Carte implements ICarteAbonnement{
+public class CarteAbonnement extends AbstractCarte implements ICarteAbonnement {
 
   /** The abonnement. */
   protected Abonnement abonnement;

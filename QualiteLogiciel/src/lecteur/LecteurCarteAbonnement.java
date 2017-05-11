@@ -2,7 +2,7 @@ package lecteur;
 
 import java.util.logging.Logger;
 
-import carte.Carte;
+import carte.AbstractCarte;
 import carte.CarteWithout;
 import client.ClientAbonne;
 import systemeInformatique.SystemeInformatique;
@@ -13,7 +13,7 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
     this.carteClient = CarteWithout.instance();
   }
 
-  private Carte carteClient;
+  private AbstractCarte carteClient;
   /** The logger. */
 
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
@@ -39,11 +39,11 @@ public void demandeInsertionCarte(boolean detecte) {
     return sys.checkAbonnement(this.getCarteClient(), this);
   }
   
-  public Carte getCarteClient() {
+  public AbstractCarte getCarteClient() {
     return carteClient;
   }
 
-  public void setCarteClient(Carte carteClient) {
+  public void setCarteClient(final AbstractCarte carteClient) {
     this.carteClient = carteClient;
   }
 }

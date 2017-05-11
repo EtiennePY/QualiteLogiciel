@@ -1,5 +1,5 @@
 package carte;
 
-public interface ICarteBancaire extends ICarte {
+public interface ICarteBancaire extends IAbstractCarte {
 
 }

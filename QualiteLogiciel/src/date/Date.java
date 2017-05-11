@@ -11,13 +11,13 @@ public class Date implements IDate {
 	public int getJour() {
 		return jour;
 	}
-	public void setJour(int jour) {
+	public void setJour(final int jour) {
 		this.jour = jour;
 	}
 	public int getHeure() {
 		return heure;
 	}
-	public void setHeure(int heure) {
+	public void setHeure(final int heure) {
 		this.heure = heure;
 	}
 }

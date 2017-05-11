@@ -1,13 +1,13 @@
 package lecteur;
 
-import carte.Carte;
+import carte.AbstractCarte;
 import systemeInformatique.SystemeInformatique;
 
 public interface ILecteurCarteAbonnement {
 	public void restitutionCarte(boolean retour);
 	public void demandeInsertionCarte(boolean detecte);
 	public boolean checkAbonnement(SystemeInformatique sys);
-	public Carte getCarteClient();
-	public void setCarteClient(Carte carteClient);
+	public AbstractCarte getCarteClient();
+	public void setCarteClient(final AbstractCarte carteClient);
 
 }

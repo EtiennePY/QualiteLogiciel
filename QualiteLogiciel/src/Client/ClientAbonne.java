@@ -7,7 +7,7 @@ package client;
 import java.util.List;
 import java.util.logging.Logger;
 
-import carte.Carte;
+import carte.AbstractCarte;
 import carte.CarteAbonnement;
 import carte.CarteWithout;
 import lecteur.ILecteurCarteAbonnement;
@@ -17,11 +17,11 @@ import vehicule.IVehicule;
  * The Class ClientAbonne.
  */
 
-public class ClientAbonne extends Client implements ICLientAbonne {
+public class ClientAbonne extends AbstractClient implements ICLientAbonne {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
   /** The carte abonnement. */
-  protected Carte carteAbonnement;  
+  protected AbstractCarte carteAbonnement;  
   /**
   * Instantiates a new client abonne.
   *
@@ -29,7 +29,7 @@ public class ClientAbonne extends Client implements ICLientAbonne {
   * @param carteAbonnement the carte abonnement
   */
 
-  public ClientAbonne(final List<IVehicule> vehicules, final Carte carteAbonnement) {
+  public ClientAbonne(final List<IVehicule> vehicules, final AbstractCarte carteAbonnement) {
     super();
     super.vehicules = vehicules;
     this.carteAbonnement = carteAbonnement;
@@ -64,7 +64,7 @@ public class ClientAbonne extends Client implements ICLientAbonne {
    *
    * @return the carte abonnement
    */
-  public Carte getCarteAbonnement() {
+  public AbstractCarte getCarteAbonnement() {
     return carteAbonnement;
   }
 
@@ -73,7 +73,7 @@ public class ClientAbonne extends Client implements ICLientAbonne {
    *
    * @param carteAbonnement the new carte abonnement
    */
-  public void setCarteAbonnement(final Carte carteAbonnement) {
+  public void setCarteAbonnement(final AbstractCarte carteAbonnement) {
     this.carteAbonnement = carteAbonnement;
   }
 }

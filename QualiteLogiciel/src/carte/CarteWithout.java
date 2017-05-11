@@ -1,6 +1,6 @@
 package carte;
 
-public class CarteWithout extends Carte implements ICarteWithout {
+public class CarteWithout extends AbstractCarte implements ICarteWithout {
 	
 	public CarteWithout(){}
 	
@@ -10,7 +10,6 @@ public class CarteWithout extends Carte implements ICarteWithout {
 		return CarteWithout.CARTEWITHOUT;
 	}
 	
-	@Override
 	public boolean isWithout(){
 		return true;
 	}

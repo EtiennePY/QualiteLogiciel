@@ -1,7 +1,7 @@
 package detecteur;
 
 import barriere.IBarriereSortie;
-import client.Client;
+import client.AbstractClient;
 import lecteur.ILecteurCarteAbonnement;
 import panneau.IPanneauAffichage;
 import systemeInformatique.SystemeInformatique;
@@ -13,5 +13,5 @@ public interface IDetecteurSortie {
 	public void fermeBarriere(final IBarriereSortie barriere);
 	public void metAJourPanneauAffichage(final IPanneauAffichage panneau);
 	public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final SystemeInformatique sys,final ILecteurCarteAbonnement lecteur);
-	public void detecteClient(final Client client);
+	public void detecteClient(final AbstractClient client);
 }

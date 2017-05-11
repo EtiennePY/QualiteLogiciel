@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 import abonnement.Abonnement;
 import barriere.IBarriereSortie;
-import carte.Carte;
+import carte.AbstractCarte;
 import client.ClientAbonne;
 import lecteur.LecteurCarteAbonnement;
 import ticket.Ticket;
@@ -43,7 +43,7 @@ public class SystemeInformatique implements ISystemeInformatique {
   }
   
   
-  public boolean checkAbonnement(Carte carte, LecteurCarteAbonnement lecteur){
+  public boolean checkAbonnement(AbstractCarte carte, LecteurCarteAbonnement lecteur){
     boolean result = identifiants.containsKey(carte.getIdentifiant());
      if(result) {
        this.carteAbonnementValide(carte);
@@ -73,13 +73,13 @@ public class SystemeInformatique implements ISystemeInformatique {
   }
   
   
-  public boolean mauvaiseCarteAbonnement(Carte carte) {
+  public boolean mauvaiseCarteAbonnement(AbstractCarte carte) {
     LOG.info("La carte ayant pour id "+carte.getIdentifiant()+" n'est pas reconnue par le système informatique");
     return false;
   }
   
   
-  public boolean carteAbonnementValide(Carte carte) {
+  public boolean carteAbonnementValide(AbstractCarte carte) {
     LOG.info("La carte ayant pour id "+carte.getIdentifiant()+" est reconnue par le système informatique");
     return true;
   }
