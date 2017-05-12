@@ -8,7 +8,7 @@ import clients.inter.IAbstractClient;
 import detecteur.inter.IDetecteurSortie;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.inter.IPanneauAffichage;
-import systemeinfo.impl.SystemeInformatique;
+import systemeinfo.inter.ISystemeInformatique;
 import vehicule.inter.IVehicule;
 
 public class DetecteurSortie implements IDetecteurSortie {
@@ -39,7 +39,7 @@ public class DetecteurSortie implements IDetecteurSortie {
     panneau.minus();
   }
 
-  public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final SystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
+  public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
     if (sys.getIdentifiants().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
