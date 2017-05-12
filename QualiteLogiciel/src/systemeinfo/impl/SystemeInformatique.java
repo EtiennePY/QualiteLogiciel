@@ -51,7 +51,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 		this.identifiants = identifiants;
 	}
 
-	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur) throws CarteInsereeErreur {
+	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur {
 		if(carte.isWith()){
 			final IAbstractCarteWith carteWith = (AbstractCarteWith) carte;
 			final Integer identifiant = carteWith.getIdentifiant();
@@ -59,6 +59,8 @@ public class SystemeInformatique implements ISystemeInformatique {
 			
 			if(result) {
 				LOG.info("La carte ayant pour id "+ identifiants+" est reconnue par le système informatique");
+				this.ouvreBarriere(barriere);
+
 			}
 			else {
 				LOG.info("La carte ayant pour id "+identifiant+" n'est pas reconnue par le système informatique");

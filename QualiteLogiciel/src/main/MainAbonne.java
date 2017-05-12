@@ -8,6 +8,7 @@ import abonnement.Abonnement;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
 import cartes.impl.CarteAbonnement;
+import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
@@ -17,6 +18,7 @@ import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.impl.PanneauAffichage;
 import panneau.inter.IPanneauAffichage;
 import systemeinfo.impl.SystemeInformatique;
+import systemeinfo.inter.ISystemeInformatique;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 public class MainAbonne {
@@ -27,7 +29,7 @@ public class MainAbonne {
 		Abonnement abonnement = Abonnement.REGULIER;
 		
 		//On definit sa carte d'abonnement
-		CarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
+		ICarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
 		
 		//On definit les véhicules qu'il possède
 		List<IVehicule> vehicules = new ArrayList<IVehicule>();
@@ -48,7 +50,7 @@ public class MainAbonne {
 
 
 		//On cree le systeme informatique
-		SystemeInformatique sys = new SystemeInformatique();
+		ISystemeInformatique sys = new SystemeInformatique();
 		//On ajoute au systeme informatique l'identifiant du client et son immatriculation ainsi que son abonnement 
 		//(supposons qu'il se soit inscrit auparavant)
 		Map<Integer, Integer> ids = sys.getIdentifiants();
@@ -71,12 +73,11 @@ public class MainAbonne {
 		//Si immatriculation du client est bien dans le SI
 		if (estReconnue) {
 			antoine.insereCarteAbonnement(lecteurAbo);
-			boolean estBienAbonne = lecteurAbo.checkAbonnement(sys);
+			boolean estBienAbonne = lecteurAbo.checkAbonnement(sys, barriere);
 			antoine.recupereCarteAbonnement(lecteurAbo);
 
 			//Si sa carte est valide
 			if(estBienAbonne){
-				sys.ouvreBarriere(barriere);
 				antoine.passe();
 				detecteur.metAJourPanneauAffichage(panneau);
 				detecteur.fermeBarriere(barriere);

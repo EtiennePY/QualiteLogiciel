@@ -3,7 +3,6 @@
  */
 package clients.inter;
 
-import cartes.impl.AbstractCarte;
 import cartes.inter.IAbstractCarte;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 

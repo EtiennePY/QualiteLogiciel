@@ -7,7 +7,6 @@ package clients.impl;
 import java.util.List;
 import java.util.logging.Logger;
 
-import cartes.impl.AbstractCarte;
 import cartes.impl.CarteAbonnement;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;

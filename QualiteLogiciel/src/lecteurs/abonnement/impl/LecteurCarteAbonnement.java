@@ -2,6 +2,7 @@ package lecteurs.abonnement.impl;
 
 import java.util.logging.Logger;
 
+import barriere.inter.IBarriereSortie;
 import cartes.impl.AbstractCarte;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
@@ -62,12 +63,12 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 	 * @return true, if successful
 	 * @throws CarteInsereeErreur the carte inseree erreur
 	 */
-	public boolean checkAbonnement(final ISystemeInformatique sys) throws CarteInsereeErreur {
+	public boolean checkAbonnement(final ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur {
 		if (this.getCarteClient().isWith()) {
 			this.setCarteClient(this.getCarteClient());
 			LOG.info("Le lecteur de carte d'abonnement reçoit la carte d'abonnement.");
 			final IAbstractCarte carte = (AbstractCarte) this.getCarteClient();
-			return sys.checkAbonnement(carte, this);
+			return sys.checkAbonnement(carte, this, barriere);
 		} else {
 			throw new CarteInsereeErreur();
 		}
