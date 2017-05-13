@@ -13,6 +13,7 @@ import cartes.impl.AbstractCarteWith;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.IAbstractCarteWith;
 import clients.impl.ClientAbonne;
+import erreurs.BarriereErreur;
 import erreurs.CarteInsereeErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
@@ -51,7 +52,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 		this.identifiants = identifiants;
 	}
 
-	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur {
+	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur {
 		if(carte.isWith()){
 			final IAbstractCarteWith carteWith = (AbstractCarteWith) carte;
 			final Integer identifiant = carteWith.getIdentifiant();
@@ -92,7 +93,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 		return false;
 	}
 
-	public void ouvreBarriere(final IBarriereSortie barriere) {
+	public void ouvreBarriere(final IBarriereSortie barriere) throws BarriereErreur {
 		LOG.info("Le système informatique provoque l'ouverture de la barrière");
 		barriere.ouvrir();    
 

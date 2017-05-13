@@ -2,6 +2,7 @@ package lecteurs.abonnement.inter;
 
 import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
+import erreurs.BarriereErreur;
 import erreurs.CarteInsereeErreur;
 import systemeinfo.inter.ISystemeInformatique;
 
@@ -31,8 +32,9 @@ public interface ILecteurCarteAbonnement {
    * @param sys the sys
    * @return true, if successful
    * @throws CarteInsereeErreur the carte inseree erreur
+ * @throws BarriereErreur 
    */
-  boolean checkAbonnement(ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur;
+  boolean checkAbonnement(ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur;
   
   /**
    * Gets the carte client.

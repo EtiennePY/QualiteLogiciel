@@ -6,6 +6,7 @@ import barriere.inter.IBarriereSortie;
 import clients.impl.ClientAbonne;
 import clients.inter.IAbstractClient;
 import detecteur.inter.IDetecteurSortie;
+import erreurs.BarriereErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.inter.IPanneauAffichage;
 import systemeinfo.inter.ISystemeInformatique;
@@ -29,7 +30,7 @@ public class DetecteurSortie implements IDetecteurSortie {
     this.present = present;
   }
 
-  public void fermeBarriere(final IBarriereSortie barriere) {
+  public void fermeBarriere(final IBarriereSortie barriere) throws BarriereErreur {
     LOG.info("Le detecteur provoque la fermeture de la barrière");
     barriere.fermer();
   }

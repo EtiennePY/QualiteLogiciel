@@ -5,4 +5,4 @@
  * @author Antoine
  *
  */
-package lecteurs.abonnement.impl;
+package tests;

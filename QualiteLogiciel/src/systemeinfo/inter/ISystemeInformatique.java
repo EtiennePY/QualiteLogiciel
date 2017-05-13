@@ -8,6 +8,7 @@ import java.util.Map;
 import abonnement.Abonnement;
 import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
+import erreurs.BarriereErreur;
 import erreurs.CarteInsereeErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 
@@ -16,7 +17,7 @@ public interface ISystemeInformatique {
 	void setAbonnements(final Map<Integer, Abonnement> abonnements);
 	Map<Integer, Integer> getIdentifiants();
 	void setIdentifiants(final Map<Integer, Integer> ids);
-	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur;
-	void ouvreBarriere(final IBarriereSortie barriere);
+	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur;
+	void ouvreBarriere(final IBarriereSortie barriere) throws BarriereErreur;
 	
 }

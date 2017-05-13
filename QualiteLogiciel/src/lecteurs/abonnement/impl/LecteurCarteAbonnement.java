@@ -7,6 +7,7 @@ import cartes.impl.AbstractCarte;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import clients.impl.ClientAbonne;
+import erreurs.BarriereErreur;
 import erreurs.CarteInsereeErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import systemeinfo.inter.ISystemeInformatique;
@@ -62,8 +63,9 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 	 * @param sys the sys
 	 * @return true, if successful
 	 * @throws CarteInsereeErreur the carte inseree erreur
+	 * @throws BarriereErreur 
 	 */
-	public boolean checkAbonnement(final ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur {
+	public boolean checkAbonnement(final ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur {
 		if (this.getCarteClient().isWith()) {
 			this.setCarteClient(this.getCarteClient());
 			LOG.info("Le lecteur de carte d'abonnement reçoit la carte d'abonnement.");

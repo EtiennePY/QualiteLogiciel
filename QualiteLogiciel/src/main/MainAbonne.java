@@ -10,8 +10,10 @@ import barriere.inter.IBarriereSortie;
 import cartes.impl.CarteAbonnement;
 import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
+import clients.inter.IClientAbonne;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
+import erreurs.BarriereErreur;
 import erreurs.CarteInsereeErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
@@ -22,7 +24,7 @@ import systemeinfo.inter.ISystemeInformatique;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 public class MainAbonne {
-	public static void main(String[] args) throws CarteInsereeErreur {
+	public static void main(String[] args) throws CarteInsereeErreur, BarriereErreur {
 		//On definit ici l'identifiant du client, son immatriculation, et son abonnement.
 		Integer idClient = 69;
 		Integer immatriculationClient = 696969;
@@ -38,7 +40,7 @@ public class MainAbonne {
 		vehicules.add(voiturette);
 		
 		//On définit maintenant le client lui-meme
-		ClientAbonne antoine = new ClientAbonne(vehicules, carteAbonnement);
+		IClientAbonne antoine = new ClientAbonne(vehicules, carteAbonnement);
 		
 		
 		//On cree le detecteur

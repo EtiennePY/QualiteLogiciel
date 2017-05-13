@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import barriere.inter.IBarriereSortie;
 import clients.impl.ClientAbonne;
+import erreurs.BarriereErreur;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -45,16 +46,24 @@ public class BarriereSortie implements IBarriereSortie {
   
   /**
    * Ouvrir.
+ * @throws BarriereErreur 
    */
-  public void ouvrir() {
+  public void ouvrir() throws BarriereErreur {
+	if(this.isOuverte()) {
+		throw new BarriereErreur("La barriere est deja ouverte !");
+	}
     this.setOuverte(true);
     LOG.info("La barrière s'ouvre");
   }
   
   /**
    * Fermer.
+ * @throws BarriereErreur 
    */
-  public void fermer() {
+  public void fermer() throws BarriereErreur {
+	  if(!this.isOuverte()) {
+		  throw new BarriereErreur("La barriere est deja fermee !");
+		}
     this.setOuverte(false);
     LOG.info("La barrière se ferme");
   }

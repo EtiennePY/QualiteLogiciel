@@ -1,5 +1,7 @@
 package barriere.inter;
 
+import erreurs.BarriereErreur;
+
 /*
  * 
  */
@@ -26,12 +28,14 @@ public interface IBarriereSortie {
   
   /**
    * Ouvrir.
+ * @throws BarriereErreur 
    */
-  void ouvrir();
+  void ouvrir() throws BarriereErreur;
   
   /**
    * Fermer.
+ * @throws BarriereErreur 
    */
-  void fermer();
+  void fermer() throws BarriereErreur;
 
 }
