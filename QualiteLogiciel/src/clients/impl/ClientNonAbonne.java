@@ -1,7 +1,5 @@
 package clients.impl;
 
-import java.util.List;
-
 import cartes.impl.CarteBancaire;
 import clients.inter.IClientNonAbonne;
 import lecteurs.bancaire.impl.LecteurBancaire;
@@ -13,8 +11,9 @@ import vehicule.inter.IVehicule;
 public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne {
 	protected CarteBancaire carteBancaire;
 	protected Ticket ticket;
-	public ClientNonAbonne(List<IVehicule> vehicules, CarteBancaire carteBancaire) {
-		super.vehicules = vehicules;
+	public ClientNonAbonne(IVehicule vehicule, CarteBancaire carteBancaire) {
+		super();
+		 super.getVehicules().add(vehicule);
 		this.carteBancaire = carteBancaire;
 		this.ticket = TicketWithout.instance();
 	}
@@ -49,5 +48,12 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 
 	public void setTicket(Ticket ticket) {
 		this.ticket = ticket;
+	}
+
+
+	@Override
+	public boolean isAbonne() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

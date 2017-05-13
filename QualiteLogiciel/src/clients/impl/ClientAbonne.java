@@ -4,7 +4,6 @@
 
 package clients.impl;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import cartes.impl.CarteAbonnement;
@@ -30,9 +29,9 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
   * @param carteAbonnement the carte abonnement
   */
 
-  public ClientAbonne(final List<IVehicule> vehicules, final IAbstractCarte carteAbonnement) {
+  public ClientAbonne(final IVehicule vehicule, final IAbstractCarte carteAbonnement) {
     super();
-    super.vehicules = vehicules;
+    super.getVehicules().add(vehicule);
     this.carteAbonnement = carteAbonnement;
   }
   
@@ -78,4 +77,10 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
   public void setCarteAbonnement(final IAbstractCarte carteAbonnement) {
     this.carteAbonnement = carteAbonnement;
   }
+
+@Override
+public boolean isAbonne() {
+	// TODO Auto-generated method stub
+	return true;
+}
 }

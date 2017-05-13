@@ -42,14 +42,14 @@ public class DetecteurSortie implements IDetecteurSortie {
   }
 
   public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
-    if (sys.getIdentifiants().containsValue(vehicule.getImmatriculation())) {
+    if (sys.getImmatriculations().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
     } else {
       LOG.info("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
     }
     lecteur.demandeInsertionCarte(this.isPresent());
-    return sys.getIdentifiants().containsValue(vehicule.getImmatriculation());
+    return sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
   }
 
   public void detecteClient(final IAbstractClient client) {

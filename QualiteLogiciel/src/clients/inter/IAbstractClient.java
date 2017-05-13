@@ -20,20 +20,16 @@ public interface IAbstractClient {
    */
   List<IVehicule> getVehicules();
   
-  /**
-   * Sets the vehicules.
-   *
-   * @param vehicules the new vehicules
-   */
-  void setVehicules(final List<IVehicule> vehicules);
-  
+
   /**
    * Se place devant barriere.
    */
-  void sePlaceDevantBarriere();
+  String sePlaceDevantBarriere();
   
   /**
    * Passe.
    */
-  void passe();
+  String passe();
+  
+  abstract boolean isAbonne();
 }

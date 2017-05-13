@@ -14,9 +14,7 @@ import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 
 public interface ISystemeInformatique {
 	Map<Integer, Abonnement> getAbonnements();
-	void setAbonnements(final Map<Integer, Abonnement> abonnements);
-	Map<Integer, Integer> getIdentifiants();
-	void setIdentifiants(final Map<Integer, Integer> ids);
+	Map<Integer, Integer> getImmatriculations();
 	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur;
 	void ouvreBarriere(final IBarriereSortie barriere) throws BarriereErreur;
 	

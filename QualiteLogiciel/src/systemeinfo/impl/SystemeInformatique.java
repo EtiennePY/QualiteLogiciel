@@ -25,44 +25,40 @@ public class SystemeInformatique implements ISystemeInformatique {
 	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 
 	//a partir de l'immatriculation trouver l'abonnement
-	private Map<Integer, Abonnement> abonnements;
+	private final Map<Integer, Abonnement> abonnements;
 
 
 	//a partir de l'id trouver l'immatriculation
-	protected Map<Integer, Integer> identifiants;
+	protected final Map<Integer, Integer> immatriculations;
 
 	public SystemeInformatique() {
 		this.abonnements = new HashMap<Integer, Abonnement>();
-		this.identifiants = new HashMap<Integer, Integer>();
+		this.immatriculations = new HashMap<Integer, Integer>();
 
 	}
 	public Map<Integer, Abonnement> getAbonnements() {
 		return abonnements;
 	}
 
-	public void setAbonnements(final Map<Integer, Abonnement> abonnements) {
-		this.abonnements = abonnements;
+
+
+	public Map<Integer, Integer> getImmatriculations() {
+		return immatriculations;
 	}
 
-	public Map<Integer, Integer> getIdentifiants() {
-		return identifiants;
-	}
 
-	public void setIdentifiants(final Map<Integer, Integer> ids) {
-		this.identifiants = identifiants;
-	}
 	public void enregistreClientAbonne(Integer immatriculation, Integer id, Abonnement abonnement) {
-		this.getIdentifiants().put(id, immatriculation);
+		this.getImmatriculations().put(id, immatriculation);
 		this.getAbonnements().put(immatriculation, abonnement);
 	}
 	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur {
 		if(carte.isWith()){
 			final IAbstractCarteWith carteWith = (AbstractCarteWith) carte;
 			final Integer identifiant = carteWith.getIdentifiant();
-			final boolean result = identifiants.containsKey(identifiant);
+			final boolean result = immatriculations.containsKey(identifiant);
 			
 			if(result) {
-				LOG.info("La carte ayant pour id "+ identifiants+" est reconnue par le système informatique");
+				LOG.info("La carte ayant pour id "+ immatriculations+" est reconnue par le système informatique");
 				this.ouvreBarriere(barriere);
 
 			}

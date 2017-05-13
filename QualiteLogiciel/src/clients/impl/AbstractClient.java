@@ -3,6 +3,7 @@
  */
 package clients.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,8 +19,11 @@ public abstract class AbstractClient implements IAbstractClient {
   private static final Logger LOG = Logger.getLogger(AbstractClient.class.getName());
 
   /** The vehicules. */
-  protected List<IVehicule> vehicules;
+  protected final List<IVehicule> vehicules;
   
+  public AbstractClient() {
+	  this.vehicules = new ArrayList<IVehicule>();
+  }
   /**
    * Gets the vehicules.
    *
@@ -29,27 +33,25 @@ public abstract class AbstractClient implements IAbstractClient {
     return vehicules;
   }
 
-  /**
-   * Sets the vehicules.
-   *
-   * @param vehicules the new vehicules
-   */
-  public void setVehicules(final List<IVehicule> vehicules) {
-    this.vehicules = vehicules; 
-  }
+
   
   /**
    * Se place devant barriere.
    */
-  public void sePlaceDevantBarriere() {
-    LOG.info("Le client se positionne devant la barrière.");
+  public String sePlaceDevantBarriere() {
+	String texte = "Le client se positionne devant la barrière";
+    LOG.info(texte);
+    return texte;
   }
 
   /**
    * Passe.
    */
-  public void passe() {
-    LOG.info("Le client passe");    
+  public String passe() {
+    String texte = "Le client passe";
+    LOG.info(texte);
+    return texte;
   }
-
+  
+  public abstract boolean isAbonne();
 }

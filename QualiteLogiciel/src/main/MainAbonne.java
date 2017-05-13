@@ -1,9 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import abonnement.Abonnement;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
@@ -35,12 +31,14 @@ public class MainAbonne {
 		ICarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
 		
 		//On definit les véhicules qu'il possède
-		List<IVehicule> vehicules = new ArrayList<IVehicule>();
-		IVehicule voiturette = new Vehicule(CategorieVehicule.VOITURE, immatriculationClient);
-		vehicules.add(voiturette);
 		
+		IVehicule voiturette = new Vehicule(CategorieVehicule.VOITURE, immatriculationClient);
+		
+		
+	
 		//On définit maintenant le client lui-meme
-		IClientAbonne antoine = new ClientAbonne(vehicules, carteAbonnement);
+		IClientAbonne antoine = new ClientAbonne(voiturette, carteAbonnement);
+		
 		
 		
 		//On cree le detecteur
