@@ -29,8 +29,8 @@ public class PanneauAffichage implements IPanneauAffichage {
    * Instantiates a new panneau affichage.
    */
   public PanneauAffichage() {
-    this.entres = 0;
-    this.sortis = 0;
+    this.entres = 30;
+    this.sortis = 10;
   }
   
   /**
@@ -58,7 +58,7 @@ public class PanneauAffichage implements IPanneauAffichage {
    * @return the nombre places libres
    */
   public int getNombrePlacesLibres() {
-    return this.getPLACESTOTALES() - this.entres + this.sortis;
+    return this.getPLACESTOTALES() - this.getEntres() + this.getSortis();
   }
   
   /**

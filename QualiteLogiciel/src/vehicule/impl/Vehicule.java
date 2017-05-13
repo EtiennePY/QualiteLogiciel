@@ -9,22 +9,16 @@ import vehicule.inter.IVehicule;
 /**
  * The Enum Vehicule.
  */
-public enum Vehicule implements IVehicule {
-  
-  /** The moto. */
-  MOTO, 
- /** The voiture. */
- VOITURE, 
- /** The camionette. */
- CAMIONETTE, 
- /** The campingcar. */
- CAMPINGCAR, 
- /** The camion. */
- CAMION;
-  
-  /** The immatriculation. */
-  protected int immatriculation;
+public class Vehicule implements IVehicule {
+ 
+	public Vehicule(CategorieVehicule categorie, Integer immatriculation) {
+		this.categorie = categorie;
+		this.immatriculation = immatriculation;
+	}
 
+/** The immatriculation. */
+  private int immatriculation;
+  private final CategorieVehicule categorie;
 	/**
 	 * Gets the immatriculation.
 	 *
@@ -42,4 +36,8 @@ public enum Vehicule implements IVehicule {
   public void setImmatriculation(final int immatriculation) {
     this.immatriculation = immatriculation;
   }
+  
+  public CategorieVehicule getCategorie() {
+		return categorie;
+	}
 }

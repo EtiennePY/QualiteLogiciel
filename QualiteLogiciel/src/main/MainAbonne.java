@@ -21,6 +21,7 @@ import panneau.impl.PanneauAffichage;
 import panneau.inter.IPanneauAffichage;
 import systemeinfo.impl.SystemeInformatique;
 import systemeinfo.inter.ISystemeInformatique;
+import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 public class MainAbonne {
@@ -35,8 +36,7 @@ public class MainAbonne {
 		
 		//On definit les véhicules qu'il possède
 		List<IVehicule> vehicules = new ArrayList<IVehicule>();
-		IVehicule voiturette = Vehicule.VOITURE;
-		voiturette.setImmatriculation(immatriculationClient);
+		IVehicule voiturette = new Vehicule(CategorieVehicule.VOITURE, immatriculationClient);
 		vehicules.add(voiturette);
 		
 		//On définit maintenant le client lui-meme

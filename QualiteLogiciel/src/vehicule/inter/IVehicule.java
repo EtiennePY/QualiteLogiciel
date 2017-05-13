@@ -3,6 +3,8 @@
  */
 package vehicule.inter;
 
+import vehicule.impl.CategorieVehicule;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Interface IVehicule.
@@ -22,4 +24,6 @@ public interface IVehicule {
   	 * @param immatriculation the new immatriculation
   	 */
   	void setImmatriculation(int immatriculation);
+  	
+  	CategorieVehicule getCategorie();
 }
