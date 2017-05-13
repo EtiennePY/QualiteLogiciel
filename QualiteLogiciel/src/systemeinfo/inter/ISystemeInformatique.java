@@ -9,7 +9,7 @@ import abonnement.Abonnement;
 import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
 import erreurs.BarriereErreur;
-import erreurs.CarteInsereeErreur;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 
 public interface ISystemeInformatique {
@@ -17,7 +17,8 @@ public interface ISystemeInformatique {
 	void setAbonnements(final Map<Integer, Abonnement> abonnements);
 	Map<Integer, Integer> getIdentifiants();
 	void setIdentifiants(final Map<Integer, Integer> ids);
-	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur;
+	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur;
 	void ouvreBarriere(final IBarriereSortie barriere) throws BarriereErreur;
 	
+	void enregistreClientAbonne(Integer immatriculation, Integer id, Abonnement abonnement);
 }

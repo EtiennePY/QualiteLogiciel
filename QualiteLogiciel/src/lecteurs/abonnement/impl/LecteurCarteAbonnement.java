@@ -8,7 +8,7 @@ import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import clients.impl.ClientAbonne;
 import erreurs.BarriereErreur;
-import erreurs.CarteInsereeErreur;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import systemeinfo.inter.ISystemeInformatique;
 
@@ -37,12 +37,13 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 	 *
 	 * @param retour the retour
 	 */
-	public void restitutionCarte(final boolean retour) { 
+	public boolean restitutionCarte(final boolean retour) { 
 		if(retour) {
 			LOG.info("Un message s'affiche : \"OK\" sur l'écran du lecteur et la carte sort" );
 		} else {
 			LOG.info("Un message s'affiche : \"Carte erronée\" sur l'écran du lecteur et la carte sort" );
 		}
+		return retour;
 	}
 
 
@@ -51,10 +52,14 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 	 *
 	 * @param detecte the detecte
 	 */
-	public void demandeInsertionCarte(final boolean detecte) {
+	public boolean demandeInsertionCarte(final boolean detecte) {
 		if (detecte) {
 			LOG.info("L'écran du lecteur de carte d'abonnement affiche \"Insérez votre carte d'abonnement\"");
 		}
+		else {
+			LOG.warning("Appel à l'écran du lecteur sans client");
+		}
+		return detecte;
 	}
 
 	/**
@@ -62,17 +67,17 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 	 *
 	 * @param sys the sys
 	 * @return true, if successful
-	 * @throws CarteInsereeErreur the carte inseree erreur
+	 * @throws CarteAbonnementErreur the carte inseree erreur
 	 * @throws BarriereErreur 
 	 */
-	public boolean checkAbonnement(final ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur {
+	public boolean checkAbonnement(final ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur {
 		if (this.getCarteClient().isWith()) {
 			this.setCarteClient(this.getCarteClient());
 			LOG.info("Le lecteur de carte d'abonnement reçoit la carte d'abonnement.");
 			final IAbstractCarte carte = (AbstractCarte) this.getCarteClient();
 			return sys.checkAbonnement(carte, this, barriere);
 		} else {
-			throw new CarteInsereeErreur();
+			throw new CarteAbonnementErreur("Aucune carte d'abonnement n'a ete inseree !");
 		}
 	}
 

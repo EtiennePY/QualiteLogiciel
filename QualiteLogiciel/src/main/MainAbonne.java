@@ -14,7 +14,7 @@ import clients.inter.IClientAbonne;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
 import erreurs.BarriereErreur;
-import erreurs.CarteInsereeErreur;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import panneau.impl.PanneauAffichage;
@@ -25,7 +25,7 @@ import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 public class MainAbonne {
-	public static void main(String[] args) throws CarteInsereeErreur, BarriereErreur {
+	public static void main(String[] args) throws CarteAbonnementErreur, BarriereErreur {
 		//On definit ici l'identifiant du client, son immatriculation, et son abonnement.
 		Integer idClient = 69;
 		Integer immatriculationClient = 696969;
@@ -55,12 +55,7 @@ public class MainAbonne {
 		ISystemeInformatique sys = new SystemeInformatique();
 		//On ajoute au systeme informatique l'identifiant du client et son immatriculation ainsi que son abonnement 
 		//(supposons qu'il se soit inscrit auparavant)
-		Map<Integer, Integer> ids = sys.getIdentifiants();
-		Integer immatriculationEnregistree = 696969;
-		Integer idEnregistree = 69;
-		ids.put(idEnregistree, immatriculationEnregistree);
-		Map<Integer, Abonnement> abonnements = sys.getAbonnements();
-		abonnements.put(immatriculationClient, abonnement);
+		sys.enregistreClientAbonne(immatriculationClient, idClient, abonnement);
 		
 		//On cree le panneau d'affichage
 		IPanneauAffichage panneau = new PanneauAffichage();

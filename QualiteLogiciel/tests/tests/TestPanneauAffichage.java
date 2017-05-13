@@ -12,8 +12,6 @@ import panneau.inter.IPanneauAffichage;
 public class TestPanneauAffichage {
 
 	private IPanneauAffichage panneau;
-	@Rule
-	public ExpectedException expectedEx = ExpectedException.none();
 
 	@Before
 	public void instanciationPanneau() {

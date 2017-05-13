@@ -30,9 +30,10 @@ public class DetecteurSortie implements IDetecteurSortie {
     this.present = present;
   }
 
-  public void fermeBarriere(final IBarriereSortie barriere) throws BarriereErreur {
+  public boolean fermeBarriere(final IBarriereSortie barriere) throws BarriereErreur {
     LOG.info("Le detecteur provoque la fermeture de la barrière");
     barriere.fermer();
+    return barriere.isOuverte();
   }
 
   public void metAJourPanneauAffichage(final IPanneauAffichage panneau) {
@@ -48,7 +49,7 @@ public class DetecteurSortie implements IDetecteurSortie {
       LOG.info("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
     }
     lecteur.demandeInsertionCarte(this.isPresent());
-    return this.isPresent();
+    return sys.getIdentifiants().containsValue(vehicule.getImmatriculation());
   }
 
   public void detecteClient(final IAbstractClient client) {

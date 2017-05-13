@@ -14,7 +14,7 @@ import cartes.inter.IAbstractCarte;
 import cartes.inter.IAbstractCarteWith;
 import clients.impl.ClientAbonne;
 import erreurs.BarriereErreur;
-import erreurs.CarteInsereeErreur;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import systemeinfo.inter.ISystemeInformatique;
@@ -51,8 +51,11 @@ public class SystemeInformatique implements ISystemeInformatique {
 	public void setIdentifiants(final Map<Integer, Integer> ids) {
 		this.identifiants = identifiants;
 	}
-
-	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur {
+	public void enregistreClientAbonne(Integer immatriculation, Integer id, Abonnement abonnement) {
+		this.getIdentifiants().put(id, immatriculation);
+		this.getAbonnements().put(immatriculation, abonnement);
+	}
+	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur {
 		if(carte.isWith()){
 			final IAbstractCarteWith carteWith = (AbstractCarteWith) carte;
 			final Integer identifiant = carteWith.getIdentifiant();
@@ -70,7 +73,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 			return result;
 		}
 		else {
-			throw new CarteInsereeErreur();
+			throw new CarteAbonnementErreur("Aucune carte d'abonnement n'a ete inseree !");
 		}
 	}
 

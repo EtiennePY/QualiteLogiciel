@@ -3,7 +3,7 @@ package lecteurs.abonnement.inter;
 import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
 import erreurs.BarriereErreur;
-import erreurs.CarteInsereeErreur;
+import erreurs.CarteAbonnementErreur;
 import systemeinfo.inter.ISystemeInformatique;
 
 // TODO: Auto-generated Javadoc
@@ -17,24 +17,26 @@ public interface ILecteurCarteAbonnement {
    *
    * @param retour the retour
    */
-  void restitutionCarte(boolean retour);
+  boolean restitutionCarte(boolean retour);
   
   /**
    * Demande insertion carte.
    *
    * @param detecte the detecte
+   * @return true, if successful
    */
-  void demandeInsertionCarte(boolean detecte);
+  boolean demandeInsertionCarte(boolean detecte);
   
   /**
    * Check abonnement.
    *
    * @param sys the sys
+   * @param barriere the barriere
    * @return true, if successful
-   * @throws CarteInsereeErreur the carte inseree erreur
- * @throws BarriereErreur 
+   * @throws CarteAbonnementErreur the carte inseree erreur
+   * @throws BarriereErreur the barriere erreur
    */
-  boolean checkAbonnement(ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteInsereeErreur, BarriereErreur;
+  boolean checkAbonnement(ISystemeInformatique sys, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur;
   
   /**
    * Gets the carte client.
