@@ -1,53 +1,62 @@
 package clients.impl;
 
-import cartes.impl.CarteBancaire;
+import java.util.List;
+import java.util.logging.Logger;
+
+import banque.inter.IBanque;
+import cartes.inter.ICarteBancaire;
 import clients.inter.IClientNonAbonne;
-import lecteurs.bancaire.impl.LecteurBancaire;
-import ticket.impl.Ticket;
+import lecteurs.bancaire.inter.ILecteurBancaire;
 import ticket.impl.TicketWithout;
+import ticket.inter.ITicket;
 import vehicule.inter.IVehicule;
 
 
 public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne {
-	protected CarteBancaire carteBancaire;
-	protected Ticket ticket;
-	public ClientNonAbonne(IVehicule vehicule, CarteBancaire carteBancaire) {
-		super();
-		 super.getVehicules().add(vehicule);
-		this.carteBancaire = carteBancaire;
+	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
+	protected ICarteBancaire carteBancaire;
+	protected ITicket ticket;
+	protected IBanque banque;
+	public ClientNonAbonne(IVehicule vehicule, ICarteBancaire cbClient, IBanque banque) {
+		super.getVehicules().add(vehicule);
+		this.carteBancaire = cbClient;
+		this.banque=banque;
 		this.ticket = TicketWithout.instance();
 	}
 	
 	
-	public Ticket insereTicket() {
+	public ITicket insereTicket() {
 		if (this.getTicket().isTicketWith()) {
-			System.out.println("Le client non-abonné a inséré son ticket.");
+			LOG.info("Le client non-abonné insére son ticket.");
 		}
-		Ticket res = this.getTicket();
+		ITicket res = this.getTicket();
 		this.setTicket(TicketWithout.instance());
 		return res;
 	}
 	
-	public void insereCarteBancaire(LecteurBancaire lecteur){
-		System.out.println("Le client non-abonné a inséré sa carte.");
+	public void insereCarteBancaire(ILecteurBancaire lecteur){
+		LOG.info("Le client non-abonné insére sa carte.");
 	}
-	
 
 
-	public CarteBancaire getCarteBancaire() {
+	public ICarteBancaire getCarteBancaire() {
 		return carteBancaire;
 	}
 
-	public void setCarteBancaire(CarteBancaire carteBancaire) {
+	public void setCarteBancaire(ICarteBancaire carteBancaire) {
 		this.carteBancaire = carteBancaire;
 	}
 
-	public Ticket getTicket() {
+	public ITicket getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(Ticket ticket) {
+	public void setTicket(ITicket ticket) {
 		this.ticket = ticket;
+	}
+	
+	public IBanque getBanque(){
+		return this.banque;
 	}
 
 

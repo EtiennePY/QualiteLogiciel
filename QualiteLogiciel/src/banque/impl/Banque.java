@@ -2,11 +2,14 @@ package banque.impl;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import banque.inter.IBanque;
-import cartes.impl.CarteBancaire;
+import cartes.inter.ICarteBancaire;
+import clients.impl.ClientAbonne;
 
 public class Banque implements IBanque {
+	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 	protected Set<Integer> ids;
 
 	public Banque() {
@@ -21,7 +24,8 @@ public class Banque implements IBanque {
 		this.ids = ids;
 	}
 	
-	public boolean realisePaiement(CarteBancaire carte, int prix) {
+	public boolean realisePaiement(ICarteBancaire carte, int prix) {
+		LOG.info("La banque effectue le paiement.");
 		return true;
 	}
 	

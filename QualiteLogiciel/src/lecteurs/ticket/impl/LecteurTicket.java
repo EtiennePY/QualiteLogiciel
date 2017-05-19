@@ -1,12 +1,19 @@
 package lecteurs.ticket.impl;
 
+import java.util.logging.Logger;
+
+import clients.impl.ClientAbonne;
 import date.impl.DateTicket;
 import lecteurs.ticket.inter.ILecteurTicket;
 import ticket.impl.Ticket;
 import ticket.impl.TicketWith;
 import ticket.impl.TicketWithout;
+import ticket.inter.ITicket;
 
 public class LecteurTicket implements ILecteurTicket {
+	
+	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
+	
 	public LecteurTicket() {
 		this.ticketClient = TicketWithout.instance();
 	}
@@ -22,10 +29,9 @@ public class LecteurTicket implements ILecteurTicket {
 	
 	
 	
-	public boolean verificationTicket(Ticket ticket) {
-		System.out.println("Le lecteur de ticket vérifie le ticket.");
-		// Role du SI ???
-		return true;
+	public boolean verificationTicket(ITicket ticket) {
+		LOG.info("Le lecteur de ticket vérifie le ticket.");
+		return ticket.isTicketWith();
 		
 	}
 	
@@ -35,7 +41,7 @@ public class LecteurTicket implements ILecteurTicket {
 	}
 	
 	public void demandeInsertionTicket() {
-		
+		LOG.info("Le lecteur de ticket demande l'insertion d'un ticket");
 	}
 	
 

@@ -12,6 +12,7 @@ import barriere.inter.IBarriereSortie;
 import cartes.impl.AbstractCarteWith;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.IAbstractCarteWith;
+import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
 import erreurs.BarriereErreur;
 import erreurs.CarteAbonnementErreur;
@@ -19,17 +20,18 @@ import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.Ticket;
+import ticket.inter.ITicket;
 
 public class SystemeInformatique implements ISystemeInformatique {
 	/** The logger. */
 	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 
 	//a partir de l'immatriculation trouver l'abonnement
-	private final Map<Integer, Abonnement> abonnements;
+		private final Map<Integer, Abonnement> abonnements;
 
 
-	//a partir de l'id trouver l'immatriculation
-	protected final Map<Integer, Integer> immatriculations;
+		//a partir de l'id trouver l'immatriculation
+		protected final Map<Integer, Integer> immatriculations;
 
 	public SystemeInformatique() {
 		this.abonnements = new HashMap<Integer, Abonnement>();
@@ -106,5 +108,40 @@ public class SystemeInformatique implements ISystemeInformatique {
 	public boolean ticketValide(final Ticket ticket) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public boolean checkAbonnement(ICarteAbonnement carte) throws CarteAbonnementErreur {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean mauvaiseCarteAbonnement(ICarteAbonnement carte) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean carteAbonnementValide(ICarteAbonnement carte) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean ticketNonValide(ITicket ticket) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void addId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteId(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void changeAbonnement(int id, Abonnement abonnement) {
+		// TODO Auto-generated method stub
+		
 	}
 }

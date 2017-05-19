@@ -1,5 +1,6 @@
 package ticket.impl;
 
+import date.inter.IDateTicket;
 import ticket.inter.ITicketWithout;
 
 public class TicketWithout extends Ticket implements ITicketWithout {
@@ -7,12 +8,16 @@ public class TicketWithout extends Ticket implements ITicketWithout {
 	public TicketWithout() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
+
 	public boolean isTicketWith() {
 		return false;
 	}
 	public static TicketWithout instance(){
 		return TicketWithout.TICKETWITHOUT;
+	}
+
+	public int calculPrix(IDateTicket dateDuJour) {
+		return 0;
 	}
 
 }
