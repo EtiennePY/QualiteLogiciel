@@ -4,11 +4,11 @@ import cartes.inter.ICarteBancaire;
 
 public interface IBanque {
 	
-	public boolean realisePaiement(ICarteBancaire carte, int prix);
+	boolean realisePaiement(ICarteBancaire carte, int prix);
 	
-	public void refusPaiement();
+	void refusPaiement();
 	
-	public void paiementAutorise();
+	void paiementAutorise();
 	
 	
 

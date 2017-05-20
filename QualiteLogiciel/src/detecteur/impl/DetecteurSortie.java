@@ -4,10 +4,10 @@ import java.util.logging.Logger;
 
 import barriere.inter.IBarriereSortie;
 import clients.impl.ClientAbonne;
-import clients.inter.IAbstractClient;
 import detecteur.inter.IDetecteurSortie;
 import erreurs.BarriereErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
+import lecteurs.ticket.inter.ILecteurTicket;
 import panneau.inter.IPanneauAffichage;
 import systemeinfo.inter.ISystemeInformatique;
 import vehicule.inter.IVehicule;
@@ -41,7 +41,7 @@ public class DetecteurSortie implements IDetecteurSortie {
     panneau.minus();
   }
 
-  public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys,final ILecteurCarteAbonnement lecteur) {
+  public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys, final ILecteurCarteAbonnement lecteur) {
     if (sys.getImmatriculations().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
@@ -52,8 +52,9 @@ public class DetecteurSortie implements IDetecteurSortie {
     return sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
   }
 
-  public void detecteClient(final IAbstractClient client) {
+  public void detecteClient(final IVehicule vehicule, final ILecteurTicket lecteur) {
     this.setPresent(true);
-    LOG.info("Le détecteur detecte le client " + client.toString());
+    LOG.info("Le détecteur detecte le client " + vehicule.toString());
+    lecteur.demandeInsertionTicket(this.isPresent());
   }
 }

@@ -4,6 +4,7 @@
 package clients.inter;
 
 import cartes.inter.IAbstractCarte;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 
 // TODO: Auto-generated Javadoc
@@ -16,8 +17,9 @@ public interface IClientAbonne extends IAbstractClient {
 	 * Insere carte abonnement.
 	 *
 	 * @param lecteurAbo the lecteur abo
+	 * @throws CarteAbonnementErreur 
 	 */
-	void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo);
+	void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) throws CarteAbonnementErreur;
 	
 	/**
 	 * Recupere carte abonnement.

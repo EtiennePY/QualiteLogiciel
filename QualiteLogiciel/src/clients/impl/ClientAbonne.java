@@ -6,10 +6,11 @@ package clients.impl;
 
 import java.util.logging.Logger;
 
-import cartes.impl.CarteAbonnement;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
+import cartes.inter.ICarteAbonnement;
 import clients.inter.IClientAbonne;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import vehicule.inter.IVehicule;
 // TODO: Auto-generated Javadoc
@@ -39,12 +40,18 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
    * Insere carte abonnement.
    *
    * @param lecteurAbo the lecteur
+ * @throws CarteAbonnementErreur 
    */
-  public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) {
+  public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) throws CarteAbonnementErreur {
+	  if(this.carteAbonnement.isWith()) {
     LOG.info("Le client abonné a inséré sa carte d'abonnement.");
     final IAbstractCarte carte = this.getCarteAbonnement();
     lecteurAbo.setCarteClient(carte);
     this.setCarteAbonnement(CarteWithout.instance());
+	  }
+	  else {
+		  throw new CarteAbonnementErreur("Le client n'a pas de carte d'abonnement.");
+	  }
   }
   
   /**
@@ -54,7 +61,7 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
    */
   public void recupereCarteAbonnement(final ILecteurCarteAbonnement lecteur) {
     LOG.info("Le client abonné récupère sa carte d'abonnement.");
-    final CarteAbonnement carte = (CarteAbonnement) lecteur.getCarteClient();
+    final ICarteAbonnement carte = (ICarteAbonnement) lecteur.getCarteClient();
     this.setCarteAbonnement(carte);
     lecteur.setCarteClient(CarteWithout.instance());
   }

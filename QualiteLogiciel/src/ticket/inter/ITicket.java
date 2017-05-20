@@ -1,11 +1,8 @@
 package ticket.inter;
 
-import date.inter.IDateTicket;
-
 public interface ITicket {
 
-	boolean isTicketWith();
+	boolean isWith();
 	
-	int calculPrix(IDateTicket dateDuJour);
 
 }

@@ -4,7 +4,9 @@
 package systemeinfo.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import abonnement.Abonnement;
@@ -12,15 +14,18 @@ import barriere.inter.IBarriereSortie;
 import cartes.impl.AbstractCarteWith;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.IAbstractCarteWith;
-import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
+import date.impl.DateTicket;
+import date.inter.IDateTicket;
 import erreurs.BarriereErreur;
 import erreurs.CarteAbonnementErreur;
-import lecteurs.abonnement.impl.LecteurCarteAbonnement;
+import erreurs.TicketErreur;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
+import lecteurs.bancaire.inter.ILecteurBancaire;
+import lecteurs.ticket.inter.ILecteurTicket;
 import systemeinfo.inter.ISystemeInformatique;
-import ticket.impl.Ticket;
 import ticket.inter.ITicket;
+import ticket.inter.ITicketWith;
 
 public class SystemeInformatique implements ISystemeInformatique {
 	/** The logger. */
@@ -31,11 +36,14 @@ public class SystemeInformatique implements ISystemeInformatique {
 
 
 		//a partir de l'id trouver l'immatriculation
-		protected final Map<Integer, Integer> immatriculations;
-
+		private final Map<Integer, Integer> immatriculations;
+		
+		private final Set<IDateTicket> datesTicket;
+		private IDateTicket dateDuJour = new DateTicket(16,04);
 	public SystemeInformatique() {
 		this.abonnements = new HashMap<Integer, Abonnement>();
 		this.immatriculations = new HashMap<Integer, Integer>();
+		this.datesTicket = new HashSet<IDateTicket>();
 
 	}
 	public Map<Integer, Abonnement> getAbonnements() {
@@ -53,6 +61,18 @@ public class SystemeInformatique implements ISystemeInformatique {
 		this.getImmatriculations().put(id, immatriculation);
 		this.getAbonnements().put(immatriculation, abonnement);
 	}
+	public void enregistreClientNonAbonne(IDateTicket date) {
+		this.getDatesTicket().add(date);
+	}
+	public IDateTicket getDateDuJour() {
+		return dateDuJour;
+	}
+	public void setDateDuJour(IDateTicket dateDuJour) {
+		this.dateDuJour = dateDuJour;
+	}
+	public Set<IDateTicket> getDatesTicket() {
+		return datesTicket;
+	}
 	public boolean checkAbonnement(final IAbstractCarte carte, final ILecteurCarteAbonnement lecteur, final IBarriereSortie barriere) throws CarteAbonnementErreur, BarriereErreur {
 		if(carte.isWith()){
 			final IAbstractCarteWith carteWith = (AbstractCarteWith) carte;
@@ -60,12 +80,12 @@ public class SystemeInformatique implements ISystemeInformatique {
 			final boolean result = immatriculations.containsKey(identifiant);
 			
 			if(result) {
-				LOG.info("La carte ayant pour id "+ immatriculations+" est reconnue par le système informatique");
+				LOG.info("La carte ayant pour id " + immatriculations + " est reconnue par le système informatique");
 				this.ouvreBarriere(barriere);
 
 			}
 			else {
-				LOG.info("La carte ayant pour id "+identifiant+" n'est pas reconnue par le système informatique");
+				LOG.info("La carte ayant pour id " + identifiant + " n'est pas reconnue par le système informatique");
 			} 
 			lecteur.restitutionCarte(result);
 			return result;
@@ -75,24 +95,8 @@ public class SystemeInformatique implements ISystemeInformatique {
 		}
 	}
 
-	public void enregistrerDateHeure() {
-		// TODO Auto-generated method stub
-	}
 
-	public int calcuPrix() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int donnePrixAPayer(final int prix) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean ticketNonValide(final Ticket ticket) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	public void ouvreBarriere(final IBarriereSortie barriere) throws BarriereErreur {
 		LOG.info("Le système informatique provoque l'ouverture de la barrière");
@@ -100,48 +104,33 @@ public class SystemeInformatique implements ISystemeInformatique {
 
 	}
 
-	public boolean checkTicket(final Ticket ticket, final LecteurCarteAbonnement lecteur) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkTicket(final ITicket ticket, final ILecteurTicket lecteur, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur {
+		if(ticket.isWith()){
+			final ITicketWith ticketWith = (ITicketWith) ticket;
+			final IDateTicket date = ticketWith.getDateTicket();
+			final boolean result = datesTicket.contains(date);
+			
+			if(result) {
+				LOG.info("Le ticket ayant pour date "+ date.toString()+" est reconnue par le système informatique");
+				lecteurBancaire.demandeInsertionCarte(result);
+
+			}
+			else {
+				LOG.info("Le ticket ayant pour date "+ date.toString()+" n'est pas reconnue par le système informatique");
+			} 
+			lecteur.restitutionTicket(result);
+			return result;
+		}
+		else {
+			throw new TicketErreur("Aucun ticket n'a ete insere !");
+		}
 	}
 
-	public boolean ticketValide(final Ticket ticket) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	@Override
-	public boolean checkAbonnement(ICarteAbonnement carte) throws CarteAbonnementErreur {
-		// TODO Auto-generated method stub
-		return false;
+	public int calculPrix(IDateTicket date) {
+		LOG.info("Calcul du prix en fonction de la durée de stationnement ...");
+		return (dateDuJour.getHeure()-date.getHeure())+(dateDuJour.getJour()-date.getJour())*24;
 	}
-	@Override
-	public boolean mauvaiseCarteAbonnement(ICarteAbonnement carte) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean carteAbonnementValide(ICarteAbonnement carte) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean ticketNonValide(ITicket ticket) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void addId(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void deleteId(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void changeAbonnement(int id, Abonnement abonnement) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
 }

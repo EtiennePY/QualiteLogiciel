@@ -1,19 +1,26 @@
 package lecteurs.bancaire.inter;
 
 import banque.inter.IBanque;
-import cartes.impl.AbstractCarte;
 import cartes.inter.IAbstractCarte;
-import clients.impl.ClientNonAbonne;
-import clients.inter.IClientNonAbonne;
+import cartes.inter.ICarteBancaire;
+import erreurs.BanqueErreur;
+import erreurs.TicketErreur;
+import lecteurs.ticket.inter.ILecteurTicket;
+import systemeinfo.inter.ISystemeInformatique;
 
 public interface ILecteurBancaire {
 	
-	public void demandeInsertionCarte(IAbstractCarte carte);
+	boolean demandeInsertionCarte(final boolean ticketOk);
 	
-	public boolean contacterBanque(int prix);
+	boolean contacterBanque(ICarteBancaire carte, int prix);
 	
-	public IAbstractCarte restitutionCarteBancaire(boolean ok, ClientNonAbonne client);
+	boolean restitutionCarteBancaire(final boolean retour);
 	
-	public void setBanque(IBanque banque);
+	void setBanque(IBanque banque);
+	IAbstractCarte getCarteBancaireClient();
+	
 
+	public void setCarteBancaireClient(IAbstractCarte carteClient);
+
+	boolean realiseTransaction(ISystemeInformatique sys, ILecteurTicket lecteurTicket) throws TicketErreur, BanqueErreur;
 }

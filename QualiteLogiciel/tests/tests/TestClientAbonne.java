@@ -10,6 +10,7 @@ import cartes.impl.CarteWithout;
 import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
 import clients.inter.IClientAbonne;
+import erreurs.CarteAbonnementErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import vehicule.impl.CategorieVehicule;
@@ -32,7 +33,7 @@ public class TestClientAbonne {
 	}
 	
 	@Test
-	public void insereCarteAbonnement() {
+	public void insereCarteAbonnement() throws CarteAbonnementErreur {
 		Integer idClient = 69;
 		Abonnement abonnement = Abonnement.REGULIER;
 		

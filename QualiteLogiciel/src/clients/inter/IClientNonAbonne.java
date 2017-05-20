@@ -1,20 +1,22 @@
 package clients.inter;
 
-import cartes.inter.ICarteBancaire;
+import cartes.inter.IAbstractCarte;
+import erreurs.CarteBancaireErreur;
+import erreurs.TicketErreur;
 import lecteurs.bancaire.inter.ILecteurBancaire;
-import ticket.impl.Ticket;
+import lecteurs.ticket.inter.ILecteurTicket;
 import ticket.inter.ITicket;
 
 public interface IClientNonAbonne extends IAbstractClient {
 	
 	
-	ITicket insereTicket();
+	void insereTicket(final ILecteurTicket lecteurTicket) throws TicketErreur;
 	
-	void insereCarteBancaire(ILecteurBancaire carte);
+	void insereCarteBancaire(ILecteurBancaire carte) throws CarteBancaireErreur;
 	
-	ICarteBancaire getCarteBancaire();
+	IAbstractCarte getCarteBancaire();
 	
-	void setCarteBancaire(ICarteBancaire carteBancaire);
+	void setCarteBancaire(IAbstractCarte carteBancaire);
 	
 	ITicket getTicket();
 	

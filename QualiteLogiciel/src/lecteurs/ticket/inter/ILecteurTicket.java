@@ -1,18 +1,23 @@
 package lecteurs.ticket.inter;
 
-import date.impl.DateTicket;
-import ticket.impl.Ticket;
+import barriere.inter.IBarriereSortie;
+import date.inter.IDateTicket;
+import erreurs.BarriereErreur;
+import erreurs.TicketErreur;
+import lecteurs.bancaire.inter.ILecteurBancaire;
+import systemeinfo.inter.ISystemeInformatique;
 import ticket.inter.ITicket;
 
 public interface ILecteurTicket {
 	
-	public Ticket restitutionTicket();
+	boolean restitutionTicket(final boolean retour);
 	
-	public boolean verificationTicket(ITicket ticketClient);
+	boolean verificationTicket(ISystemeInformatique sys, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur;
 	
-	public Ticket donneTicket(DateTicket date);
+    ITicket donneTicket(IDateTicket date);
 	
-	public void demandeInsertionTicket();
-	
+	boolean demandeInsertionTicket(final boolean detecte);
+	ITicket getTicketClient();
+	void setTicketClient(ITicket ticketClient);
 	
 }

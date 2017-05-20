@@ -1,8 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import banque.impl.Banque;
 import banque.inter.IBanque;
 import barriere.impl.BarriereSortie;
@@ -14,7 +11,10 @@ import date.impl.DateTicket;
 import date.inter.IDateTicket;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
+import erreurs.BanqueErreur;
 import erreurs.BarriereErreur;
+import erreurs.CarteBancaireErreur;
+import erreurs.TicketErreur;
 import lecteurs.bancaire.impl.LecteurBancaire;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import lecteurs.ticket.impl.LecteurTicket;
@@ -25,13 +25,14 @@ import systemeinfo.impl.SystemeInformatique;
 import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.TicketWith;
 import ticket.inter.ITicket;
+import ticket.inter.ITicketWith;
 import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 
 public class MainNonAbonne {
 
-	public static void main(String[] args) throws BarriereErreur{
+	public static void main(String[] args) throws BarriereErreur, TicketErreur, CarteBancaireErreur, BanqueErreur{
 		
 		//Nous sommes le 16 mai
 		IDateTicket dateDuJour = new DateTicket(16,04);
@@ -64,25 +65,26 @@ public class MainNonAbonne {
 
 		//On cree le systeme informatique
 		ISystemeInformatique sys = new SystemeInformatique();
-
+		sys.enregistreClientNonAbonne(((ITicketWith)ticketClient).getDateTicket());
+		sys.setDateDuJour(dateDuJour);
 		//On cree le panneau d'affichage et la barriere
 		IPanneauAffichage panneau = new PanneauAffichage();
 		IBarriereSortie barriere = new BarriereSortie();
 		
 		//Début de la séquence
 		etienne.sePlaceDevantBarriere();
-		detecteur.detecteClient(etienne);
-		lecteurTicket.demandeInsertionTicket();
-		etienne.insereTicket();
-		boolean ticketValide = lecteurTicket.verificationTicket(ticketClient);
+		detecteur.detecteClient(grosHummer, lecteurTicket);
+		
+		etienne.insereTicket(lecteurTicket);
+		boolean ticketValide = lecteurTicket.verificationTicket(sys, barriere, lecteurCarteBancaire);
+
 		if (ticketValide){
-			lecteurCarteBancaire.demandeInsertionCarte(cbClient);
 			etienne.insereCarteBancaire(lecteurCarteBancaire);
-			lecteurCarteBancaire.setBanque(banqueClient);
-			int prix = ticketClient.calculPrix(dateDuJour);
-			lecteurCarteBancaire.contacterBanque(prix);		
-			if (banqueClient.realisePaiement(cbClient, prix)){
-				lecteurCarteBancaire.restitutionCarteBancaire(true, etienne);
+			boolean transaction = lecteurCarteBancaire.realiseTransaction(sys, lecteurTicket);
+					
+			if (transaction){
+				etienne.recupereCarteBancaire(lecteurCarteBancaire);
+				etienne.recupereTicket(lecteurTicket);
 				barriere.ouvrir();
 				etienne.passe();
 				detecteur.metAJourPanneauAffichage(panneau);
@@ -90,10 +92,7 @@ public class MainNonAbonne {
 			}
 			
 			
-		} else{
-			lecteurTicket.restitutionTicket();
-		}
-		
+		} 
 
 	}
 
