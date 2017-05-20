@@ -1,6 +1,3 @@
-/*
- * 
- */
 package cartes.impl;
 
 import cartes.inter.IAbstractCarte;

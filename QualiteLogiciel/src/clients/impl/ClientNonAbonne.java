@@ -10,16 +10,47 @@ import erreurs.TicketErreur;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import lecteurs.ticket.inter.ILecteurTicket;
 import ticket.impl.TicketWithout;
-import ticket.inter.ITicket;
+import ticket.inter.IAbstractTicket;
 import vehicule.inter.IVehicule;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ClientNonAbonne.
+ */
 public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne {
+	
+	/** The Constant LOG. */
 	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
+	
+	/** The carte bancaire. */
 	protected IAbstractCarte carteBancaire;
-	protected ITicket ticket;
-	protected IBanque banque;
-	public ClientNonAbonne(IVehicule vehicule, IAbstractCarte cbClient, IBanque banque) {
+	
+	/** The ticket. */
+	protected IAbstractTicket ticket;
+	
+	/** The banque. */
+	private IBanque banque;
+	
+	/**
+	 * Sets the banque.
+	 *
+	 * @param banque the new banque
+	 */
+	public void setBanque(final IBanque banque) {
+		this.banque = banque;
+	}
+
+
+	/**
+	 * Instantiates a new client non abonne.
+	 *
+	 * @param vehicule the vehicule
+	 * @param cbClient the cb client
+	 * @param banque the banque
+	 */
+	public ClientNonAbonne(final IVehicule vehicule, final IAbstractCarte cbClient, final IBanque banque) {
+		super();
 		super.getVehicules().add(vehicule);
 		this.carteBancaire = cbClient;
 		this.banque=banque;
@@ -27,10 +58,16 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 	}
 
 
+	/**
+	 * Insere ticket.
+	 *
+	 * @param lecteurTicket the lecteur ticket
+	 * @throws TicketErreur the ticket erreur
+	 */
 	public void insereTicket(final ILecteurTicket lecteurTicket) throws TicketErreur {
 		if (this.getTicket().isWith()) {
 			LOG.info("Le client non-abonné insére son ticket.");
-			ITicket ticketClient = this.getTicket();
+			final IAbstractTicket ticketClient = this.getTicket();
 			this.setTicket(TicketWithout.instance());
 			lecteurTicket.setTicketClient(ticketClient);
 		} else {
@@ -39,20 +76,32 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 
 
 	}
+	
+	/**
+	 * Recupere ticket.
+	 *
+	 * @param lecteur the lecteur
+	 */
 	public void recupereTicket(final ILecteurTicket lecteur) {
 
 		LOG.info("Le client non-abonné récupère son ticket.");
-		final ITicket ticket = lecteur.getTicketClient();
+		final IAbstractTicket ticket = lecteur.getTicketClient();
 		this.setTicket(ticket);
 		lecteur.setTicketClient(TicketWithout.instance());
 	}
 
-	public void insereCarteBancaire(ILecteurBancaire lecteur) throws CarteBancaireErreur{
+	/**
+	 * Insere carte bancaire.
+	 *
+	 * @param carte the carte
+	 * @throws CarteBancaireErreur the carte bancaire erreur
+	 */
+	public void insereCarteBancaire(final ILecteurBancaire lecteur) throws CarteBancaireErreur{
 		if (this.getCarteBancaire().isWith()) {
 			LOG.info("Le client non-abonné insére sa carte bancaire.");
-			IAbstractCarte carte = this.getCarteBancaire();
+			final IAbstractCarte carte = this.getCarteBancaire();
 			this.setCarteBancaire(carteBancaire);
-			lecteur.setCarteBancaireClient(carte);
+			lecteur.setCarteBancaire(carte);
 		} else {
 			throw new CarteBancaireErreur("Le client n'a pas de carte bancaire.");
 		}
@@ -60,38 +109,71 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 	}
 
 
+	/**
+	 * Gets the carte bancaire.
+	 *
+	 * @return the carte bancaire
+	 */
 	public IAbstractCarte getCarteBancaire() {
 		return carteBancaire;
 	}
 
-	public void setCarteBancaire(IAbstractCarte carteBancaire) {
+	/**
+	 * Sets the carte bancaire.
+	 *
+	 * @param carteBancaire the new carte bancaire
+	 */
+	public void setCarteBancaire(final IAbstractCarte carteBancaire) {
 		this.carteBancaire = carteBancaire;
 	}
 
-	public ITicket getTicket() {
+	/**
+	 * Gets the ticket.
+	 *
+	 * @return the ticket
+	 */
+	public IAbstractTicket getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(ITicket ticket) {
+	/**
+	 * Sets the ticket.
+	 *
+	 * @param ticket the new ticket
+	 */
+	public void setTicket(final IAbstractTicket ticket) {
 		this.ticket = ticket;
 	}
 
+	/**
+	 * Gets the banque.
+	 *
+	 * @return the banque
+	 */
 	public IBanque getBanque(){
 		return this.banque;
 	}
 
 
-	@Override
+	/**
+	* Checks if is abonne.
+	*
+	* @return true, if is abonne
+	*/
 	public boolean isAbonne() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	public void recupereCarteBancaire(ILecteurBancaire lecteurCarteBancaire) {
+	/**
+	 * Recupere carte bancaire.
+	 *
+	 * @param lecteurCarteBancaire the lecteur carte bancaire
+	 */
+	public void recupereCarteBancaire(final ILecteurBancaire lecteurBancaire) {
 		LOG.info("Le client non-abonné récupère sa carte bancaire.");
-		final IAbstractCarte carteBancaire = lecteurCarteBancaire.getCarteBancaireClient();
+		final IAbstractCarte carteBancaire = lecteurBancaire.getCarteBancaire();
 		this.setCarteBancaire(carteBancaire);
-		lecteurCarteBancaire.setCarteBancaireClient(carteBancaire);
+		lecteurBancaire.setCarteBancaire(carteBancaire);
 	}
 }

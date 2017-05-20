@@ -25,5 +25,10 @@ public interface IVehicule {
   	 */
   	void setImmatriculation(int immatriculation);
   	
-  	CategorieVehicule getCategorie();
+  	/**
+	  * Gets the categorie.
+	  *
+	  * @return the categorie
+	  */
+	  CategorieVehicule getCategorie();
 }

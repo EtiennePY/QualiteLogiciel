@@ -1,7 +1,3 @@
-/*
- * 
- */
-
 package clients.impl;
 
 import java.util.logging.Logger;
@@ -23,12 +19,13 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
   /** The carte abonnement. */
   protected IAbstractCarte carteAbonnement;  
+  
   /**
-  * Instantiates a new client abonne.
-  *
-  * @param vehicules the vehicules
-  * @param carteAbonnement the carte abonnement
-  */
+   * Instantiates a new client abonne.
+   *
+   * @param vehicule the vehicule
+   * @param carteAbonnement the carte abonnement
+   */
 
   public ClientAbonne(final IVehicule vehicule, final IAbstractCarte carteAbonnement) {
     super();
@@ -40,7 +37,7 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
    * Insere carte abonnement.
    *
    * @param lecteurAbo the lecteur
- * @throws CarteAbonnementErreur 
+   * @throws CarteAbonnementErreur the carte abonnement erreur
    */
   public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) throws CarteAbonnementErreur {
 	  if(this.carteAbonnement.isWith()) {
@@ -85,9 +82,12 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
     this.carteAbonnement = carteAbonnement;
   }
 
-@Override
-public boolean isAbonne() {
-	// TODO Auto-generated method stub
-	return true;
-}
+  /**
+  * Checks if is abonne.
+  *
+  * @return true, if is abonne
+  */
+  public boolean isAbonne() {
+	  return true;
+  }
 }

@@ -24,7 +24,7 @@ import panneau.inter.IPanneauAffichage;
 import systemeinfo.impl.SystemeInformatique;
 import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.TicketWith;
-import ticket.inter.ITicket;
+import ticket.inter.IAbstractTicket;
 import ticket.inter.ITicketWith;
 import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
@@ -40,7 +40,7 @@ public class MainNonAbonne {
 		//Carte Bancaire et ticket du client
 		Integer idCarteBancaire = 1337;
 		ICarteBancaire cbClient = new CarteBancaire(idCarteBancaire);
-		ITicket ticketClient = new TicketWith(new DateTicket(02,04)); //entré dans le parking le 2 mai
+		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04)); //entré dans le parking le 2 mai
 
 		//Véhicule du client
 		Integer immatriculationGrosHummer = 420;

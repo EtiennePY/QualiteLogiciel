@@ -1,5 +1,8 @@
 package ticket.inter;
 
-public interface ITicketWithout extends ITicket {
+/**
+ * The Interface ITicketWithout.
+ */
+public interface ITicketWithout extends IAbstractTicket {
 
 }

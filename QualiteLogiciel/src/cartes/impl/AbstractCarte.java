@@ -8,6 +8,13 @@ import cartes.inter.IAbstractCarte;
  */
 public abstract class AbstractCarte implements IAbstractCarte {
 	
+
+	/**
+	 * Instantiates a new abstract carte.
+	 */
+	public AbstractCarte() {
+		super();
+	}
 	/**
 	 * Checks if is with.
 	 *

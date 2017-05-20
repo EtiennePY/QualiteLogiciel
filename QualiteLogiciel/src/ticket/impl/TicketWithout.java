@@ -2,17 +2,38 @@ package ticket.impl;
 
 import ticket.inter.ITicketWithout;
 
-public class TicketWithout extends Ticket implements ITicketWithout {
-	private final static TicketWithout TICKETWITHOUT = new TicketWithout();
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TicketWithout.
+ */
+public class TicketWithout extends AbstractTicket implements ITicketWithout {
+	
+	/** The Constant TICKETWITHOUT. */
+	private final static TicketWithout SINGLETON = new TicketWithout();
+	
+	/**
+	 * Instantiates a new ticket without.
+	 */
 	public TicketWithout() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
+	/**
+	 * Checks if is with.
+	 *
+	 * @return true, if is with
+	 */
 	public boolean isWith() {
 		return false;
 	}
+	
+	/**
+	 * Instance.
+	 *
+	 * @return the ticket without
+	 */
 	public static TicketWithout instance(){
-		return TicketWithout.TICKETWITHOUT;
+		return TicketWithout.SINGLETON;
 	}
 
 	

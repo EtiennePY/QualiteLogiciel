@@ -1,4 +1,9 @@
 package vehicule.impl;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum CategorieVehicule.
+ */
 public enum CategorieVehicule{
 	  /** The moto. */
 	  MOTO, 

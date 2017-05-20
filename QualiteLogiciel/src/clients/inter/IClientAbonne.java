@@ -1,6 +1,3 @@
-/*
- * 
- */
 package clients.inter;
 
 import cartes.inter.IAbstractCarte;
@@ -17,7 +14,7 @@ public interface IClientAbonne extends IAbstractClient {
 	 * Insere carte abonnement.
 	 *
 	 * @param lecteurAbo the lecteur abo
-	 * @throws CarteAbonnementErreur 
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
 	 */
 	void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) throws CarteAbonnementErreur;
 	

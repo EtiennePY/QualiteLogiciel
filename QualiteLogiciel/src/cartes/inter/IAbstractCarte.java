@@ -1,6 +1,3 @@
-/*
- * 
- */
 package cartes.inter;
 
 // TODO: Auto-generated Javadoc

@@ -1,6 +1,3 @@
-/*
- * 
- */
 package clients.inter;
 
 import java.util.List;
@@ -23,13 +20,22 @@ public interface IAbstractClient {
 
   /**
    * Se place devant barriere.
+   *
+   * @return the string
    */
   String sePlaceDevantBarriere();
   
   /**
    * Passe.
+   *
+   * @return the string
    */
   String passe();
   
-  abstract boolean isAbonne();
+  /**
+  * Checks if is abonne.
+  *
+  * @return true, if is abonne
+  */
+  boolean isAbonne();
 }

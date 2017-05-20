@@ -6,10 +6,5 @@ package cartes.inter;
  */
 public interface ICarteWithout extends IAbstractCarte {
 	
-	/* (non-Javadoc)
-	 * @see carte.IAbstractCarte#isWith()
-	 */
-	boolean isWith();
-	
-	//instance() est static donc pas dans l'interface (faiblesse de Java pour la maintenance)
+	//instance() est static est n'est donc pas dans l'interface
 }

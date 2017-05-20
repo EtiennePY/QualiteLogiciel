@@ -16,17 +16,37 @@ import lecteurs.ticket.inter.ILecteurTicket;
 import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.TicketWith;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LecteurBancaire.
+ */
 public class LecteurBancaire implements ILecteurBancaire {
-	public LecteurBancaire() {
-		this.carteBancaireClient = CarteWithout.instance();
-		this.banque = new Banque();
-	}
-	private IAbstractCarte carteBancaireClient;
+	
+	/** The carte bancaire client. */
+	private IAbstractCarte carteBancaire;
 
 	/** The logger. */
 	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 
+
+
+	/** The banque. */
 	private IBanque banque;
+	
+	/**
+	 * Instantiates a new lecteur bancaire.
+	 */
+	public LecteurBancaire() {
+		this.carteBancaire = CarteWithout.instance();
+		this.banque = new Banque();
+	}
+	
+	/**
+	 * Demande insertion carte.
+	 *
+	 * @param ticketOk the ticket ok
+	 * @return true, if successful
+	 */
 	public boolean demandeInsertionCarte(final boolean ticketOk) {
 		if (ticketOk) {
 			LOG.info("Le lecteur de carte bancaire demande l'insertion d'une carte bancaire");
@@ -38,12 +58,25 @@ public class LecteurBancaire implements ILecteurBancaire {
 	}
 
 
-	public boolean contacterBanque(ICarteBancaire carte, int prix) {
+	/**
+	 * Contacter banque.
+	 *
+	 * @param carte the carte
+	 * @param prix the prix
+	 * @return true, if successful
+	 */
+	public boolean contacterBanque(final ICarteBancaire carte, final int prix) {
 		LOG.info("Le lecteur contacte la banque pour un montant de "+ prix + " euros. C'est cher.");	
 		
 		return banque.realisePaiement(carte, prix);
 	}
 
+	/**
+	 * Restitution carte bancaire.
+	 *
+	 * @param retour the retour
+	 * @return true, if successful
+	 */
 	public boolean restitutionCarteBancaire(final boolean retour){
 		if(retour) {
 			LOG.info("Un message s'affiche : \"OK\" sur l'écran du lecteur de carte bancaire et la carte sort" );
@@ -53,25 +86,57 @@ public class LecteurBancaire implements ILecteurBancaire {
 		return retour;
 	}
 
-	public IAbstractCarte getCarteBancaireClient() {
-		return carteBancaireClient;
+	/**
+	 * Gets the carte bancaire.
+	 *
+	 * @return the carte bancaire
+	 */
+	public IAbstractCarte getCarteBancaire() {
+		return carteBancaire;
 	}
 
-	public void setCarteBancaireClient(IAbstractCarte carteClient) {
-		this.carteBancaireClient = carteClient;
+	/**
+	 * Sets the carte bancaire.
+	 *
+	 * @param carteClient the new carte bancaire
+	 */
+	public void setCarteBancaire(final IAbstractCarte carteClient) {
+		this.carteBancaire = carteClient;
 	}
 	
-	public void setBanque(IBanque banque){
+	/**
+	 * Gets the banque.
+	 *
+	 * @return the banque
+	 */
+	public IBanque getBanque() {
+		return banque;
+	}
+
+	
+	/**
+	 * Sets the banque.
+	 *
+	 * @param banque the new banque
+	 */
+	public void setBanque(final IBanque banque){
 		this.banque=banque;
 	}
 
 
-	@Override
+	/**
+	 * Realise transaction.
+	 *
+	 * @param sys the sys, lecteurTicket the lecteur ticket
+	 * @return true, if successful
+	 * @throws TicketErreur the ticket erreur
+	 * @throws BanqueErreur the banque erreur
+	 */
 	public boolean realiseTransaction(final ISystemeInformatique sys, final ILecteurTicket lecteurTicket) throws TicketErreur, BanqueErreur {
 		if(lecteurTicket.getTicketClient().isWith()) {
-			IDateTicket date = ((TicketWith) lecteurTicket.getTicketClient()).getDateTicket();
+			final IDateTicket date = ((TicketWith) lecteurTicket.getTicketClient()).getDateTicket();
 			final int prix = sys.calculPrix(date);
-			boolean transaction = this.contacterBanque((ICarteBancaire) this.getCarteBancaireClient(), prix);
+			final boolean transaction = this.contacterBanque((ICarteBancaire) this.getCarteBancaire(), prix);
 			if (transaction) {
 				this.restitutionCarteBancaire(transaction);
 				return transaction;

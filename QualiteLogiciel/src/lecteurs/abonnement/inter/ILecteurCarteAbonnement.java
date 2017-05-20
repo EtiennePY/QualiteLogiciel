@@ -30,8 +30,7 @@ public interface ILecteurCarteAbonnement {
   /**
    * Check abonnement.
    *
-   * @param sys the sys
-   * @param barriere the barriere
+   * @param sys the sys, barriere the barriere
    * @return true, if successful
    * @throws CarteAbonnementErreur the carte inseree erreur
    * @throws BarriereErreur the barriere erreur

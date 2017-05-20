@@ -1,6 +1,3 @@
-/*
- * 
- */
 package cartes.inter;
 
 import abonnement.Abonnement;

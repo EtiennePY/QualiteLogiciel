@@ -10,15 +10,24 @@ import vehicule.inter.IVehicule;
  * The Enum Vehicule.
  */
 public class Vehicule implements IVehicule {
- 
-	public Vehicule(CategorieVehicule categorie, Integer immatriculation) {
+
+  /** The immatriculation. */
+  private int immatriculation;
+  
+  /** The categorie. */
+  private final CategorieVehicule categorie;
+	
+	/**
+	 * Instantiates a new vehicule.
+	 *
+	 * @param categorie the categorie
+	 * @param immatriculation the immatriculation
+	 */
+	public Vehicule(final CategorieVehicule categorie, final Integer immatriculation) {
 		this.categorie = categorie;
 		this.immatriculation = immatriculation;
 	}
 
-/** The immatriculation. */
-  private int immatriculation;
-  private final CategorieVehicule categorie;
 	/**
 	 * Gets the immatriculation.
 	 *
@@ -37,6 +46,11 @@ public class Vehicule implements IVehicule {
     this.immatriculation = immatriculation;
   }
   
+  /**
+  * Gets the categorie.
+  *
+  * @return the categorie
+  */
   public CategorieVehicule getCategorie() {
 		return categorie;
 	}

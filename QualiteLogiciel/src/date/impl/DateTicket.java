@@ -20,7 +20,7 @@ public class DateTicket implements IDateTicket {
 	 * @param jour the jour
 	 * @param heure the heure
 	 */
-	public DateTicket(int jour, int heure){
+	public DateTicket(final int jour, final int heure){
 		this.jour=jour;
 		this.heure=heure;
 	}

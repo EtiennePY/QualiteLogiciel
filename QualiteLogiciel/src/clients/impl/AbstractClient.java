@@ -1,6 +1,3 @@
-/*
- * 
- */
 package clients.impl;
 
 import java.util.ArrayList;
@@ -21,6 +18,9 @@ public abstract class AbstractClient implements IAbstractClient {
   /** The vehicules. */
   protected final List<IVehicule> vehicules;
   
+  /**
+  * Instantiates a new abstract client.
+  */
   public AbstractClient() {
 	  this.vehicules = new ArrayList<IVehicule>();
   }
@@ -37,21 +37,28 @@ public abstract class AbstractClient implements IAbstractClient {
   
   /**
    * Se place devant barriere.
+   *
+   * @return the string
    */
   public String sePlaceDevantBarriere() {
-	String texte = "Le client se positionne devant la barrière";
-    LOG.info(texte);
-    return texte;
+    LOG.info("Le client se positionne devant la barrière");
+    return "Le client se positionne devant la barrière";
   }
 
   /**
    * Passe.
+   *
+   * @return the string
    */
   public String passe() {
-    String texte = "Le client passe";
-    LOG.info(texte);
-    return texte;
+    LOG.info("Le client passe");
+    return "Le client passe";
   }
   
+  /**
+   * Checks if is abonne.
+   *
+   * @return true, if is abonne
+   */
   public abstract boolean isAbonne();
 }

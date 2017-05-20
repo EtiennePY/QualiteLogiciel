@@ -1,9 +1,5 @@
 package cartes.impl;
 
-/*
- * 
- */
-
 import abonnement.Abonnement;
 import cartes.inter.ICarteAbonnement;
 
