@@ -1,7 +1,4 @@
-/*
- * 
- */
-package systemeinfo.impl;
+package mocks.systemeinfo;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,9 +26,9 @@ import ticket.inter.ITicketWith;
 /**
  * The Class SystemeInformatique.
  */
-public class SystemeInformatique implements ISystemeInformatique {
+public class MockSystemeInformatique implements ISystemeInformatique {
 	/** The logger. */
-	private static final Logger LOG = Logger.getLogger(SystemeInformatique.class.getName());
+	private static final Logger LOG = Logger.getLogger(MockSystemeInformatique.class.getName());
 
 	/** The abonnements. */
 	//a partir de l'immatriculation trouver l'abonnement
@@ -51,7 +48,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 	/**
 	 * Instantiates a new systeme informatique.
 	 */
-	public SystemeInformatique() {
+	public MockSystemeInformatique() {
 		this.abonnements = new HashMap<Integer, Abonnement>();
 		this.immatriculations = new HashMap<Integer, Integer>();
 		this.datesTicket = new HashSet<IDateTicket>();

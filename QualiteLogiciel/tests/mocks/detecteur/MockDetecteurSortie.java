@@ -1,4 +1,4 @@
-package detecteur.impl;
+package mocks.detecteur;
 
 import java.util.logging.Logger;
 
@@ -13,90 +13,70 @@ import vehicule.inter.IVehicule;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class DetecteurSortie.
+ * The Class MockDetecteurSortie.
  */
-public class DetecteurSortie implements IDetecteurSortie {
+public class MockDetecteurSortie implements IDetecteurSortie {
   /** The logger. */
-  private static final Logger LOG = Logger.getLogger(DetecteurSortie.class.getName());
+  private static final Logger LOG = Logger.getLogger(MockDetecteurSortie.class.getName());
 
   /** The present. */
   protected boolean present; 
 
   /**
-   * Instantiates a new detecteur sortie.
+   * Instantiates a new mock detecteur sortie.
    */
-  public DetecteurSortie() {
+  public MockDetecteurSortie() {
     this.present = false;
   }
 
-	/**
-	 * Checks if is present.
-	 *
-	 * @return true, if is present
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#isPresent()
+   */
   public boolean isPresent() {
     return present;
   }
 
-	/**
-	 * Sets the present.
-	 *
-	 * @param present the new present
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#setPresent(boolean)
+   */
   public void setPresent(final boolean present) {
     this.present = present;
   }
 
-	/**
-	 * Ferme barriere.
-	 *
-	 * @param barriere the barriere
-	 * @return true, if successful
-	 * @throws BarriereErreur the barriere erreur
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#fermeBarriere(barriere.inter.IBarriereSortie)
+   */
   public boolean fermeBarriere(final IBarriereSortie barriere) throws BarriereErreur {
     LOG.info("Le detecteur provoque la fermeture de la barrière");
     barriere.fermer();
     return barriere.isOuverte();
   }
 
-	/**
-	 * Met A jour panneau affichage.
-	 *
-	 * @param panneau the panneau
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#metAJourPanneauAffichage(panneau.inter.IPanneauAffichage)
+   */
   public void metAJourPanneauAffichage(final IPanneauAffichage panneau) {
     LOG.info("Le détecteur met à jour le panneau d'affichage");
     panneau.minus();
   }
 
-	/**
-	 * Detecte immatriculation vehicule.
-	 *
-	 * @param vehicule the vehicule
-	 * @param sys the sys
-	 * @param lecteur the lecteur
-	 * @return true, if successful
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#detecteImmatriculationVehicule(vehicule.inter.IVehicule, systemeinfo.inter.ISystemeInformatique, lecteurs.abonnement.inter.ILecteurCarteAbonnement)
+   */
   public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys, final ILecteurCarteAbonnement lecteur) {
-    final boolean resultat = sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
-	  if (resultat) {
+    if (sys.getImmatriculations().containsValue(vehicule.getImmatriculation())) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
     } else {
       LOG.info("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
     }
     lecteur.demandeInsertionCarte(this.isPresent());
-    return resultat;
+    return sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
   }
 
-	/**
-	 * Detecte client.
-	 *
-	 * @param vehicule the vehicule
-	 * @param lecteur the lecteur
-	 * @return true, if successful
-	 */
+  /* (non-Javadoc)
+   * @see detecteur.inter.IDetecteurSortie#detecteClient(vehicule.inter.IVehicule, lecteurs.ticket.inter.ILecteurTicket)
+   */
   public boolean detecteClient(final IVehicule vehicule, final ILecteurTicket lecteur) {
     this.setPresent(true);
     LOG.info("Le détecteur detecte le client " + vehicule.toString());

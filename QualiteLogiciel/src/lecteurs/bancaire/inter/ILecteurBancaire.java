@@ -4,7 +4,6 @@ import banque.inter.IBanque;
 import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.ICarteBancaire;
-import erreurs.BanqueErreur;
 import erreurs.BarriereErreur;
 import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;

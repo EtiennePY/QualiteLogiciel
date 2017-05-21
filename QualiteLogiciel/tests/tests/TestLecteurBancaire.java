@@ -6,21 +6,22 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import banque.impl.MockBanque;
+import banque.inter.IBanque;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
-import cartes.impl.CarteBancaire;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import date.impl.DateTicket;
-import erreurs.BanqueErreur;
 import erreurs.BarriereErreur;
 import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;
 import lecteurs.bancaire.impl.LecteurBancaire;
 import lecteurs.bancaire.inter.ILecteurBancaire;
-import lecteurs.ticket.impl.LecteurTicket;
 import lecteurs.ticket.inter.ILecteurTicket;
-import systemeinfo.impl.SystemeInformatique;
+import mocks.cartes.MockCarteBancaire;
+import mocks.lecteurs.MockLecteurTicket;
+import mocks.systemeinfo.MockSystemeInformatique;
 import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.TicketWith;
 
@@ -38,6 +39,14 @@ public class TestLecteurBancaire {
 	@Test
 	public void instanciationCorrecte() {
 		Assert.assertEquals(CarteWithout.instance(), this.lecteur.getCarteBancaire());
+	}
+	
+	@Test
+	public void settergetterbanque() {
+
+		IBanque banque = new MockBanque();
+		lecteur.setBanque(banque);
+		Assert.assertEquals(lecteur.getBanque(), banque);
 	}
 	
 	@Test
@@ -60,12 +69,12 @@ public class TestLecteurBancaire {
 	}
 	
 	@Test
-	public void checkCarteCorrect() throws BarriereErreur, BanqueErreur, TicketErreur, CarteBancaireErreur {
-		IAbstractCarte carte = new CarteBancaire(123456789);
+	public void checkCarteCorrect() throws BarriereErreur, TicketErreur, CarteBancaireErreur {
+		IAbstractCarte carte = new MockCarteBancaire(123456789);
 		this.lecteur.setCarteBancaire(carte);
-		ILecteurTicket lecteurTicket = new LecteurTicket();
+		ILecteurTicket lecteurTicket = new MockLecteurTicket();
 		lecteurTicket.setTicketClient(new TicketWith(new DateTicket(16, 4, 16, 30, 30)));
-		ISystemeInformatique sys = new SystemeInformatique();
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		
 		IBarriereSortie barriere = new BarriereSortie(); 
 		Assert.assertEquals(true, this.lecteur.realiseTransaction(sys, lecteurTicket, barriere));
@@ -73,30 +82,30 @@ public class TestLecteurBancaire {
 	
 	
 	@Test
-	public void checkSansCarte() throws BarriereErreur, TicketErreur, BanqueErreur, CarteBancaireErreur {
+	public void checkSansCarte() throws BarriereErreur, TicketErreur, CarteBancaireErreur {
 		expectedEx.expect(CarteBancaireErreur.class);
 		String message = "Aucune carte n'a ete inseree !";
 	    expectedEx.expectMessage(message);
 	    
-		ILecteurTicket lecteurTicket = new LecteurTicket();
+		ILecteurTicket lecteurTicket = new MockLecteurTicket();
 		lecteurTicket.setTicketClient(new TicketWith(new DateTicket(16, 4, 16, 30, 30)));
-		ISystemeInformatique sys = new SystemeInformatique();
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		
 		IBarriereSortie barriere = new BarriereSortie(); 
 		this.lecteur.realiseTransaction(sys, lecteurTicket, barriere);	}
 
 
 	@Test
-	public void checkSansTicket() throws BarriereErreur, TicketErreur, BanqueErreur, CarteBancaireErreur {
+	public void checkSansTicket() throws BarriereErreur, TicketErreur, CarteBancaireErreur {
 		expectedEx.expect(TicketErreur.class);
 		String message = "Pas de ticket dans le lecteur de ticket.";
 	    expectedEx.expectMessage(message);
 	    
-		IAbstractCarte carte = new CarteBancaire(123456789);
+		IAbstractCarte carte = new MockCarteBancaire(123456789);
 		this.lecteur.setCarteBancaire(carte);
 
-		ILecteurTicket lecteurTicket = new LecteurTicket();
-		ISystemeInformatique sys = new SystemeInformatique();
+		ILecteurTicket lecteurTicket = new MockLecteurTicket();
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		
 		IBarriereSortie barriere = new BarriereSortie(); 
 		this.lecteur.realiseTransaction(sys, lecteurTicket, barriere);	}

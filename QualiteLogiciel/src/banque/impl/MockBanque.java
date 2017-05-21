@@ -2,28 +2,24 @@ package banque.impl;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import banque.inter.IBanque;
 import cartes.inter.ICarteBancaire;
-import clients.impl.ClientAbonne;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class Banque.
  */
-public class Banque implements IBanque {
+public class MockBanque implements IBanque {
 	
-	/** The Constant LOG. */
-	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
-	
+
 	/** The ids. */
-	protected Set<Integer> ids;
+	private Set<Integer> ids;
 
 	/**
 	 * Instantiates a new banque.
 	 */
-	public Banque() {
+	public MockBanque() {
 		this.ids = new HashSet<Integer>();
 	}
 	
@@ -53,7 +49,6 @@ public class Banque implements IBanque {
 	 * @return true, if successful
 	 */
 	public boolean realisePaiement(final ICarteBancaire carte, final int prix) { 
-		LOG.info("La banque effectue le paiement.");
 		return true;
 	}
 	

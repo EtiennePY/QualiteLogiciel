@@ -1,4 +1,4 @@
-package clients.impl;
+package mocks.clients;
 
 import java.util.logging.Logger;
 
@@ -19,10 +19,10 @@ import vehicule.inter.IVehicule;
 /**
  * The Class ClientNonAbonne.
  */
-public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne {
+public class MockClientNonAbonne extends MockAbstractClient implements IClientNonAbonne {
 	
 	/** The Constant LOG. */
-	private static final Logger LOG = Logger.getLogger(ClientNonAbonne.class.getName());
+	private static final Logger LOG = Logger.getLogger(MockClientNonAbonne.class.getName());
 	
 	/** The carte bancaire. */
 	private IAbstractCarte carteBancaire;
@@ -42,7 +42,7 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 	 * @param cbClient the cb client
 	 * @param banque the banque
 	 */
-	public ClientNonAbonne(final IVehicule vehicule, final IAbstractCarte cbClient, final IBanque banque) {
+	public MockClientNonAbonne(final IVehicule vehicule, final IAbstractCarte cbClient, final IBanque banque) {
 		super();
 		super.getVehicules().add(vehicule);
 		this.carteBancaire = cbClient;

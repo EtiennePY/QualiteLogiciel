@@ -1,6 +1,6 @@
 package main;
 
-import banque.impl.Banque;
+import banque.impl.MockBanque;
 import banque.inter.IBanque;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
@@ -11,7 +11,6 @@ import date.impl.DateTicket;
 import date.inter.IDateTicket;
 import detecteur.impl.DetecteurSortie;
 import detecteur.inter.IDetecteurSortie;
-import erreurs.BanqueErreur;
 import erreurs.BarriereErreur;
 import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;
@@ -32,7 +31,7 @@ import vehicule.inter.IVehicule;
 
 public class MainNonAbonne {
 
-	public static void main(String[] args) throws BarriereErreur, TicketErreur, CarteBancaireErreur, BanqueErreur{
+	public static void main(String[] args) throws BarriereErreur, TicketErreur, CarteBancaireErreur{
 		
 		//Nous sommes le 16 mai
 		IDateTicket dateDuJour = new DateTicket(16,04, 16, 30, 30);
@@ -48,7 +47,7 @@ public class MainNonAbonne {
 		IVehicule grosHummer = new Vehicule(CategorieVehicule.CAMION, immatriculationGrosHummer);
 
 		//Banque du client
-		IBanque banqueClient = new Banque();
+		IBanque banqueClient = new MockBanque();
 		
 		//Client
 		ClientNonAbonne etienne = new ClientNonAbonne(grosHummer,cbClient, banqueClient);

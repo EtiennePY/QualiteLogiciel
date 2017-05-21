@@ -1,4 +1,4 @@
-package lecteurs.bancaire.impl;
+package mocks.lecteurs;
 
 import java.util.logging.Logger;
 
@@ -21,13 +21,13 @@ import ticket.inter.ITicketWith;
 /**
  * The Class LecteurBancaire.
  */
-public class LecteurBancaire implements ILecteurBancaire {
+public class MockLecteurBancaire implements ILecteurBancaire {
 
 	/** The carte bancaire client. */
 	private IAbstractCarte carteBancaire;
 
 	/** The logger. */
-	private static final Logger LOG = Logger.getLogger(LecteurBancaire.class.getName());
+	private static final Logger LOG = Logger.getLogger(MockLecteurBancaire.class.getName());
 
 
 
@@ -37,7 +37,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 	/**
 	 * Instantiates a new lecteur bancaire.
 	 */
-	public LecteurBancaire() {
+	public MockLecteurBancaire() {
 		this.carteBancaire = CarteWithout.instance();
 		this.banque = new MockBanque();
 	}

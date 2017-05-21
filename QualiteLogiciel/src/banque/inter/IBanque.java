@@ -3,6 +3,8 @@
  */
 package banque.inter;
 
+import java.util.Set;
+
 import cartes.inter.ICarteBancaire;
 
 // TODO: Auto-generated Javadoc
@@ -20,5 +22,17 @@ public interface IBanque {
 	 */
 	boolean realisePaiement(ICarteBancaire carte, int prix);
 	
-	
+	/**
+	 * Gets the ids.
+	 *
+	 * @return the ids
+	 */
+	public Set<Integer> getIds();
+
+	/**
+	 * Sets the ids.
+	 *
+	 * @param ids the new ids
+	 */
+	public void setIds(final Set<Integer> ids);
 }

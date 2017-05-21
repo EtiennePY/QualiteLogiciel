@@ -1,4 +1,4 @@
-package lecteurs.ticket.impl;
+package mocks.lecteurs;
 
 import java.util.logging.Logger;
 
@@ -13,10 +13,10 @@ import ticket.inter.IAbstractTicket;
 /**
  * The Class LecteurTicket.
  */
-public class LecteurTicket implements ILecteurTicket {
+public class MockLecteurTicket implements ILecteurTicket {
 	
 	/** The Constant LOG. */
-	private static final Logger LOG = Logger.getLogger(LecteurTicket.class.getName());
+	private static final Logger LOG = Logger.getLogger(MockLecteurTicket.class.getName());
 	
 	/** The ticket client. */
 	private IAbstractTicket ticketClient;
@@ -24,7 +24,7 @@ public class LecteurTicket implements ILecteurTicket {
 	/**
 	 * Instantiates a new lecteur ticket.
 	 */
-	public LecteurTicket() {
+	public MockLecteurTicket() {
 		this.ticketClient = TicketWithout.instance();
 	}
 	

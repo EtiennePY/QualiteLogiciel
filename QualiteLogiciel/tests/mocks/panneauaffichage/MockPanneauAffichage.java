@@ -1,17 +1,16 @@
 /*
  * 
  */
-package panneau.impl;
+package mocks.panneauaffichage;
 
 import java.util.logging.Logger;
-
 import panneau.inter.IPanneauAffichage;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class PanneauAffichage.
  */
-public class PanneauAffichage implements IPanneauAffichage {
+public class MockPanneauAffichage implements IPanneauAffichage {
   
   /** The nbplaces. */
   private final static int PLACESTOTALES = 400;
@@ -22,12 +21,12 @@ public class PanneauAffichage implements IPanneauAffichage {
   /** The sortis. */
   private int sortis;
   /** The logger. */
-  private static final Logger LOG = Logger.getLogger(PanneauAffichage.class.getName());
+  private static final Logger LOG = Logger.getLogger(MockPanneauAffichage.class.getName());
 
   /**
    * Instantiates a new panneau affichage.
    */
-  public PanneauAffichage() {
+  public MockPanneauAffichage() {
     this.entres = 30;
     this.sortis = 10;
   }

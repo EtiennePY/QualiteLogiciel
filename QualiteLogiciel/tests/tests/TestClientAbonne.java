@@ -7,16 +7,16 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import abonnement.Abonnement;
-import cartes.impl.CarteAbonnement;
 import cartes.impl.CarteWithout;
 import cartes.inter.ICarteAbonnement;
 import clients.impl.ClientAbonne;
 import clients.inter.IClientAbonne;
 import erreurs.CarteAbonnementErreur;
-import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
+import mocks.cartes.MockCarteAbonnement;
+import mocks.lecteurs.MockLecteurCarteAbonnement;
+import mocks.vehicule.MockVehicule;
 import vehicule.impl.CategorieVehicule;
-import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
 
 public class TestClientAbonne {
@@ -33,7 +33,7 @@ public class TestClientAbonne {
 		
 		
 		//On definit les véhicules qu'il possède
-		IVehicule voiturette = new Vehicule(CategorieVehicule.VOITURE, immatriculationClient);
+		IVehicule voiturette = new MockVehicule(CategorieVehicule.VOITURE, immatriculationClient);
 		
 		this.client = new ClientAbonne(voiturette, CarteWithout.instance());
 	}
@@ -44,9 +44,9 @@ public class TestClientAbonne {
 		Abonnement abonnement = Abonnement.REGULIER;
 		
 		//On definit sa carte d'abonnement
-		ICarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
+		ICarteAbonnement carteAbonnement = new MockCarteAbonnement(idClient, abonnement);
 		client.setCarteAbonnement(carteAbonnement);
-		ILecteurCarteAbonnement lecteur = new LecteurCarteAbonnement();
+		ILecteurCarteAbonnement lecteur = new MockLecteurCarteAbonnement();
 		client.insereCarteAbonnement(lecteur);
 		Assert.assertEquals(CarteWithout.instance(), client.getCarteAbonnement());
 	}
@@ -57,8 +57,8 @@ public class TestClientAbonne {
 		Abonnement abonnement = Abonnement.REGULIER;
 		
 		//On definit sa carte d'abonnement
-		ICarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
-		ILecteurCarteAbonnement lecteur = new LecteurCarteAbonnement();
+		ICarteAbonnement carteAbonnement = new MockCarteAbonnement(idClient, abonnement);
+		ILecteurCarteAbonnement lecteur = new MockLecteurCarteAbonnement();
 		lecteur.setCarteClient(carteAbonnement);
 		client.recupereCarteAbonnement(lecteur);
 		Assert.assertEquals(carteAbonnement, client.getCarteAbonnement());
@@ -84,7 +84,7 @@ public class TestClientAbonne {
 		expectedEx.expect(CarteAbonnementErreur.class);
 		String message = "Le client n'a pas de carte d'abonnement.";
 	    expectedEx.expectMessage(message);
-		ILecteurCarteAbonnement lecteurAbo = new LecteurCarteAbonnement();
+		ILecteurCarteAbonnement lecteurAbo = new MockLecteurCarteAbonnement();
 		client.setCarteAbonnement(CarteWithout.instance());
 	    client.insereCarteAbonnement(lecteurAbo);
 	}

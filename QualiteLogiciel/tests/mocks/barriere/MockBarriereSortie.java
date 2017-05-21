@@ -1,4 +1,4 @@
-package barriere.impl;
+package mocks.barriere;
 
 import java.util.logging.Logger;
 
@@ -9,10 +9,10 @@ import erreurs.BarriereErreur;
 /**
  * The Class BarriereSortie.
  */
-public class BarriereSortie implements IBarriereSortie {
+public class MockBarriereSortie implements IBarriereSortie {
   
   /** The Constant LOG. */
-  private static final Logger LOG = Logger.getLogger(BarriereSortie.class.getName());
+  private static final Logger LOG = Logger.getLogger(MockBarriereSortie.class.getName());
   
   /** The ouverte. */
   private boolean ouverte;
@@ -20,7 +20,7 @@ public class BarriereSortie implements IBarriereSortie {
   /**
    * Instantiates a new barriere sortie.
    */
-  public BarriereSortie() {
+  public MockBarriereSortie() {
     this.ouverte = false;
   }
 

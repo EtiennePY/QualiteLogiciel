@@ -1,4 +1,4 @@
-package lecteurs.abonnement.impl;
+package mocks.lecteurs;
 
 import java.util.logging.Logger;
 
@@ -14,18 +14,18 @@ import systemeinfo.inter.ISystemeInformatique;
 /**
  * The Class LecteurCarteAbonnement.
  */
-public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
+public class MockLecteurCarteAbonnement implements ILecteurCarteAbonnement {
 
 	/** The carte client. */
 	private IAbstractCarte carteClient;
 
 	/** The logger. */
-	private static final Logger LOG = Logger.getLogger(LecteurCarteAbonnement.class.getName());
+	private static final Logger LOG = Logger.getLogger(MockLecteurCarteAbonnement.class.getName());
 
 	/**
 	 * Instantiates a new lecteur carte abonnement.
 	 */
-	public LecteurCarteAbonnement() {
+	public MockLecteurCarteAbonnement() {
 		this.carteClient = CarteWithout.instance();
 	}
 

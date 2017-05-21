@@ -11,13 +11,13 @@ import date.inter.IDateTicket;
 import erreurs.BarriereErreur;
 import erreurs.CarteAbonnementErreur;
 import erreurs.TicketErreur;
-import lecteurs.bancaire.impl.LecteurBancaire;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import lecteurs.ticket.impl.LecteurTicket;
 import lecteurs.ticket.inter.ILecteurTicket;
-import systemeinfo.impl.SystemeInformatique;
+import mocks.lecteurs.MockLecteurBancaire;
+import mocks.systemeinfo.MockSystemeInformatique;
+import mocks.ticket.MockTicketWith;
 import systemeinfo.inter.ISystemeInformatique;
-import ticket.impl.TicketWith;
 import ticket.impl.TicketWithout;
 import ticket.inter.IAbstractTicket;
 
@@ -57,23 +57,23 @@ public class TestLecteurTicket {
 	
 	@Test
 	public void checkDateCorrect() throws TicketErreur {
-		ILecteurBancaire lecteurBancaire = new LecteurBancaire();		
+		ILecteurBancaire lecteurBancaire = new MockLecteurBancaire();		
 		//On definit sa carte bancaire
 		IDateTicket date = new DateTicket(16, 4, 16, 30, 30);
-		IAbstractTicket ticket = new TicketWith(date);
+		IAbstractTicket ticket = new MockTicketWith(date);
 		this.lecteur.setTicketClient(ticket);
-		ISystemeInformatique sys = new SystemeInformatique();
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		sys.enregistreClientNonAbonne(date);
 		Assert.assertEquals(true, this.lecteur.verificationTicket(sys, lecteurBancaire));
 	}
 	
 	@Test
 	public void checkTicketIncorrect() throws TicketErreur, BarriereErreur {
-		ILecteurBancaire lecteurBancaire = new LecteurBancaire();		
+		ILecteurBancaire lecteurBancaire = new MockLecteurBancaire();		
 		//On definit sa carte bancaire
 		IDateTicket date = new DateTicket(16, 4, 16, 30, 30);
-		this.lecteur.setTicketClient(new TicketWith(new DateTicket(16, 3, 16, 30, 30)));
-		ISystemeInformatique sys = new SystemeInformatique();
+		this.lecteur.setTicketClient(new MockTicketWith(new DateTicket(16, 3, 16, 30, 30)));
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		sys.enregistreClientNonAbonne(date);
 		Assert.assertEquals(false, this.lecteur.verificationTicket(sys, lecteurBancaire));
 	}
@@ -84,11 +84,11 @@ public class TestLecteurTicket {
 		String message = "Aucun ticket n'a ete insere !";
 	    expectedEx.expectMessage(message);
 	    
-		ILecteurBancaire lecteurBancaire = new LecteurBancaire();		
+		ILecteurBancaire lecteurBancaire = new MockLecteurBancaire();		
 		//On definit sa carte bancaire
 		IDateTicket date = new DateTicket(16, 4, 16, 30, 30);
 		this.lecteur.setTicketClient(TicketWithout.instance());
-		ISystemeInformatique sys = new SystemeInformatique();
+		ISystemeInformatique sys = new MockSystemeInformatique();
 		sys.enregistreClientNonAbonne(date);
 		this.lecteur.verificationTicket(sys, lecteurBancaire);
 	}
