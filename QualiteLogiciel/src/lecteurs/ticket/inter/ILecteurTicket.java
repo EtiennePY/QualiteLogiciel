@@ -1,8 +1,5 @@
 package lecteurs.ticket.inter;
 
-import barriere.inter.IBarriereSortie;
-import date.inter.IDateTicket;
-import erreurs.BarriereErreur;
 import erreurs.TicketErreur;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import systemeinfo.inter.ISystemeInformatique;
@@ -30,16 +27,9 @@ public interface ILecteurTicket {
 	 * @return true, if successful
 	 * @throws TicketErreur, BarriereErreur 
 	 */
-	boolean verificationTicket(ISystemeInformatique sys, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur;
+	boolean verificationTicket(ISystemeInformatique sys, final ILecteurBancaire lecteurBancaire) throws TicketErreur;
 	
-    /**
-     * Donne ticket.
-     *
-     * @param date the date
-     * @return the i ticket
-     */
-    IAbstractTicket donneTicket(IDateTicket date);
-	
+    
 	/**
 	 * Demande insertion ticket.
 	 *

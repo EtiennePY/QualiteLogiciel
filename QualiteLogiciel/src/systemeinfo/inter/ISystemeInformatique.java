@@ -28,9 +28,8 @@ public interface ISystemeInformatique {
 	 * @param ticket the ticket, lecteur, barriere, lecteurBancaire
 	 * @return true, if successful
 	 * @throws TicketErreur the ticket erreur
-	 * @throws BarriereErreur the barriere erreur
 	 */
-	boolean checkTicket(final IAbstractTicket ticket, final ILecteurTicket lecteur, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur;
+	boolean checkTicket(final IAbstractTicket ticket, final ILecteurTicket lecteur, final ILecteurBancaire lecteurBancaire) throws TicketErreur;
 	
 	/**
 	 * Ouvre barriere.

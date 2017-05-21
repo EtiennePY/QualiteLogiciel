@@ -1,5 +1,6 @@
 package clients.inter;
 
+import banque.inter.IBanque;
 import cartes.inter.IAbstractCarte;
 import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;
@@ -38,6 +39,13 @@ public interface IClientNonAbonne extends IAbstractClient {
 	IAbstractCarte getCarteBancaire();
 	
 	/**
+	 * Gets the banque.
+	 *
+	 * @return the banque
+	 */
+	IBanque getBanque();
+		
+	/**
 	 * Sets the carte bancaire.
 	 *
 	 * @param carteBancaire the new carte bancaire
@@ -57,4 +65,26 @@ public interface IClientNonAbonne extends IAbstractClient {
 	 * @param ticket the new ticket
 	 */
 	void setTicket(IAbstractTicket ticket);
+	
+	/**
+	 * Sets the banque.
+	 *
+	 * @param banque the new banque
+	 */
+	void setBanque(final IBanque banque);
+	
+	/**
+	 * Recupere ticket.
+	 *
+	 * @param lecteur the lecteur
+	 */
+	void recupereTicket(final ILecteurTicket lecteur);
+
+	/**
+	 * Recupere carte bancaire.
+	 *
+	 * @param lecteurCarteBancaire the lecteur carte bancaire
+	 */
+	void recupereCarteBancaire(final ILecteurBancaire lecteurBancaire);
+	
 }

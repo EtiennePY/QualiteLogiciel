@@ -9,7 +9,7 @@ import cartes.inter.IAbstractCarteWith;
 public abstract class AbstractCarteWith extends AbstractCarte implements IAbstractCarteWith {
 	
 	/** The identifiant. */
-	protected int identifiant;
+	final protected int identifiant;
 	
 	/**
 	 * Instantiates a new abstract carte.
@@ -30,13 +30,5 @@ public abstract class AbstractCarteWith extends AbstractCarte implements IAbstra
 		return identifiant;
 	}
 
-	/**
-	 * Sets the id.
-	 *
-	 * @param identifiant the new id
-	 */
-	public void setIdentifiant(final int identifiant) {
-		this.identifiant = identifiant;
-	}
 	
 }

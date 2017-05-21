@@ -1,9 +1,12 @@
 package lecteurs.bancaire.inter;
 
 import banque.inter.IBanque;
+import barriere.inter.IBarriereSortie;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.ICarteBancaire;
 import erreurs.BanqueErreur;
+import erreurs.BarriereErreur;
+import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;
 import lecteurs.ticket.inter.ILecteurTicket;
 import systemeinfo.inter.ISystemeInformatique;
@@ -76,6 +79,8 @@ public interface ILecteurBancaire {
 	 * @return true, if successful
 	 * @throws TicketErreur the ticket erreur
 	 * @throws BanqueErreur the banque erreur
+	 * @throws BarriereErreur 
+	 * @throws CarteBancaireErreur 
 	 */
-	boolean realiseTransaction(ISystemeInformatique sys, ILecteurTicket lecteurTicket) throws TicketErreur, BanqueErreur;
+	boolean realiseTransaction(ISystemeInformatique sys, ILecteurTicket lecteurTicket, final IBarriereSortie barriere) throws TicketErreur, BarriereErreur, CarteBancaireErreur;
 }

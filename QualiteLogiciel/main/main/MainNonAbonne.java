@@ -5,7 +5,7 @@ import banque.inter.IBanque;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
 import cartes.impl.CarteBancaire;
-import cartes.inter.ICarteBancaire;
+import cartes.inter.IAbstractCarte;
 import clients.impl.ClientNonAbonne;
 import date.impl.DateTicket;
 import date.inter.IDateTicket;
@@ -35,12 +35,12 @@ public class MainNonAbonne {
 	public static void main(String[] args) throws BarriereErreur, TicketErreur, CarteBancaireErreur, BanqueErreur{
 		
 		//Nous sommes le 16 mai
-		IDateTicket dateDuJour = new DateTicket(16,04);
+		IDateTicket dateDuJour = new DateTicket(16,04, 16, 30, 30);
 		
 		//Carte Bancaire et ticket du client
 		Integer idCarteBancaire = 1337;
-		ICarteBancaire cbClient = new CarteBancaire(idCarteBancaire);
-		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04)); //entré dans le parking le 2 mai
+		IAbstractCarte cbClient = new CarteBancaire(idCarteBancaire);
+		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04, 16, 30, 30)); //entré dans le parking le 2 mai
 
 		//Véhicule du client
 		Integer immatriculationGrosHummer = 420;
@@ -76,16 +76,15 @@ public class MainNonAbonne {
 		detecteur.detecteClient(grosHummer, lecteurTicket);
 		
 		etienne.insereTicket(lecteurTicket);
-		boolean ticketValide = lecteurTicket.verificationTicket(sys, barriere, lecteurCarteBancaire);
+		boolean ticketValide = lecteurTicket.verificationTicket(sys, lecteurCarteBancaire);
 
 		if (ticketValide){
 			etienne.insereCarteBancaire(lecteurCarteBancaire);
-			boolean transaction = lecteurCarteBancaire.realiseTransaction(sys, lecteurTicket);
+			boolean transaction = lecteurCarteBancaire.realiseTransaction(sys, lecteurTicket, barriere);
 					
 			if (transaction){
-				etienne.recupereCarteBancaire(lecteurCarteBancaire);
 				etienne.recupereTicket(lecteurTicket);
-				barriere.ouvrir();
+				etienne.recupereCarteBancaire(lecteurCarteBancaire);
 				etienne.passe();
 				detecteur.metAJourPanneauAffichage(panneau);
 				detecteur.fermeBarriere(barriere);

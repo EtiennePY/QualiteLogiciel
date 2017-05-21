@@ -14,13 +14,6 @@ public interface IAbstractCarteWith {
 	int getIdentifiant();
 	
 	/**
-	 * Sets the id.
-	 *
-	 * @param identifiant the new id
-	 */
-	void setIdentifiant(final int identifiant);
-	
-	/**
 	 * Checks if is without.
 	 *
 	 * @return true, if is without

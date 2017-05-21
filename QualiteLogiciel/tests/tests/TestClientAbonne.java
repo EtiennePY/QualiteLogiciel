@@ -2,7 +2,9 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import abonnement.Abonnement;
 import cartes.impl.CarteAbonnement;
@@ -20,6 +22,10 @@ import vehicule.inter.IVehicule;
 public class TestClientAbonne {
 	
 	private IClientAbonne client;
+	
+	@Rule
+	public ExpectedException expectedEx = ExpectedException.none();
+
 	
 	@Before
 	public void instanciation() {
@@ -73,4 +79,13 @@ public class TestClientAbonne {
 		Assert.assertEquals("Le client passe", client.passe());
 	}
 
+	@Test
+	public void erreurCarteAbonnement() throws CarteAbonnementErreur {
+		expectedEx.expect(CarteAbonnementErreur.class);
+		String message = "Le client n'a pas de carte d'abonnement.";
+	    expectedEx.expectMessage(message);
+		ILecteurCarteAbonnement lecteurAbo = new LecteurCarteAbonnement();
+		client.setCarteAbonnement(CarteWithout.instance());
+	    client.insereCarteAbonnement(lecteurAbo);
+	}
 }

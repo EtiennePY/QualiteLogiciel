@@ -4,12 +4,15 @@ import java.util.logging.Logger;
 
 import banque.impl.Banque;
 import banque.inter.IBanque;
+import barriere.inter.IBarriereSortie;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.ICarteBancaire;
 import clients.impl.ClientAbonne;
 import date.inter.IDateTicket;
 import erreurs.BanqueErreur;
+import erreurs.BarriereErreur;
+import erreurs.CarteBancaireErreur;
 import erreurs.TicketErreur;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import lecteurs.ticket.inter.ILecteurTicket;
@@ -21,7 +24,7 @@ import ticket.impl.TicketWith;
  * The Class LecteurBancaire.
  */
 public class LecteurBancaire implements ILecteurBancaire {
-	
+
 	/** The carte bancaire client. */
 	private IAbstractCarte carteBancaire;
 
@@ -32,7 +35,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 
 	/** The banque. */
 	private IBanque banque;
-	
+
 	/**
 	 * Instantiates a new lecteur bancaire.
 	 */
@@ -40,7 +43,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 		this.carteBancaire = CarteWithout.instance();
 		this.banque = new Banque();
 	}
-	
+
 	/**
 	 * Demande insertion carte.
 	 *
@@ -67,7 +70,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 	 */
 	public boolean contacterBanque(final ICarteBancaire carte, final int prix) {
 		LOG.info("Le lecteur contacte la banque pour un montant de "+ prix + " euros. C'est cher.");	
-		
+
 		return banque.realisePaiement(carte, prix);
 	}
 
@@ -103,7 +106,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 	public void setCarteBancaire(final IAbstractCarte carteClient) {
 		this.carteBancaire = carteClient;
 	}
-	
+
 	/**
 	 * Gets the banque.
 	 *
@@ -113,7 +116,7 @@ public class LecteurBancaire implements ILecteurBancaire {
 		return banque;
 	}
 
-	
+
 	/**
 	 * Sets the banque.
 	 *
@@ -131,19 +134,22 @@ public class LecteurBancaire implements ILecteurBancaire {
 	 * @return true, if successful
 	 * @throws TicketErreur the ticket erreur
 	 * @throws BanqueErreur the banque erreur
+	 * @throws BarriereErreur 
+	 * @throws CarteBancaireErreur 
 	 */
-	public boolean realiseTransaction(final ISystemeInformatique sys, final ILecteurTicket lecteurTicket) throws TicketErreur, BanqueErreur {
+	public boolean realiseTransaction(ISystemeInformatique sys, ILecteurTicket lecteurTicket, final IBarriereSortie barriere) throws TicketErreur, BarriereErreur, CarteBancaireErreur {
 		if(lecteurTicket.getTicketClient().isWith()) {
 			final IDateTicket date = ((TicketWith) lecteurTicket.getTicketClient()).getDateTicket();
 			final int prix = sys.calculPrix(date);
+			if (this.getCarteBancaire().isWith()) {
 			final boolean transaction = this.contacterBanque((ICarteBancaire) this.getCarteBancaire(), prix);
-			if (transaction) {
-				this.restitutionCarteBancaire(transaction);
-				return transaction;
-			} else {
-				throw new BanqueErreur("La transaction n'a pas pu être effectuée");
-			}
+			this.restitutionCarteBancaire(transaction);
+			sys.ouvreBarriere(barriere);
 
+			return transaction;
+			} else {
+				throw new CarteBancaireErreur("Aucune carte n'a ete inseree !");
+			}
 		} else {
 			throw new TicketErreur("Pas de ticket dans le lecteur de ticket.");
 		}

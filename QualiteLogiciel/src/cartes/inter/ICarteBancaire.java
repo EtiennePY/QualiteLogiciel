@@ -4,6 +4,6 @@ package cartes.inter;
 /**
 * The Interface ICarteBancaire.
 */
-public interface ICarteBancaire extends IAbstractCarte {
+public interface ICarteBancaire extends IAbstractCarteWith {
 
 }

@@ -48,7 +48,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 		private final Set<IDateTicket> datesTicket;
 		
 		/** The date du jour. */
-		private IDateTicket dateDuJour = new DateTicket(16,04);
+		private IDateTicket dateDuJour = new DateTicket(16,04, 16, 30, 30);
 	
 	/**
 	 * Instantiates a new systeme informatique.
@@ -180,7 +180,7 @@ public class SystemeInformatique implements ISystemeInformatique {
 	 * @throws TicketErreur the ticket erreur
 	 * @throws BarriereErreur the barriere erreur
 	 */
-	public boolean checkTicket(final IAbstractTicket ticket, final ILecteurTicket lecteur, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur {
+	public boolean checkTicket(final IAbstractTicket ticket, final ILecteurTicket lecteur, final ILecteurBancaire lecteurBancaire) throws TicketErreur {
 		if(ticket.isWith()){
 			final ITicketWith ticketWith = (ITicketWith) ticket;
 			final IDateTicket date = ticketWith.getDateTicket();

@@ -3,6 +3,7 @@ package clients.impl;
 import java.util.logging.Logger;
 
 import banque.inter.IBanque;
+import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import clients.inter.IClientNonAbonne;
 import erreurs.CarteBancaireErreur;
@@ -24,22 +25,14 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 	private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
 	
 	/** The carte bancaire. */
-	protected IAbstractCarte carteBancaire;
+	private IAbstractCarte carteBancaire;
 	
 	/** The ticket. */
-	protected IAbstractTicket ticket;
+	private IAbstractTicket ticket;
 	
 	/** The banque. */
 	private IBanque banque;
 	
-	/**
-	 * Sets the banque.
-	 *
-	 * @param banque the new banque
-	 */
-	public void setBanque(final IBanque banque) {
-		this.banque = banque;
-	}
 
 
 	/**
@@ -57,6 +50,14 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 		this.ticket = TicketWithout.instance();
 	}
 
+	/**
+	 * Sets the banque.
+	 *
+	 * @param banque the new banque
+	 */
+	public void setBanque(final IBanque banque) {
+		this.banque = banque;
+	}
 
 	/**
 	 * Insere ticket.
@@ -100,7 +101,7 @@ public class ClientNonAbonne extends AbstractClient implements IClientNonAbonne 
 		if (this.getCarteBancaire().isWith()) {
 			LOG.info("Le client non-abonné insére sa carte bancaire.");
 			final IAbstractCarte carte = this.getCarteBancaire();
-			this.setCarteBancaire(carteBancaire);
+			this.setCarteBancaire(CarteWithout.instance());
 			lecteur.setCarteBancaire(carte);
 		} else {
 			throw new CarteBancaireErreur("Le client n'a pas de carte bancaire.");

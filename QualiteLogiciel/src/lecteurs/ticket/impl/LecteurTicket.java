@@ -2,15 +2,11 @@ package lecteurs.ticket.impl;
 
 import java.util.logging.Logger;
 
-import barriere.inter.IBarriereSortie;
 import clients.impl.ClientAbonne;
-import date.inter.IDateTicket;
-import erreurs.BarriereErreur;
 import erreurs.TicketErreur;
 import lecteurs.bancaire.inter.ILecteurBancaire;
 import lecteurs.ticket.inter.ILecteurTicket;
 import systemeinfo.inter.ISystemeInformatique;
-import ticket.impl.TicketWith;
 import ticket.impl.TicketWithout;
 import ticket.inter.IAbstractTicket;
 
@@ -56,33 +52,23 @@ public class LecteurTicket implements ILecteurTicket {
 	/**
 	 * Verification ticket.
 	 *
-	 * @param sys the sys, barriere the barriere
+	 * @param sys the sys
 	 * @param lecteurBancaire the lecteur bancaire
 	 * @return true, if successful
-	 * @throws TicketErreur, BarriereErreur 
+	 * @throws TicketErreur 
 	 */
-	public boolean verificationTicket(final ISystemeInformatique sys, final IBarriereSortie barriere, final ILecteurBancaire lecteurBancaire) throws TicketErreur, BarriereErreur {
+	public boolean verificationTicket(final ISystemeInformatique sys, final ILecteurBancaire lecteurBancaire) throws TicketErreur {
 		if (this.getTicketClient().isWith()) {
 			this.setTicketClient(this.getTicketClient());
 			LOG.info("Le lecteur de ticket reçoit le ticket.");
 			final IAbstractTicket ticket = (IAbstractTicket) this.getTicketClient();
-			return sys.checkTicket(ticket, this, barriere, lecteurBancaire);
+			return sys.checkTicket(ticket, this, lecteurBancaire);
 		} else {
 			throw new TicketErreur("Aucun ticket n'a ete insere !");
 		}
 
 	}
 	
-    /**
-     * Donne ticket.
-     *
-     * @param date the date
-     * @return the i ticket
-     */
-	public IAbstractTicket donneTicket(final IDateTicket date) {
-		return new TicketWith(date);
-		
-	}
 	
 	/**
 	 * Demande insertion ticket.

@@ -10,18 +10,33 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import abonnement.Abonnement;
+import banque.impl.Banque;
+import banque.inter.IBanque;
 import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
 import cartes.impl.CarteAbonnement;
+import cartes.impl.CarteBancaire;
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.ICarteAbonnement;
+import clients.impl.ClientNonAbonne;
+import date.impl.DateTicket;
+import date.inter.IDateTicket;
 import erreurs.BarriereErreur;
 import erreurs.CarteAbonnementErreur;
+import erreurs.TicketErreur;
 import lecteurs.abonnement.impl.LecteurCarteAbonnement;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
+import lecteurs.bancaire.impl.LecteurBancaire;
+import lecteurs.bancaire.inter.ILecteurBancaire;
+import lecteurs.ticket.impl.LecteurTicket;
+import lecteurs.ticket.inter.ILecteurTicket;
 import systemeinfo.impl.SystemeInformatique;
 import systemeinfo.inter.ISystemeInformatique;
+import ticket.impl.TicketWith;
+import ticket.impl.TicketWithout;
+import ticket.inter.IAbstractTicket;
+import ticket.inter.ITicketWith;
 import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
@@ -131,4 +146,132 @@ public class TestSystemeInformatique {
 
 		sys.checkAbonnement(carteAbonnement, lecteurAbo, barriere);
 	}
+
+	@Test
+	public void calculPrix() {
+		sys.setDateDuJour(new DateTicket(16, 15, 16, 30, 30));
+		IDateTicket date = new DateTicket(7, 18, 16, 30, 30);
+		Assert.assertEquals(213, sys.calculPrix(date));
+	}
+	
+
+	@Test
+	public void checkTicketAvecTicketValide() throws TicketErreur, BarriereErreur {
+
+		//Nous sommes le 16 mai
+		IDateTicket dateDuJour = new DateTicket(16,04, 16, 30, 30);
+		
+		//Carte Bancaire et ticket du client
+		Integer idCarteBancaire = 1337;
+		IAbstractCarte cbClient = new CarteBancaire(idCarteBancaire);
+		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04, 16, 30, 30)); //entré dans le parking le 2 mai
+
+		//Véhicule du client
+		Integer immatriculationGrosHummer = 420;
+
+		IVehicule grosHummer = new Vehicule(CategorieVehicule.CAMION, immatriculationGrosHummer);
+
+		//Banque du client
+		IBanque banqueClient = new Banque();
+		
+		//Client
+		ClientNonAbonne etienne = new ClientNonAbonne(grosHummer,cbClient, banqueClient);
+		etienne.setTicket(ticketClient);
+
+
+
+		//On cree les lecteurs de carte bancaire et de ticket
+		ILecteurBancaire lecteurBancaire = new LecteurBancaire();
+		ILecteurTicket lecteurTicket = new LecteurTicket();
+
+
+		//On cree le systeme informatique
+		sys.enregistreClientNonAbonne(((ITicketWith)ticketClient).getDateTicket());
+		sys.setDateDuJour(dateDuJour);
+		//On cree le panneau d'affichage et la barriere
+		
+		Assert.assertEquals(true, sys.checkTicket(etienne.getTicket(), lecteurTicket, lecteurBancaire));
+	}
+	
+	@Test
+	public void checkTicketAvecTicketInvalide() throws TicketErreur, BarriereErreur {
+
+		
+		//Nous sommes le 16 mai
+		IDateTicket dateDuJour = new DateTicket(17,04, 16, 30, 30);
+		
+		//Carte Bancaire et ticket du client
+		Integer idCarteBancaire = 1337;
+		IAbstractCarte cbClient = new CarteBancaire(idCarteBancaire);
+		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04, 16, 30, 30)); //entré dans le parking le 2 mai
+
+		//Véhicule du client
+		Integer immatriculationGrosHummer = 420;
+
+		IVehicule grosHummer = new Vehicule(CategorieVehicule.CAMION, immatriculationGrosHummer);
+
+		//Banque du client
+		IBanque banqueClient = new Banque();
+		
+		//Client
+		ClientNonAbonne etienne = new ClientNonAbonne(grosHummer,cbClient, banqueClient);
+		etienne.setTicket(new TicketWith(new DateTicket(16, 04, 16, 30, 30)));
+
+
+
+		//On cree les lecteurs de carte bancaire et de ticket
+		ILecteurBancaire lecteurBancaire = new LecteurBancaire();
+		ILecteurTicket lecteurTicket = new LecteurTicket();
+
+
+		//On cree le systeme informatique
+		sys.enregistreClientNonAbonne(((ITicketWith)ticketClient).getDateTicket());
+		sys.setDateDuJour(dateDuJour);
+		//On cree le panneau d'affichage et la barriere
+		
+		Assert.assertEquals(false, sys.checkTicket(etienne.getTicket(), lecteurTicket, lecteurBancaire));
+	}
+	
+	@Test
+	public void checkTicketSansTicket() throws TicketErreur, BarriereErreur {
+
+		expectedEx.expect(TicketErreur.class);
+		String message = "Aucun ticket n'a ete insere !";
+	    expectedEx.expectMessage(message);
+		
+		//Nous sommes le 16 mai
+		IDateTicket dateDuJour = new DateTicket(17,04, 16, 30, 30);
+		
+		//Carte Bancaire et ticket du client
+		Integer idCarteBancaire = 1337;
+		IAbstractCarte cbClient = new CarteBancaire(idCarteBancaire);
+		IAbstractTicket ticketClient = new TicketWith(new DateTicket(02,04, 16, 30, 30)); //entré dans le parking le 2 mai
+
+		//Véhicule du client
+		Integer immatriculationGrosHummer = 420;
+
+		IVehicule grosHummer = new Vehicule(CategorieVehicule.CAMION, immatriculationGrosHummer);
+
+		//Banque du client
+		IBanque banqueClient = new Banque();
+		
+		//Client
+		ClientNonAbonne etienne = new ClientNonAbonne(grosHummer,cbClient, banqueClient);
+		etienne.setTicket(TicketWithout.instance());
+
+
+
+		//On cree les lecteurs de carte bancaire et de ticket
+		ILecteurBancaire lecteurBancaire = new LecteurBancaire();
+		ILecteurTicket lecteurTicket = new LecteurTicket();
+
+
+		//On cree le systeme informatique
+		sys.enregistreClientNonAbonne(((ITicketWith)ticketClient).getDateTicket());
+		sys.setDateDuJour(dateDuJour);
+		
+		sys.checkTicket(etienne.getTicket(), lecteurTicket, lecteurBancaire);
+	}
+
+
 }
