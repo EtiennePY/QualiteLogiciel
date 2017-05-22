@@ -41,7 +41,7 @@ public class LecteurTicket implements ILecteurTicket {
 		if(retour) {
 			LOG.info("Un message s'affiche : \"OK\" sur l'écran du lecteur de ticket et le ticket sort" );
 		} else {
-			LOG.info("Un message s'affiche : \"Ticket erroné\" sur l'écran du lecteur de ticket et le ticket sort" );
+			LOG.warning("Un message s'affiche : \"Ticket erroné\" sur l'écran du lecteur de ticket et le ticket sort" );
 		}
 		return retour;
 	}

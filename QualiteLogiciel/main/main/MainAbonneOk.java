@@ -20,31 +20,31 @@ import systemeinfo.inter.ISystemeInformatique;
 import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
-public class MainAbonne {
+public class MainAbonneOk {
 	public static void main(String[] args) throws CarteAbonnementErreur, BarriereErreur {
 		//On definit ici l'identifiant du client, son immatriculation, et son abonnement.
 		Integer idClient = 69;
 		Integer immatriculationClient = 696969;
 		Abonnement abonnement = Abonnement.REGULIER;
-		
+
 		//On definit sa carte d'abonnement
 		ICarteAbonnement carteAbonnement = new CarteAbonnement(idClient, abonnement);
-		
+
 		//On definit les véhicules qu'il possède
-		
+
 		IVehicule voiturette = new Vehicule(CategorieVehicule.VOITURE, immatriculationClient);
-		
-		
-	
+
+
+
 		//On définit maintenant le client lui-meme
 		IClientAbonne antoine = new ClientAbonne(voiturette, carteAbonnement);
-		
-		
-		
+
+
+
 		//On cree le detecteur
 		IDetecteurSortie detecteur = new DetecteurSortie();
-		
-		
+
+
 		//On cree le lecteur de carte d'abonnement
 		ILecteurCarteAbonnement lecteurAbo = new LecteurCarteAbonnement();
 
@@ -54,32 +54,32 @@ public class MainAbonne {
 		//On ajoute au systeme informatique l'identifiant du client et son immatriculation ainsi que son abonnement 
 		//(supposons qu'il se soit inscrit auparavant)
 		sys.enregistreClientAbonne(immatriculationClient, idClient, abonnement);
-		
+
 		//On cree le panneau d'affichage
 		IPanneauAffichage panneau = new PanneauAffichage();
 		IBarriereSortie barriere = new BarriereSortie();
 
 		//Debut de la séquence
-		
-		
+
+
 		antoine.sePlaceDevantBarriere();
-		boolean estReconnue = detecteur.detecteImmatriculationVehicule(voiturette, sys, lecteurAbo);
-		
+		detecteur.detecteImmatriculationVehicule(voiturette, sys, lecteurAbo);
+
 		//Si immatriculation du client est bien dans le SI
-		if (estReconnue) {
-			antoine.insereCarteAbonnement(lecteurAbo);
-			boolean estBienAbonne = lecteurAbo.checkAbonnement(sys, barriere);
-			antoine.recupereCarteAbonnement(lecteurAbo);
 
-			//Si sa carte est valide
-			if(estBienAbonne){
-				antoine.passe();
-				detecteur.metAJourPanneauAffichage(panneau);
-				detecteur.fermeBarriere(barriere);
-			}
+		antoine.insereCarteAbonnement(lecteurAbo);
+		lecteurAbo.checkAbonnement(sys, barriere);
+		antoine.recupereCarteAbonnement(lecteurAbo);
+
+		//Si sa carte est valide
+
+		antoine.passe();
+		detecteur.metAJourPanneauAffichage(panneau);
+		detecteur.fermeBarriere(barriere);
 
 
-		}
+
+
 	}
 
 }

@@ -65,11 +65,13 @@ public class MockDetecteurSortie implements IDetecteurSortie {
    */
   public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys, final ILecteurCarteAbonnement lecteur) {
     if (sys.getImmatriculations().containsValue(vehicule.getImmatriculation())) {
-      this.setPresent(true);
-      LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
-    } else {
-      LOG.info("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
-    }
+    	this.setPresent(true);
+        LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
+        lecteur.demandeInsertionCarte(this.isPresent());
+
+      } else {
+        LOG.warning("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
+      }
     lecteur.demandeInsertionCarte(this.isPresent());
     return sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
   }

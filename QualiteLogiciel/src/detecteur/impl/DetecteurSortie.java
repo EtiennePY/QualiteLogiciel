@@ -83,10 +83,11 @@ public class DetecteurSortie implements IDetecteurSortie {
 	  if (resultat) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
+      lecteur.demandeInsertionCarte(this.isPresent());
+
     } else {
-      LOG.info("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
+      LOG.warning("Le détecteur n'a pas reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");  
     }
-    lecteur.demandeInsertionCarte(this.isPresent());
     return resultat;
   }
 

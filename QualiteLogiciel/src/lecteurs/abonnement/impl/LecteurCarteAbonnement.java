@@ -39,7 +39,7 @@ public class LecteurCarteAbonnement implements ILecteurCarteAbonnement {
 		if(retour) {
 			LOG.info("Un message s'affiche : \"OK\" sur l'écran du lecteur et la carte sort" );
 		} else {
-			LOG.info("Un message s'affiche : \"Carte erronée\" sur l'écran du lecteur et la carte sort" );
+			LOG.warning("Un message s'affiche : \"Carte erronée\" sur l'écran du lecteur et la carte sort" );
 		}
 		return retour;
 	}
