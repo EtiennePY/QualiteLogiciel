@@ -1,6 +1,3 @@
-/*
- * 
- */
 package vehicule.impl;
 
 import vehicule.inter.IVehicule;
@@ -16,32 +13,32 @@ public class Vehicule implements IVehicule {
   
   /** The categorie. */
   private final CategorieVehicule categorie;
-	
-	/**
-	 * Instantiates a new vehicule.
-	 *
-	 * @param categorie the categorie
-	 * @param immatriculation the immatriculation
-	 */
-	public Vehicule(final CategorieVehicule categorie, final Integer immatriculation) {
-		this.categorie = categorie;
-		this.immatriculation = immatriculation;
-	}
+  
+  /**
+   * Instantiates a new vehicule.
+   *
+   * @param categorie the categorie
+   * @param immatriculation the immatriculation
+   */
+  public Vehicule(final CategorieVehicule categorie, final Integer immatriculation) {
+    this.categorie = categorie;
+    this.immatriculation = immatriculation;
+  }
 
-	/**
-	 * Gets the immatriculation.
-	 *
-	 * @return the immatriculation
-	 */
+  /**
+   * Gets the immatriculation.
+   *
+   * @return the immatriculation
+   */
   public int getImmatriculation() {
     return immatriculation;
   }
 
-	/**
-	 * Sets the immatriculation.
-	 *
-	 * @param immatriculation the new immatriculation
-	 */
+  /**
+   * Sets the immatriculation.
+   *
+   * @param immatriculation the new immatriculation
+   */
   public void setImmatriculation(final int immatriculation) {
     this.immatriculation = immatriculation;
   }
@@ -52,6 +49,6 @@ public class Vehicule implements IVehicule {
   * @return the categorie
   */
   public CategorieVehicule getCategorie() {
-		return categorie;
-	}
+    return categorie;
+  }
 }

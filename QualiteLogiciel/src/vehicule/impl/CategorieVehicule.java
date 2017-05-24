@@ -4,16 +4,16 @@ package vehicule.impl;
 /**
  * The Enum CategorieVehicule.
  */
-public enum CategorieVehicule{
-	  /** The moto. */
-	  MOTO, 
-	 /** The voiture. */
-	 VOITURE, 
-	 /** The camionette. */
-	 CAMIONETTE, 
-	 /** The campingcar. */
-	 CAMPINGCAR, 
-	 /** The camion. */
-	 CAMION;
-	  
+public enum CategorieVehicule {
+    /** The moto. */
+    MOTO, 
+   /** The voiture. */
+   VOITURE, 
+   /** The camionette. */
+   CAMIONETTE, 
+   /** The campingcar. */
+   CAMPINGCAR, 
+   /** The camion. */
+   CAMION;
+    
 }

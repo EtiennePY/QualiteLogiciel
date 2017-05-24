@@ -1,11 +1,11 @@
 package clients.impl;
 
+import clients.inter.IAbstractClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import clients.inter.IAbstractClient;
 import vehicule.inter.IVehicule;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,14 +16,15 @@ public abstract class AbstractClient implements IAbstractClient {
   private static final Logger LOG = Logger.getLogger(AbstractClient.class.getName());
 
   /** The vehicules. */
-  protected final List<IVehicule> vehicules;
+  private final List<IVehicule> vehicules;
   
   /**
   * Instantiates a new abstract client.
   */
   public AbstractClient() {
-	  this.vehicules = new ArrayList<IVehicule>();
+    this.vehicules = new ArrayList<IVehicule>();
   }
+  
   /**
    * Gets the vehicules.
    *

@@ -26,18 +26,29 @@ import systemeinfo.inter.ISystemeInformatique;
 import vehicule.impl.CategorieVehicule;
 import vehicule.inter.IVehicule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestDetecteurSortie.
+ */
 public class TestDetecteurSortie {
 
 
+	/** The detecteur. */
 	private IDetecteurSortie detecteur;
 	
 	
+	/**
+	 * Instanciation detecteur.
+	 */
 	@Before
 	public void instanciationDetecteur() {
 		this.detecteur = new DetecteurSortie();
 	}
 	
 
+	/**
+	 * Detecte client.
+	 */
 	@Test
 	public void detecteClient() {
 		Integer idClient = 1;
@@ -56,6 +67,10 @@ public class TestDetecteurSortie {
 		clientAbonne.sePlaceDevantBarriere();
 		Assert.assertEquals(true, this.detecteur.detecteClient(vehicule, lecteur));
 	}
+	
+	/**
+	 * A detecte immatriculation.
+	 */
 	@Test
 	public void aDetecteImmatriculation() {
 		ISystemeInformatique sys = new MockSystemeInformatique();
@@ -79,6 +94,9 @@ public class TestDetecteurSortie {
 		Assert.assertEquals(true, this.detecteur.detecteImmatriculationVehicule(vehicule, sys, lecteurAbo));
 	}
 	
+	/**
+	 * Ne detecte pas immatriculation.
+	 */
 	@Test
 	public void neDetectePasImmatriculation() {
 		ISystemeInformatique sys = new MockSystemeInformatique();
@@ -105,6 +123,11 @@ public class TestDetecteurSortie {
 		Assert.assertEquals(false, this.detecteur.detecteImmatriculationVehicule(vehicule, sys, lecteurAbo));
 	}
 	
+	/**
+	 * Ferme la barriere.
+	 *
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void fermeLaBarriere() throws BarriereErreur {
 		IBarriereSortie barriere = new MockBarriereSortie();
@@ -113,6 +136,9 @@ public class TestDetecteurSortie {
 		Assert.assertEquals(false, barriere.isOuverte());
 	}
 	
+	/**
+	 * Maj panneau.
+	 */
 	@Test
 	public void majPanneau() {
 		IPanneauAffichage panneau = new MockPanneauAffichage();

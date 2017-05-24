@@ -7,28 +7,28 @@ import cartes.inter.IAbstractCarteWith;
  * The Class AbstractCarteWith.
  */
 public abstract class AbstractCarteWith extends AbstractCarte implements IAbstractCarteWith {
-	
-	/** The identifiant. */
-	final protected int identifiant;
-	
-	/**
-	 * Instantiates a new abstract carte.
-	 *
-	 * @param identifiant the identifiant
-	 */
-	public AbstractCarteWith(final int identifiant) {
-		super();
-		this.identifiant = identifiant;
-	}
+  
+  /** The identifiant. */
+  private final int identifiant;
+  
+  /**
+   * Instantiates a new abstract carte.
+   *
+   * @param identifiant the identifiant
+   */
+  public AbstractCarteWith(final int identifiant) {
+    super();
+    this.identifiant = identifiant;
+  }
 
-	/**
-	 * Gets the identifiant.
-	 *
-	 * @return the identifiant
-	 */
-	public int getIdentifiant() {
-		return identifiant;
-	}
+  /**
+   * Gets the identifiant.
+   *
+   * @return the identifiant
+   */
+  public int getIdentifiant() {
+    return identifiant;
+  }
 
-	
+  
 }

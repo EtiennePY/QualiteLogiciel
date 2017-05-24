@@ -19,14 +19,23 @@ import mocks.vehicule.MockVehicule;
 import vehicule.impl.CategorieVehicule;
 import vehicule.inter.IVehicule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestClientAbonne.
+ */
 public class TestClientAbonne {
 	
+	/** The client. */
 	private IClientAbonne client;
 	
+	/** The expected ex. */
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
 	
+	/**
+	 * Instanciation.
+	 */
 	@Before
 	public void instanciation() {
 		Integer immatriculationClient = 696969;
@@ -38,6 +47,11 @@ public class TestClientAbonne {
 		this.client = new ClientAbonne(voiturette, CarteWithout.instance());
 	}
 	
+	/**
+	 * Insere carte abonnement.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 */
 	@Test
 	public void insereCarteAbonnement() throws CarteAbonnementErreur {
 		Integer idClient = 69;
@@ -51,6 +65,9 @@ public class TestClientAbonne {
 		Assert.assertEquals(CarteWithout.instance(), client.getCarteAbonnement());
 	}
 	
+	/**
+	 * Recupere carte abonnement.
+	 */
 	@Test
 	public void recupereCarteAbonnement() {
 		Integer idClient = 69;
@@ -64,21 +81,35 @@ public class TestClientAbonne {
 		Assert.assertEquals(carteAbonnement, client.getCarteAbonnement());
 	}
 	
+	/**
+	 * Est abonne.
+	 */
 	@Test
 	public void estAbonne() {
 		Assert.assertEquals(true, client.isAbonne());
 	}
 	
+	/**
+	 * Se place devant barriere.
+	 */
 	@Test
 	public void sePlaceDevantBarriere() {
 		Assert.assertEquals("Le client se positionne devant la barrière", client.sePlaceDevantBarriere());
 	}
 	
+	/**
+	 * Passe.
+	 */
 	@Test
 	public void passe() {
 		Assert.assertEquals("Le client passe", client.passe());
 	}
 
+	/**
+	 * Erreur carte abonnement.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 */
 	@Test
 	public void erreurCarteAbonnement() throws CarteAbonnementErreur {
 		expectedEx.expect(CarteAbonnementErreur.class);

@@ -7,15 +7,26 @@ import org.junit.Test;
 import date.impl.DateTicket;
 import date.inter.IDateTicket;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestDateTicket.
+ */
 public class TestDateTicket {
 	
+	/** The date. */
 	private IDateTicket date;
 	
+	/**
+	 * Instanciation.
+	 */
 	@Before
 	public void instanciation() {
 		this.date = new DateTicket(16, 4, 16, 30, 30);
 	}
 	
+	/**
+	 * Settersgetters.
+	 */
 	@Test
 	public void settersgetters() {
 		date.setJour(1);

@@ -7,18 +7,18 @@ import abonnement.Abonnement;
  * The Interface ICarteAbonnement.
  */
 public interface ICarteAbonnement extends IAbstractCarte {
-	
-	/**
-	 * Gets the abonnement.
-	 *
-	 * @return the abonnement
-	 */
-	Abonnement getAbonnement();
-	
-	/**
-	 * Sets the abonnement.
-	 *
-	 * @param abonnement the new abonnement
-	 */
-	void setAbonnement(final Abonnement abonnement);
+  
+  /**
+   * Gets the abonnement.
+   *
+   * @return the abonnement
+   */
+  Abonnement getAbonnement();
+  
+  /**
+   * Sets the abonnement.
+   *
+   * @param abonnement the new abonnement
+   */
+  void setAbonnement(final Abonnement abonnement);
 }

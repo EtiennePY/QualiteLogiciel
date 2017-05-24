@@ -1,10 +1,9 @@
 package detecteur.impl;
 
-import java.util.logging.Logger;
-
 import barriere.inter.IBarriereSortie;
 import detecteur.inter.IDetecteurSortie;
 import erreurs.BarriereErreur;
+import java.util.logging.Logger;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import lecteurs.ticket.inter.ILecteurTicket;
 import panneau.inter.IPanneauAffichage;
@@ -20,7 +19,7 @@ public class DetecteurSortie implements IDetecteurSortie {
   private static final Logger LOG = Logger.getLogger(DetecteurSortie.class.getName());
 
   /** The present. */
-  protected boolean present; 
+  private boolean present; 
 
   /**
    * Instantiates a new detecteur sortie.
@@ -29,58 +28,58 @@ public class DetecteurSortie implements IDetecteurSortie {
     this.present = false;
   }
 
-	/**
-	 * Checks if is present.
-	 *
-	 * @return true, if is present
-	 */
+  /**
+   * Checks if is present.
+   *
+   * @return true, if is present
+   */
   public boolean isPresent() {
     return present;
   }
 
-	/**
-	 * Sets the present.
-	 *
-	 * @param present the new present
-	 */
+  /**
+   * Sets the present.
+   *
+   * @param present the new present
+   */
   public void setPresent(final boolean present) {
     this.present = present;
   }
 
-	/**
-	 * Ferme barriere.
-	 *
-	 * @param barriere the barriere
-	 * @return true, if successful
-	 * @throws BarriereErreur the barriere erreur
-	 */
+  /**
+   * Ferme barriere.
+   *
+   * @param barriere the barriere
+   * @return true, if successful
+   * @throws BarriereErreur the barriere erreur
+   */
   public boolean fermeBarriere(final IBarriereSortie barriere) throws BarriereErreur {
     LOG.info("Le detecteur provoque la fermeture de la barrière");
     barriere.fermer();
     return barriere.isOuverte();
   }
 
-	/**
-	 * Met A jour panneau affichage.
-	 *
-	 * @param panneau the panneau
-	 */
+  /**
+   * Met A jour panneau affichage.
+   *
+   * @param panneau the panneau
+   */
   public void metAJourPanneauAffichage(final IPanneauAffichage panneau) {
     LOG.info("Le détecteur met à jour le panneau d'affichage");
     panneau.minus();
   }
 
-	/**
-	 * Detecte immatriculation vehicule.
-	 *
-	 * @param vehicule the vehicule
-	 * @param sys the sys
-	 * @param lecteur the lecteur
-	 * @return true, if successful
-	 */
+  /**
+   * Detecte immatriculation vehicule.
+   *
+   * @param vehicule the vehicule
+   * @param sys the sys
+   * @param lecteur the lecteur
+   * @return true, if successful
+   */
   public boolean detecteImmatriculationVehicule(final IVehicule vehicule,final ISystemeInformatique sys, final ILecteurCarteAbonnement lecteur) {
     final boolean resultat = sys.getImmatriculations().containsValue(vehicule.getImmatriculation());
-	  if (resultat) {
+    if (resultat) {
       this.setPresent(true);
       LOG.info("Le détecteur a reconnu l'immatriculation : " + vehicule.getImmatriculation() + " du client.");
       lecteur.demandeInsertionCarte(this.isPresent());
@@ -91,13 +90,13 @@ public class DetecteurSortie implements IDetecteurSortie {
     return resultat;
   }
 
-	/**
-	 * Detecte client.
-	 *
-	 * @param vehicule the vehicule
-	 * @param lecteur the lecteur
-	 * @return true, if successful
-	 */
+  /**
+   * Detecte client.
+   *
+   * @param vehicule the vehicule
+   * @param lecteur the lecteur
+   * @return true, if successful
+   */
   public boolean detecteClient(final IVehicule vehicule, final ILecteurTicket lecteur) {
     this.setPresent(true);
     LOG.info("Le détecteur detecte le client " + vehicule.toString());

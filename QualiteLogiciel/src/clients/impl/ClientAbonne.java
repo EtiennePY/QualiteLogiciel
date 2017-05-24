@@ -1,12 +1,11 @@
 package clients.impl;
 
-import java.util.logging.Logger;
-
 import cartes.impl.CarteWithout;
 import cartes.inter.IAbstractCarte;
 import cartes.inter.ICarteAbonnement;
 import clients.inter.IClientAbonne;
 import erreurs.CarteAbonnementErreur;
+import java.util.logging.Logger;
 import lecteurs.abonnement.inter.ILecteurCarteAbonnement;
 import vehicule.inter.IVehicule;
 // TODO: Auto-generated Javadoc
@@ -18,7 +17,7 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
   /** The logger. */
   private static final Logger LOG = Logger.getLogger(ClientAbonne.class.getName());
   /** The carte abonnement. */
-  protected IAbstractCarte carteAbonnement;  
+  private IAbstractCarte carteAbonnement;  
   
   /**
    * Instantiates a new client abonne.
@@ -40,15 +39,14 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
    * @throws CarteAbonnementErreur the carte abonnement erreur
    */
   public void insereCarteAbonnement(final ILecteurCarteAbonnement lecteurAbo) throws CarteAbonnementErreur {
-	  if(this.carteAbonnement.isWith()) {
-    LOG.info("Le client abonné a inséré sa carte d'abonnement.");
-    final IAbstractCarte carte = this.getCarteAbonnement();
-    lecteurAbo.setCarteClient(carte);
-    this.setCarteAbonnement(CarteWithout.instance());
-	  }
-	  else {
-		  throw new CarteAbonnementErreur("Le client n'a pas de carte d'abonnement.");
-	  }
+    if (this.carteAbonnement.isWith()) {
+      LOG.info("Le client abonné a inséré sa carte d'abonnement.");
+      final IAbstractCarte carte = this.getCarteAbonnement();
+      lecteurAbo.setCarteClient(carte);
+      this.setCarteAbonnement(CarteWithout.instance());
+    } else {
+      throw new CarteAbonnementErreur("Le client n'a pas de carte d'abonnement.");
+    }
   }
   
   /**
@@ -88,6 +86,6 @@ public class ClientAbonne extends AbstractClient implements IClientAbonne {
   * @return true, if is abonne
   */
   public boolean isAbonne() {
-	  return true;
+    return true;
   }
 }

@@ -12,15 +12,28 @@ import banque.inter.IBanque;
 import cartes.inter.ICarteBancaire;
 import mocks.cartes.MockCarteBancaire;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestMockBanque.
+ */
 public class TestMockBanque {
 
+	/** The banque. */
 	private IBanque banque;
 	
+	/**
+	 * Instanciation.
+	 */
 	@Before
 	public void instanciation() {
 		this.banque = new MockBanque();
 	}
 	
+	/**
+	 * Gets the ter setter ids.
+	 *
+	 * @return the ter setter ids
+	 */
 	@Test
 	public void getterSetterIds() {
 		Set<Integer> ids = new HashSet<Integer>();
@@ -28,6 +41,9 @@ public class TestMockBanque {
 		Assert.assertEquals(ids, banque.getIds());
 	}
 	
+	/**
+	 * Realise transaction.
+	 */
 	@Test
 	public void realiseTransaction() {
 		ICarteBancaire carte = new MockCarteBancaire(123456789);

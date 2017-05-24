@@ -1,9 +1,8 @@
 package mocks.barriere;
 
-import java.util.logging.Logger;
-
 import barriere.inter.IBarriereSortie;
 import erreurs.BarriereErreur;
+import java.util.logging.Logger;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -45,24 +44,26 @@ public class MockBarriereSortie implements IBarriereSortie {
   
   /**
    * Ouvrir.
- * @throws BarriereErreur 
+   * @throws BarriereErreur 
+   * 
    */
   public void ouvrir() throws BarriereErreur {
-	if(this.isOuverte()) {
-		throw new BarriereErreur("La barriere est deja ouverte !");
-	}
+    if (this.isOuverte()) {
+      throw new BarriereErreur("La barriere est deja ouverte !");
+    }
     this.setOuverte(true);
     LOG.info("La barrière s'ouvre");
   }
   
   /**
    * Fermer.
- * @throws BarriereErreur 
+   * @throws BarriereErreur 
+   * 
    */
   public void fermer() throws BarriereErreur {
-	  if(!this.isOuverte()) {
-		  throw new BarriereErreur("La barriere est deja fermee !");
-		}
+    if (!this.isOuverte()) {
+      throw new BarriereErreur("La barriere est deja fermee !");
+    }
     this.setOuverte(false);
     LOG.info("La barrière se ferme");
   }

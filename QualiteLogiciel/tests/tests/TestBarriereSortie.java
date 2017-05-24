@@ -10,22 +10,38 @@ import barriere.impl.BarriereSortie;
 import barriere.inter.IBarriereSortie;
 import erreurs.BarriereErreur;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestBarriereSortie.
+ */
 public class TestBarriereSortie {
 
+	/** The barriere. */
 	private IBarriereSortie barriere;
+	
+	/** The expected ex. */
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
+	/**
+	 * Instanciation barriere.
+	 */
 	@Before
 	public void instanciationBarriere() {
 		this.barriere = new BarriereSortie();
 	}
 	
+	/**
+	 * Ferme initialement.
+	 */
 	@Test
 	public void fermeInitialement() {
 		Assert.assertEquals(false, barriere.isOuverte());
 	}
 	
+	/**
+	 * Setter.
+	 */
 	@Test
 	public void setter() {
 		barriere.setOuverte(true);
@@ -34,12 +50,22 @@ public class TestBarriereSortie {
 		Assert.assertEquals(false, barriere.isOuverte());
 	}
 	
+	/**
+	 * Ouvrir avec barriere fermee.
+	 *
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void ouvrirAvecBarriereFermee() throws BarriereErreur {
 		barriere.ouvrir();
 		Assert.assertEquals(true, barriere.isOuverte());
 	}
 	
+	/**
+	 * Fermer avec barriere ouverte.
+	 *
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void fermerAvecBarriereOuverte() throws BarriereErreur {
 		barriere.ouvrir();
@@ -47,6 +73,11 @@ public class TestBarriereSortie {
 		Assert.assertEquals(false, barriere.isOuverte());
 	}
 	
+	/**
+	 * Fermer avec barriere fermee.
+	 *
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void fermerAvecBarriereFermee() throws BarriereErreur {
 		expectedEx.expect(BarriereErreur.class);
@@ -56,6 +87,11 @@ public class TestBarriereSortie {
 		barriere.fermer();
 	}
 	
+	/**
+	 * Ouvrir avec barriere ouverte.
+	 *
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void ouvrirAvecBarriereOuverte() throws BarriereErreur {
 		expectedEx.expect(BarriereErreur.class);

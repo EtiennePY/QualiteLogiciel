@@ -9,51 +9,51 @@ import ticket.inter.ITicketWith;
  */
 public class MockTicketWith extends MockAbstractTicket implements ITicketWith {
 
-	
-	/** The date ticket. */
-	private IDateTicket dateTicket;
-	
-	/**
-	 * Instantiates a new ticket with.
-	 *
-	 * @param dateTicket the date ticket
-	 */
-	public MockTicketWith(final IDateTicket dateTicket) {
-		super();
-		this.dateTicket = dateTicket;
-	}
+  
+  /** The date ticket. */
+  private IDateTicket dateTicket;
+  
+  /**
+   * Instantiates a new ticket with.
+   *
+   * @param dateTicket the date ticket
+   */
+  public MockTicketWith(final IDateTicket dateTicket) {
+    super();
+    this.dateTicket = dateTicket;
+  }
 
-	/**
-	 * Gets the date ticket.
-	 *
-	 * @return the date ticket
-	 */
-	public IDateTicket getDateTicket() {
-		return dateTicket;
-	}
+  /**
+   * Gets the date ticket.
+   *
+   * @return the date ticket
+   */
+  public IDateTicket getDateTicket() {
+    return dateTicket;
+  }
 
-	/**
-	 * Sets the date ticket.
-	 *
-	 * @param dateTicket the new date ticket
-	 */
-	public void setDateTicket(final IDateTicket dateTicket) {
-		this.dateTicket = dateTicket;
-	}
-
-
-	/**
-	 * Checks if is with.
-	 *
-	 * @return true, if is with
-	 */
-	public boolean isWith() {
-		return true;
-	}
+  /**
+   * Sets the date ticket.
+   *
+   * @param dateTicket the new date ticket
+   */
+  public void setDateTicket(final IDateTicket dateTicket) {
+    this.dateTicket = dateTicket;
+  }
 
 
-	
-	
-	
+  /**
+   * Checks if is with.
+   *
+   * @return true, if is with
+   */
+  public boolean isWith() {
+    return true;
+  }
+
+
+  
+  
+  
 
 }

@@ -20,6 +20,7 @@ import systemeinfo.inter.ISystemeInformatique;
 import vehicule.impl.CategorieVehicule;
 import vehicule.impl.Vehicule;
 import vehicule.inter.IVehicule;
+
 public class MainAbonneOk {
 	public static void main(String[] args) throws CarteAbonnementErreur, BarriereErreur {
 		//On definit ici l'identifiant du client, son immatriculation, et son abonnement.

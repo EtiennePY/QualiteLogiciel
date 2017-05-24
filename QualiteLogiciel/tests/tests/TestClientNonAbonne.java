@@ -28,14 +28,23 @@ import ticket.inter.IAbstractTicket;
 import vehicule.impl.CategorieVehicule;
 import vehicule.inter.IVehicule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestClientNonAbonne.
+ */
 public class TestClientNonAbonne {
 
+/** The client. */
 private IClientNonAbonne client;
 	
+	/** The expected ex. */
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
 	
+	/**
+	 * Instanciation.
+	 */
 	@Before
 	public void instanciation() {
 				
@@ -56,6 +65,9 @@ private IClientNonAbonne client;
 				this.client = client;
 	}
 	
+	/**
+	 * Settergetterbanque.
+	 */
 	@Test
 	public void settergetterbanque() {
 
@@ -64,6 +76,12 @@ private IClientNonAbonne client;
 		Assert.assertEquals(client.getBanque(), banque);
 	}
 
+	/**
+	 * Insere ticket.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws TicketErreur the ticket erreur
+	 */
 	@Test
 	public void insereTicket() throws CarteAbonnementErreur, TicketErreur {
 
@@ -75,6 +93,13 @@ private IClientNonAbonne client;
 		Assert.assertEquals(TicketWithout.instance(), client.getTicket());
 	}
 	
+	/**
+	 * Insere carte bancaire.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws TicketErreur the ticket erreur
+	 * @throws CarteBancaireErreur the carte bancaire erreur
+	 */
 	@Test
 	public void insereCarteBancaire() throws CarteAbonnementErreur, TicketErreur, CarteBancaireErreur {
 		Integer idCarteBancaire = 1337;
@@ -86,6 +111,11 @@ private IClientNonAbonne client;
 	}
 	
 	
+	/**
+	 * Recupere ticket.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 */
 	@Test
 	public void recupereTicket() throws TicketErreur {
 
@@ -98,6 +128,11 @@ private IClientNonAbonne client;
 		Assert.assertEquals(ticketClient, client.getTicket());
 	}
 	
+	/**
+	 * Recupere carte bancaire.
+	 *
+	 * @throws CarteBancaireErreur the carte bancaire erreur
+	 */
 	@Test
 	public void recupereCarteBancaire() throws CarteBancaireErreur {
 		Integer idCarteBancaire = 1337;
@@ -111,21 +146,35 @@ private IClientNonAbonne client;
 	
 	
 	
+	/**
+	 * Est abonne.
+	 */
 	@Test
 	public void estAbonne() {
 		Assert.assertEquals(false, client.isAbonne());
 	}
 	
+	/**
+	 * Se place devant barriere.
+	 */
 	@Test
 	public void sePlaceDevantBarriere() {
 		Assert.assertEquals("Le client se positionne devant la barrière", client.sePlaceDevantBarriere());
 	}
 	
+	/**
+	 * Passe.
+	 */
 	@Test
 	public void passe() {
 		Assert.assertEquals("Le client passe", client.passe());
 	}
 
+	/**
+	 * Erreur ticket.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 */
 	@Test
 	public void erreurTicket() throws TicketErreur {
 		expectedEx.expect(TicketErreur.class);
@@ -137,6 +186,11 @@ private IClientNonAbonne client;
 		client.insereTicket(lecteur);
 	}
 	
+	/**
+	 * Erreur carte bancaire.
+	 *
+	 * @throws CarteBancaireErreur the carte bancaire erreur
+	 */
 	@Test
 	public void erreurCarteBancaire() throws CarteBancaireErreur {
 		expectedEx.expect(CarteBancaireErreur.class);

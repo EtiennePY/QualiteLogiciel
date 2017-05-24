@@ -1,6 +1,3 @@
-/*
- * 
- */
 package vehicule.inter;
 
 import vehicule.impl.CategorieVehicule;
@@ -10,25 +7,25 @@ import vehicule.impl.CategorieVehicule;
  * The Interface IVehicule.
  */
 public interface IVehicule {
-	  
-  	/**
-  	 * Gets the immatriculation.
-  	 *
-  	 * @return the immatriculation
-  	 */
-  	int getImmatriculation();
-	  
-  	/**
-  	 * Sets the immatriculation.
-  	 *
-  	 * @param immatriculation the new immatriculation
-  	 */
-  	void setImmatriculation(int immatriculation);
-  	
-  	/**
-	  * Gets the categorie.
-	  *
-	  * @return the categorie
-	  */
-	  CategorieVehicule getCategorie();
+  
+  /**
+   * Gets the immatriculation.
+   *
+   * @return the immatriculation
+   */
+  int getImmatriculation();
+  
+  /**
+   * Sets the immatriculation.
+   *
+   * @param immatriculation the new immatriculation
+   */
+  void setImmatriculation(int immatriculation);
+  
+  /**
+  * Gets the categorie.
+  *
+  * @return the categorie
+  */
+  CategorieVehicule getCategorie();
 }

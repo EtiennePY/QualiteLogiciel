@@ -1,6 +1,3 @@
-/*
- * 
- */
 package panneau.impl;
 
 import java.util.logging.Logger;
@@ -14,7 +11,7 @@ import panneau.inter.IPanneauAffichage;
 public class PanneauAffichage implements IPanneauAffichage {
   
   /** The nbplaces. */
-  private final static int PLACESTOTALES = 400;
+  private final int PLACESTOTALES = 400;
   
   /** The entres. */
   private int entres;
@@ -45,7 +42,6 @@ public class PanneauAffichage implements IPanneauAffichage {
    * Gets the sortis.
    *
    * @param sortis the new sortis
-   * @return the sortis
    */
   public void setSortis(final int sortis) {
     this.sortis = sortis;
@@ -57,7 +53,7 @@ public class PanneauAffichage implements IPanneauAffichage {
    * @return the nombre places libres
    */
   public int getNombrePlacesLibres() {
-    return this.getPLACESTOTALES() - this.getEntres() + this.getSortis();
+    return this.getPlacesTotales() - this.getEntres() + this.getSortis();
   }
   
   /**
@@ -65,11 +61,11 @@ public class PanneauAffichage implements IPanneauAffichage {
    *
    * @return the placestotales
    */
-  public int getPLACESTOTALES() {
-	return PLACESTOTALES;
-}
+  public int getPlacesTotales() {
+    return PLACESTOTALES;
+  }
 
-/**
+  /**
  * Sets the entres.
  *
  * @return the entres
@@ -90,16 +86,16 @@ public class PanneauAffichage implements IPanneauAffichage {
   /**
    * Adds the.
    */
-  public void add(){
-    this.setEntres(this.getEntres()+1);
+  public void add() {
+    this.setEntres(this.getEntres() + 1);
     LOG.info("Le panneau d'affichage incrémente le nombre de places disponibles");
   }
   
   /**
    * Minus.
    */
-  public void minus(){
-    this.setSortis(this.getSortis()+1);
+  public void minus() {
+    this.setSortis(this.getSortis() + 1);
     LOG.info("Le panneau d'affichage incrémente le nombre de vehicules sortis");
   }
 }

@@ -50,5 +50,12 @@ public interface IPanneauAffichage {
    * Minus.
    */
   void minus();
+  
+  /**
+   * Gets the placestotales.
+   *
+   * @return the placestotales
+   */
+  int getPlacesTotales();
 
 }

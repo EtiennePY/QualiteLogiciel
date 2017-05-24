@@ -7,15 +7,26 @@ import org.junit.Test;
 import panneau.impl.PanneauAffichage;
 import panneau.inter.IPanneauAffichage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestPanneauAffichage.
+ */
 public class TestPanneauAffichage {
 
+	/** The panneau. */
 	private IPanneauAffichage panneau;
 
+	/**
+	 * Instanciation panneau.
+	 */
 	@Before
 	public void instanciationPanneau() {
 		this.panneau = new PanneauAffichage();
 	}
 	
+	/**
+	 * Moins une voiture.
+	 */
 	@Test
 	public void moinsUneVoiture() {
 		int nombreDePlacesAvant = panneau.getNombrePlacesLibres();
@@ -25,6 +36,9 @@ public class TestPanneauAffichage {
 		Assert.assertEquals(nombreDePlacesAvant, nombreDePlacesApres - 1);
 	}
 	
+	/**
+	 * Plus une voiture.
+	 */
 	@Test
 	public void plusUneVoiture() {
 		int nombreDePlacesAvant = panneau.getNombrePlacesLibres();

@@ -28,13 +28,15 @@ public interface IBarriereSortie {
   
   /**
    * Ouvrir.
- * @throws BarriereErreur 
+   * @throws BarriereErreur
+   *  
    */
   void ouvrir() throws BarriereErreur;
   
   /**
    * Fermer.
- * @throws BarriereErreur 
+   * @throws BarriereErreur 
+   * 
    */
   void fermer() throws BarriereErreur;
 

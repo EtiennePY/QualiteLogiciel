@@ -21,40 +21,72 @@ import systemeinfo.inter.ISystemeInformatique;
 import ticket.impl.TicketWithout;
 import ticket.inter.IAbstractTicket;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestLecteurTicket.
+ */
 public class TestLecteurTicket {
+	
+	/** The expected ex. */
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
+	/** The lecteur. */
 	private ILecteurTicket lecteur;
+	
+	/**
+	 * Instanciation lecteur.
+	 */
 	@Before 
 	public void instanciationLecteur() {
 		this.lecteur = new LecteurTicket();
 	}
 	
+	/**
+	 * Instanciation correcte.
+	 */
 	@Test
 	public void instanciationCorrecte() {
 		Assert.assertEquals(TicketWithout.instance(), this.lecteur.getTicketClient());
 	}
 	
+	/**
+	 * Demande insertion correcte.
+	 */
 	@Test
 	public void demandeInsertionCorrecte() {
 		Assert.assertEquals(true, this.lecteur.demandeInsertionTicket(true));
 	}
+	
+	/**
+	 * Demande insertion incorrecte.
+	 */
 	@Test
 	public void demandeInsertionIncorrecte() {
 		Assert.assertEquals(false, this.lecteur.demandeInsertionTicket(false));
 	}
 	
+	/**
+	 * Restitution sans problemes.
+	 */
 	@Test
 	public void restitutionSansProblemes() {
 		Assert.assertEquals(true, this.lecteur.restitutionTicket(true));
 	}
 	
+	/**
+	 * Restitution avec problemes.
+	 */
 	@Test
 	public void restitutionAvecProblemes() {
 		Assert.assertEquals(false, this.lecteur.restitutionTicket(false));
 	}
 	
+	/**
+	 * Check date correct.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 */
 	@Test
 	public void checkDateCorrect() throws TicketErreur {
 		ILecteurBancaire lecteurBancaire = new MockLecteurBancaire();		
@@ -67,6 +99,12 @@ public class TestLecteurTicket {
 		Assert.assertEquals(true, this.lecteur.verificationTicket(sys, lecteurBancaire));
 	}
 	
+	/**
+	 * Check ticket incorrect.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkTicketIncorrect() throws TicketErreur, BarriereErreur {
 		ILecteurBancaire lecteurBancaire = new MockLecteurBancaire();		
@@ -78,6 +116,13 @@ public class TestLecteurTicket {
 		Assert.assertEquals(false, this.lecteur.verificationTicket(sys, lecteurBancaire));
 	}
 
+	/**
+	 * Check sans ticket.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws BarriereErreur the barriere erreur
+	 * @throws TicketErreur the ticket erreur
+	 */
 	@Test
 	public void checkSansTicket() throws CarteAbonnementErreur, BarriereErreur, TicketErreur {
 		expectedEx.expect(TicketErreur.class);

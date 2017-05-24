@@ -42,19 +42,33 @@ import ticket.inter.ITicketWith;
 import vehicule.impl.CategorieVehicule;
 import vehicule.inter.IVehicule;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestSystemeInformatique.
+ */
 public class TestSystemeInformatique {
 	
+	/** The expected ex. */
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 
 	
+	/** The sys. */
 	private ISystemeInformatique sys;
 	
+	/**
+	 * Instanciation.
+	 */
 	@Before
 	public void instanciation() {
 		this.sys = new SystemeInformatique();
 	}
 	
+	/**
+	 * Gets the ter setter date du jour.
+	 *
+	 * @return the ter setter date du jour
+	 */
 	@Test
 	public void getterSetterDateDuJour() {
 		IDateTicket date = new DateTicket(17, 4, 16, 30, 30);
@@ -62,6 +76,9 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(date, sys.getDateDuJour());
 	}
 	
+	/**
+	 * Enregistrement client abonne.
+	 */
 	@Test
 	public void enregistrementClientAbonne() {
 		Integer idClient = 69;
@@ -72,6 +89,12 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(true, sys.getImmatriculations().containsKey(idClient));
 	}
 	
+	/**
+	 * Check abonnement avec carte valide.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkAbonnementAvecCarteValide() throws CarteAbonnementErreur, BarriereErreur {
 		Integer idClient = 69;
@@ -96,6 +119,12 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(true, sys.checkAbonnement(carteAbonnement, lecteurAbo, barriere));
 	}
 
+	/**
+	 * Check abonnement avec carte invalide.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkAbonnementAvecCarteInvalide() throws CarteAbonnementErreur, BarriereErreur {
 		Integer idClient = 69;
@@ -123,6 +152,12 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(false, sys.checkAbonnement(carteAbonnement, lecteurAbo, barriere));
 	}
 
+	/**
+	 * Check abonnement sans carte.
+	 *
+	 * @throws CarteAbonnementErreur the carte abonnement erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkAbonnementSansCarte() throws CarteAbonnementErreur, BarriereErreur {
 		
@@ -155,6 +190,9 @@ public class TestSystemeInformatique {
 		sys.checkAbonnement(carteAbonnement, lecteurAbo, barriere);
 	}
 
+	/**
+	 * Calcul prix.
+	 */
 	@Test
 	public void calculPrix() {
 		sys.setDateDuJour(new DateTicket(17, 04, 17, 30, 30));
@@ -163,6 +201,12 @@ public class TestSystemeInformatique {
 	}
 	
 
+	/**
+	 * Check ticket avec ticket valide.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkTicketAvecTicketValide() throws TicketErreur, BarriereErreur {
 
@@ -201,6 +245,12 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(true, sys.checkTicket(etienne.getTicket(), lecteurTicket, lecteurBancaire));
 	}
 	
+	/**
+	 * Check ticket avec ticket invalide.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkTicketAvecTicketInvalide() throws TicketErreur, BarriereErreur {
 
@@ -240,6 +290,12 @@ public class TestSystemeInformatique {
 		Assert.assertEquals(false, sys.checkTicket(etienne.getTicket(), lecteurTicket, lecteurBancaire));
 	}
 	
+	/**
+	 * Check ticket sans ticket.
+	 *
+	 * @throws TicketErreur the ticket erreur
+	 * @throws BarriereErreur the barriere erreur
+	 */
 	@Test
 	public void checkTicketSansTicket() throws TicketErreur, BarriereErreur {
 

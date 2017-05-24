@@ -7,27 +7,27 @@ import cartes.inter.IAbstractCarte;
  * The Class CarteWithout.
  */
 public class CarteWithout extends AbstractCarte implements IAbstractCarte {
-	
-	/** The Constant CARTEWITHOUT. */
-	private final static CarteWithout SINGLETON = new CarteWithout();
-	
-	/**
-	 * Instance.
-	 *
-	 * @return the carte without
-	 */
-	public static CarteWithout instance() {
-		return CarteWithout.SINGLETON;
-	}
-	
-	/**
-	 * Checks if is with.
-	 *
-	 * @return true, if is with
-	 */
-	public boolean isWith(){
-		return false;
-	}
-	
+  
+  /** The Constant CARTEWITHOUT. */
+  private static final CarteWithout SINGLETON = new CarteWithout();
+  
+  /**
+   * Instance.
+   *
+   * @return the carte without
+   */
+  public static CarteWithout instance() {
+    return CarteWithout.SINGLETON;
+  }
+  
+  /**
+   * Checks if is with.
+   *
+   * @return true, if is with
+   */
+  public boolean isWith() {
+    return false;
+  }
+  
 
 }

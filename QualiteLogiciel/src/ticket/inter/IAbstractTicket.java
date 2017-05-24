@@ -6,12 +6,12 @@ package ticket.inter;
  */
 public interface IAbstractTicket {
 
-	/**
-	 * Checks if is with.
-	 *
-	 * @return true, if is with
-	 */
-	boolean isWith();
-	
+  /**
+   * Checks if is with.
+   *
+   * @return true, if is with
+   */
+  boolean isWith();
+  
 
 }
